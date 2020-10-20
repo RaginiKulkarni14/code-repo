@@ -1,0 +1,50 @@
+Level 1
+1. Create a springboot application with GET, POST or DELETE method type endpoints. Deploy and verify the outcome via Postman.
+2. Create 2nd project with some  endpoints and access the first project using Rest Template. (Interaction between Microservices)
+3. Create a project as Service Discovery i.e Eureka Server and register the above created Microservices on Eureka. Access and verify the outcome.
+
+Level 2
+1. Create a separate project acting as a Config Server(Config Microservice) and access these configurations by other Microservices.
+2. Enable spring security in one of the project of Level 1 and verify the basic authentication provided by SpringBoot.
+3. Create a full fledged project comprising of Controller, interface, implementation, Repository 
+   and Entity class and use JPA repository for interaction with DB.
+   
+Level 3 
+1. JWT and OAuth implementation
+2. Centralized Logging
+3. Apache Kafka with Microservices.
+4. Dockerizing a Microservice and deploying on Azure/ AWS Cloud.
+
+Reference Links:
+                Oauth2: (TechPrimers) 
+                https://www.youtube.com/watch?v=Dbxzw0cpxBU
+                https://github.com/TechPrimers/spring-security-oauth-example
+                
+                JWT:
+                https://medium.com/omarelgabrys-blog/microservices-with-spring-boot-authentication-with-jwt-part-3-fafc9d7187e8
+                
+                CQRS:
+                https://github.com/citerus/bookstore-cqrs-example/wiki
+                https://github.com/citerus/bookstore-cqrs-example
+                
+                Eureka Server/ Service Discovery:
+                https://www.tutorialspoint.com/spring_boot/spring_boot_eureka_server.htm
+                
+                JPA Repository:
+                https://bezkoder.com/spring-boot-jpa-crud-rest-api/
+                https://www.springboottutorial.com/spring-boot-crud-rest-service-with-jpa-hibernate
+                
+                Config Server:
+                https://dzone.com/articles/using-spring-config-server
+                https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html
+
+
+=>spring-security-Oauth
+
+https://www.youtube.com/watch?v=Dbxzw0cpxBU
+
+=>Spring-security-jwt
+
+https://www.youtube.com/watch?v=soGRyl9ztjI
+
+https://www.youtube.com/watch?v=X80nJ5T7YpE&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE&index=12

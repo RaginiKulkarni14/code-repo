@@ -1,0 +1,117 @@
+AWS service
+Azure service
+Description
+Redshift
+Synapse Analytics
+Cloud-based Enterprise Data Warehouse (EDW) that uses Massively Parallel Processing (MPP) to quickly run complex queries across petabytes of data.
+
+
+you can dump all logs wrt whats happening with the azure resource into workspace 
+==> management console ->log analytics workspace
+
+log analytics is part of azure monitor , is a log collection and search service hosted in ms azure
+
+log data collected by azure monitor is stored in a log analytics workspace
+
+create log analytics workspace, then add data source.
+
+like vm, activity logs to stream, to accumulation logs to ws.
+
+===> monitoring sol, how you want to read logs. 
+
+info level=> normal. level field => log notation whenever error, specify level=> citical. critical level. 
+
+
+What is Log Analytics?
+Log Analytics is the primary tool in the Azure portal for writing log queries and interactively analyzing their results. Even if a log query is used elsewhere 
+in Azure Monitor, you'll typically write and test the query first using Log Analytics.
+You can start Log Analytics from several places in the Azure portal. The scope of the data available to Log Analytics is determined by how you start it. 
+See Query Scope for more details.
+Select Logs from the Azure Monitor menu or Log Analytics workspaces menu.
+Select Logs from the Overview page of an Application Insights application.
+Select Logs from the menu of an Azure resource.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+With Azure products and services, you only pay for what you use. As you create and use Azure resources, you are charged for the resources. 
+You use Azure Cost Management and Billing features to conduct billing administrative tasks and manage billing access to costs. 
+You can also use its features to monitor and control Azure spending and to optimize Azure resource use.
+
+Azure Billing features are used to review your invoiced costs and manage access to billing information. In larger organizations, procurement and 
+finance teams usually conduct billing tasks.
+A billing account is created when you sign up to use Azure. You use your billing account to manage your invoices, payments, and track costs. 
+You can have access to multiple billing accounts. For example, you might have signed up for Azure for your personal projects. 
+So, you might have an individual Azure subscription with a billing account. You could also have access through your organization's Enterprise Agreement 
+or Microsoft Customer Agreement. For each scenario you would have a separate billing account.
+
+Billing account
+Represents a single owner (Account administrator) for one or more Azure subscriptions. An Account Administrator is authorized to perform various billing 
+tasks like create subscriptions, view invoices or change the billing for subscriptions.
+Subscription
+Represents a grouping of Azure resources. An invoice is generated at the subscription scope. It has its own payment methods that are used to pay its invoice.
+
+Cost management is the process of effectively planning and controlling costs involved in your business. Cost management tasks are normally performed by finance, 
+management, and app teams. Azure Cost Management + Billing helps organizations plan with cost in mind. It also helps to analyze costs effectively and take action
+ to optimize cloud spending. To learn more about how to approach cost management as an organization, take a look at the Azure Cost Management best practices article.
+
+Although related, billing differs from cost management. Billing is the process of invoicing customers for goods or services and managing the commercial relationship.
+Cost Management shows organizational cost and usage patterns with advanced analytics. Reports in Cost Management show the usage-based costs consumed by 
+Azure services and third-party Marketplace offerings
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Azure Automation delivers a cloud-based automation and configuration service that supports consistent management across your Azure and non-Azure environments. 
+It comprises process automation, configuration management, update management, shared capabilities, and heterogeneous features. Automation gives you complete 
+control during deployment, operations, and decommissioning of workloads and resources.
+
+Process automation in Azure Automation allows you to create and manage PowerShell, PowerShell Workflow, and graphical runbooks
+
+Azure Runbooks are part of Azure Automation, they are written in PowerShell and run in Azure. 
+Azure Runbooks are typically used to automate a process done by an administrator
+
+Runbook automation. Runbook automation (RBA) is the ability to define, build, orchestrate, manage, and report on 
+workflows that support system and network operational processes.
+
+Process automation in Azure Automation allows you to create and manage PowerShell, PowerShell Workflow, and graphical runbooks. 
+Automation executes your runbooks based on the logic defined inside them. If a runbook is interrupted, it restarts at the beginning.
+ This behavior requires you to write runbooks that support being restarted if transient issues occur.
+Starting a runbook in Azure Automation creates a job, which is a single execution instance of the runbook. 
+Each job accesses Azure resources by making a connection to your Azure subscription. 
+The job can only access resources in your datacenter if those resources are accessible from the public cloud.
+Azure Automation assigns a worker to run each job during runbook execution. While workers are shared by many Azure accounts, 
+jobs from different Automation accounts are isolated from one another. You can't control which worker services your job requests.
+When you view the list of runbooks in the Azure portal, it shows the status of each job that has been started for each runbook. 
+Azure Automation stores job logs for a maximum of 30 days.
+The following diagram shows the lifecycle of a runbook job for PowerShell runbooks, PowerShell Workflow runbooks, and graphical runbooks.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+What are metrics?
+Metrics are numerical values that describe some aspect of a system at a particular time. Metrics are collected at regular intervals and are useful for alerting 
+because they can be sampled frequently, and an alert can be fired quickly with relatively simple logic.
+
+What can you do with Azure Monitor Metrics?
+The following table lists the different ways that you can use metric data in Azure Monitor.
+What can you do with Azure Monitor Metrics?
+
+we have an app running on the machine and it is memory intensive and we want to see how much memory it is still available, we can do that by custom metric.
+
+Analyze
+Use metrics explorer to analyze collected metrics on a chart and compare metrics from different resources.
+Visualize
+Pin a chart from metrics explorer to an Azure dashboard.
+Create a workbook to combine with multiple sets of data in an interactive report.Export the results of a query to Grafana to leverage its dashboarding and combine with other data sources.
+Alert
+Configure a metric alert rule that sends a notification or takes automated action when the metric value crosses a threshold.
+Automate
+Use Autoscale to increase or decrease resources based on a metric value crossing a threshold.
+Export
+Route Metrics to Logs to analyze data in Azure Monitor Metrics together with data in Azure Monitor Logs and to store metric values for longer than 93 days.
+Stream Metrics to an Event Hub to route them to external systems.
+Retrieve
+Access metric values from a command line using PowerShell cmdlets
+Access metric values from custom application using REST API.
+Access metric values from a command line using CLI.
+Archive
+Archive the performance or health history of your resource for compliance, auditing, or offline reporting purposes.

@@ -1,0 +1,81 @@
+hello everyone,
+
+i will be explaining about Azure Management Services,
+
+so here are the management tools which are used mostly.
+
+there are other management tools as well like, user privacy, solutions,resource graphs,policy.
+
+but will be explaining these 4 main tools.
+--------------------------------------------------------------------------------------------------------------
+lets start with, Log analytics.
+
+Log analytics is a workspace where the data collected by Azure monitor is stored. 
+you can dump all logs wrt whats happening with the azure resource into workspace.
+
+will show you how to create the workspace and store the logs. 
+
+once the ws is created will have to connect the data source, that could be VM or creating an activity log.
+
+here i am selecting a VM and adding a few event logs such as application, operations, system log.
+
+then go logs and write a query for Performance/events using a query lang KQL (Kusto query language) 
+
+================================================================================================================
+
+Next tool is Cost Management and Billing,
+
+With Azure products and services, you only pay for what you use. As you create and use Azure resources, you are charged for the resources. 
+You use Azure Cost Management and Billing features to conduct billing tasks and manage billing access to costs.
+Azure Billing features are used to review your invoiced costs and manage access to billing information.
+
+A billing account is created when you sign up to use Azure. You use your billing account to manage your invoices, payments, and track costs. 
+You can have access to multiple billing accounts. For example, you might have signed up for Azure for your personal projects. 
+So, you might have an individual Azure subscription with a billing account. You could also have access through your organization's Enterprise Agreement 
+or Microsoft Customer Agreement. For each scenario you would have a separate billing account.
+
+================================================================================================================
+
+Next tool is Automation Account
+
+when we have more num of resources its difficult to manage.
+
+like ex : we have some resources created and we have to manually deploy them, its ok if there are a few resources/services but when we have huge no.of services
+to deploy we can go for automation, we can relace the tasks which we do manully and automate them.
+
+Runbook automation. Runbook automation (RBA) is the ability to define, build, orchestrate, manage, and report on 
+workflows that support system and network operational processes.
+
+Azure Automation allows you to create and manage PowerShell, PowerShell Workflow, and graphical runbooks. 
+Automation executes your runbooks based on the logic defined inside them.
+
+Enter the account information, including the selected account name. For Create Azure Run As account, 
+choose Yes so that the artifacts to simplify authentication to Azure are enabled automatically.
+ When the information is complete, click Create to start the Automation account deployment.
+
+Select Automation Accounts and then choose the Automation account you've created.
+
+Click Runbooks under Process Automation. The list of runbooks is displayed. By default, several tutorial runbooks are enabled in the account.
+
+In this quickstart, you’ve deployed an Automation account, started a runbook job, and viewed the job results. 
+To learn more about Azure Automation, continue to the quickstart for creating your first runbook.
+
+Scedule azure VM, Scedule Server, automate azure cognitive service
+
+=========================================================================================================================
+
+last tool is Metrics
+
+we have an app running on the machine and it is memory intensive and we want to see how much memory is still available, we can do that by custom metric.
+
+Analyze
+Use metrics explorer to analyze collected metrics on a chart and compare metrics from different resources.
+
+Visualize
+Pin a chart from metrics explorer to an Azure dashboard.
+
+Alert
+Configure a metric alert rule that sends a notification or takes automated action when the metric value crosses a threshold.
+
+======================================================================================================================
+https://jira.oraclecorp.com/jira/secure/RapidView.jspa?rapidView=176084
