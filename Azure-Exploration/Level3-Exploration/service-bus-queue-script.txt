@@ -1,0 +1,20 @@
+#Run the following command to create an Azure resource group. Update the resource group name and the location if you want.
+
+az group create --name MyResourceGroup --location eastus 
+
+#Run the following command to create a Service Bus messaging namespace. Update the name of the namespace to be unique.
+
+#az servicebus namespace create --resource-group myresourcegroup --name mynamespace --location westus --tags tag1=value1 tag2=value2 --sku Standard
+
+#namespace=MyNameSpaceServiceBus
+az servicebus namespace create --resource-group MyResourceGroup --name newnamespaceName --location eastus 
+
+#Run the following command to create a queue in the namespace.
+
+az servicebus queue create --resource-group MyResourceGroup   --namespace-name newnamespaceName --name MyQueue
+
+#Run the following command to get the primary connection string for the namespace. You use this connection string to connect to the queue and send and receive messages.
+
+az servicebus namespace authorization-rule keys list --resource-group MyResourceGroup --namespace-name $namespaceName --name RootManageSharedAccessKey --query primaryConnectionString --output tsv    
+
+#Note down the connection string and the queue name. You use them to send and receive messages.
