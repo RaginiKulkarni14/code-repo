@@ -1,0 +1,132 @@
+=>Spring Cloud Data Flow which allows us to orchestate streaming and/or batch data pipelines.
+
+=> Spring Cloud Data Flow, which focuses on enabling developers to easily develop, deploy, and orchestrate flow of app registred.
+
+=>The data pipelines can be a composition of either 
+	1) Event streaming (real-time and long-running) or 
+	2) task/batch (short-lived) data-intensive applications
+
+=>To orchestrate the deployment of event streaming pipelines to platforms such as Cloud Foundry (CF) and Kubernetes (K8s), 
+Spring Cloud Data Flow delegates the application lifecycle operations (deploy, update, rollback) to another server component named Spring Cloud Skipper. 
+
+=>the Spring team created Spring Cloud Stream to work with messaging services like RabbitMQ or Apache Kafka
+
+=>Spring cloud Stream is a binding framework that binds the (source-processor-sink) code to a destination middleware
+
+=>The deployment of short-lived (task/batch) data pipelines to target platforms is managed by Spring Cloud Data Flow itself.
+
+=>To build an event streaming pipeline, Spring Cloud Data Flow provides a set of application types:
+
+   1) A source represents the first step in the data pipeline, a producer that extracts data from the external systems like databases, 
+   filesystem, FTP servers, IoT devices, etc.
+   
+   2) A processor represents an application that can consume from an upstream producer (a source or a processor), perform the business operation on
+   the consumed data and emit the processed data for downstream consumption
+   
+   3) A sink represents the final stage in the data pipeline, which can write the consumed data to external systems like Cassandra, PostgreSQL, Amazon S3, etc
+   
+=>  What is a data pipeline?
+
+A flow that receives an event from an input, perform some action(s) and send the result to an output. 
+The good thing with Spring Cloud Data Flow is that it’s fully integrated with Spring Integration
+
+================================================================================================================================================================
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic test
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+
+================================================================================================================================================================
+
+source--- producer
+processor- logic
+sink--consumer
+
+
+rabbitmq------- from exchange msg will be delivered to queue, from will be consuming the msg
+
+kafka----- from exchange msg will be delivered to topic, from will be consuming the msg
+
+bin/kafka-topics.bat --list --bootstrap-server localhost:9092  //to get the list of topics
+
+Source uses ---- 
+@Output(Source.OUTPUT)
+	MessageChannel output();
+
+Processor extends Source, Sink	
+Bindable interface with one input and one output channel.
+
+@Input(Sink.INPUT)
+	SubscribableChannel input();
+
+get access to the source in order to publish the msg
+
+Kafka Topic Replication
+
+Apache Kafka is a distributed software system in the Big Data world. Thus, for such a system, there is a requirement to have copies of the stored data. 
+In Kafka, each broker contains some sort of data. But, what if the broker or the machine fails down? The data will be lost. Precautionary, 
+Apache Kafka enables a feature of replication to secure data loss even when a broker fails down. To do so, a replication factor is created for the topics 
+contained in any particular broker. A replication factor is the number of copies of data over multiple brokers. The replication factor value should be 
+greater than 1 always (between 2 or 3). This helps to store a replica of the data in another broker from where the user can access it.
+
+For example, suppose we have a cluster containing three brokers say Broker 1, Broker 2, and Broker 3. A topic, namely Topic-X is split into Partition 0 and 
+Partition 1 with a replication factor of 2.
+Kafka Topic Replication
+
+Thus, we can see that Partition 0 of Topic-x is having its replicas in Broker 1 and Broker 2. Also, Partition1 of Topic-x is having its replication in Broker 2 
+and Broker 3.
+
+It is obvious to have confusion when both the actual data and its replicas are present. The cluster may get confuse that which broker should serve the client 
+request. To remove such confusion, the following task is done by Kafka:
+
+    It chooses one of the broker's partition as a leader, and the rest of them becomes its followers.
+    The followers(brokers) will be allowed to synchronize the data. But, in the presence of a leader, none of the followers is allowed to serve the client's 
+	request. These replicas are known as ISR(in-sync-replica). So, Apache Kafka offers multiple ISR(in-sync-replica) for the data.
+
+Therefore, only the leader is allowed to serve the client request. The leader handles all the read and writes operations of data for the partitions. 
+The leader and its followers are determined by the zookeeper(discussed later).
+
+If the broker holding the leader for the partition fails to serve the data due to any failure, one of its respective ISR replicas will takeover the leadership. 
+Afterward, if the previous leader returns back, it tries to acquire its leadership again.
+
+Let's see an example to understand the concept of leader and its followers.
+
+Suppose, a cluster with the following three brokers 1,2, and 3. A topic x is present having two partitions and with replication factor=2.
+
+Spring Cloud Stream provides a programming model that enables immediate connectivity to Apache Kafka. The application needs to include the Kafka binder in its 
+classpath and add an annotation called @EnableBinding, which binds the Kafka topic to its input or an output (or both).
+
+Spring Cloud Stream provides three convenient interfaces to bind with @EnableBinding: Source (single output), Sink (single input) and 
+Processor (single input and output). It can be extended to custom interfaces with multiple inputs and outputs as well.
+
+The following code snippet shows the basic programming model of Spring Cloud Stream:
+
+@SpringBootApplication
+@EnableBinding(Processor.class)
+public class UppercaseProcessor {
+
+  @StreamListener(Processor.INPUT)
+  @SendTo(Processor.OUTPUT)
+  public String process(String s) {
+     return s.toUpperCase();
+  }
+}
+
+In this application, notice that the method is annotated with @StreamListener, which is provided by Spring Cloud Stream to receive messages from a Kafka topic. 
+The same method is also annotated with SendTo, which is a convenient annotation for sending messages to an output destination. This is a Spring Cloud Stream 
+Processor application that consumes messages from an input and produces messages to an output.
+
+There is no mention of Kafka topics in the preceding code. A natural question that may arise at this point is, “How is this application communicating with Kafka?” 
+The answer is: Inbound and outbound topics are configured by using one of the many configuration options supported by Spring Boot. In this case, we are using 
+a YAML configuration file named application.yml, which is searched for by default. Here is the configuration for input and output destinations:
+
+spring.cloud.stream.bindings:
+  input:
+    destination: topic1
+  output:
+    destination: topic2
+
+Spring Cloud Stream maps the input to topic1 and the output to topic2. This is a very minimal set of configurations, but there are more options that can be 
+used to customize the application further. By default, the topics are created with a single partition but can be overridden by the applications. Please refer 
+to these docs for more information.
