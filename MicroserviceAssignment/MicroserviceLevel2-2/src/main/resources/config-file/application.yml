@@ -1,0 +1,10 @@
+my:
+    greeting: Hello from spring config
+    list:
+      value: one,two,three
+
+db:
+    connection: connection string here
+    host: 127.7.9.0
+    
+ 
