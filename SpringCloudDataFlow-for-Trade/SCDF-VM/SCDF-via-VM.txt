@@ -1,0 +1,244 @@
+#==============================================================================
+az group create --name ragini_azure_vm_res_grp --location westeurope
+
+az vm create --resource-group ragini_azure_vm_res_grp --name ragini_azure_vm_1 --image UbuntuLTS --admin-username azureuser --generate-ssh-keys
+
+	az vm open-port --port 0-65535  --resource-group ragini_azure_vm_res_grp --name ragini_azure_vm_1
+
+#--------------------------------
+ssh azureuser@40.68.1.117
+
+
+#==============================================================================
+#Install required software in the VM
+
+sudo apt-get update
+sudo apt-get install -y jq dos2unix zip unzip
+sudo apt-get install -y maven
+sudo apt-get install openjdk-8-jdk
+
+#docker
+sudo apt-get install -y docker.io
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+#in a new window
+docker images
+sudo chmod 755 docker
+
+
+#docker-compose
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+sudo cp docker-compose /usr/local/bin/docker-compose
+sudo chmod 755 /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+#build and run the docker-compose
+./docker-compose-new-build.sh
+docker-compose -f docker-compose-new-build.yaml up
+
+git clone https://github.com/SSAzSeedTeam/daytrader
+
+#pull the latest code and switching to the new branch
+git pull
+git checkout ragini_kafka_scdf
+
+#mvn build under below dir
+cd daytrader/day-trader-java-app mvn install -Dmaven.test.skip=true
+
+#============================================================================================
+#steps to run kafka,zookeeper,spring-cloud-dataflow-server,spring-cloud-dataflow-shell locally 
+#============================================================================================
+
+#Install kafka
+wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+
+#spring-cloud-datflow-server 
+wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+
+#spring-cloud-dataflow-shell
+wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+
+#to unzip the folder
+tar xvf kafka_2.13-2.6.0.tgz
+
+#run zookeper
+cd kafka_2.13-2.6.0
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+#run kafka
+cd kafka_2.13-2.6.0
+bin/kafka-server-start.sh config/server.properties
+
+#start spring-cloud-datflow-server 
+#below one runs on java 11 by default
+java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar 
+#below cmd to run server on java 8
+/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+
+#start spring-cloud-dataflow-shell 
+java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+
+#=======================================================================================================================
+#steps to run kafka,zookeeper,spring-cloud-dataflow-server,spring-cloud-dataflow-shell using docker 
+#=======================================================================================================================
+
+#docker image for spring-cloud-data-flow including kafka,zookeeper,spring-cloud-dataflow-server
+wget -O docker-compose.yml https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.3/spring-cloud-dataflow-server/docker-compose.yml
+
+#for windows
+curl https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.3/spring-cloud-dataflow-server/docker-compose.yml -o docker-compose.yml & set DATAFLOW_VERSION=2.6.3& set SKIPPER_VERSION=2.5.2& docker-compose up
+
+#run the above docker-compose.yml
+export DATAFLOW_VERSION=2.6.3
+export SKIPPER_VERSION=2.5.2
+docker-compose up
+
+#start spring-cloud-dataflow-shell 
+docker exec -it dataflow-server java -jar shell.jar
+
+#to target the dataflow shell
+dataflow config server http://localhost:9393
+
+#=======================================================================================================================
+#app registery under spring-cloud-dataflow-shell
+#=======================================================================================================================
+# --name is the name of the app you want to register, --type could be source(producer)/processor /sink(consumer)
+# --uri is the path of docker-image (docker:azseed/daytrader-scdf-trade-generator:0)
+# azseed is the docker id followed by docker-image and version
+app register --name trade-generatorv1  --type source     --uri docker:azseed/daytrader-scdf-trade-generator:0
+app register --name trade-validationv1 --type processor  --uri docker:azseed/daytrader-scdf-trade-validation:0
+app register --name trade-processorv1  --type sink       --uri docker:azseed/daytrader-scdf-trade-processor:0
+
+#======================================================================================================================
+
+#creating a stream for the registered app
+stream create --name stream-topic-vm-datav1 --definition 'trade-generatorv1 | trade-validationv1 | trade-processorv1'
+
+#deploying the stream
+stream deploy --name stream-topic-vm-datav1
+
+#=======================================================================================================================
+#app registery by importing a file
+#=======================================================================================================================
+#create a file stream-apps.properties and place the apps you want to register 
+touch stream-apps.properties
+nano stream-apps.properties
+#=========================================
+source.trade-generatorv8=docker:azseed/daytrader-scdf-trade-generator:0
+processor.trade-validationv8=docker:azseed/daytrader-scdf-trade-validation:0
+sink.trade-processorv8=docker:azseed/daytrader-scdf-trade-processor:0
+#==========================================
+cat stream-apps.properties
+#========================================================================================================================
+#keys are formatted as <type>.<name> and the values are the URIs.
+
+#for docker 
+source.trade-generatorv8=docker:azseed/daytrader-scdf-trade-generator:0
+processor.trade-validationv8=docker:azseed/daytrader-scdf-trade-validation:0
+sink.trade-processorv8=docker:azseed/daytrader-scdf-trade-processor:0
+
+#for maven
+source.trade-generatorv9=maven://com.ofss.daytrader:trade-generator:jar:0.0.1-SNAPSHOT
+processor.trade-validationv9=maven://com.ofss.daytrader:trade-validation:jar:0.0.1-SNAPSHOT
+sink.trade-processorv9=maven://com.ofss.daytrader:trade-processor:jar:0.0.1-SNAPSHOT
+
+#run below cmd that imports the stream-apps.properties file
+#--local to indicate whether the properties file location should be resolved within the shell process itself
+app import --uri file:/C:/Users/rukulkar/Downloads/stream-apps.properties --local #for windows
+#app import --uri file:///usr/local/bin/stream-apps.properties
+#app import --uri file:/home/azureuser/stream-apps.properties
+#app import --uri /usr/local/bin/stream-apps.properties
+
+#======================================================================================================================
+
+#creating a stream for the registered app
+stream create --name stream-topic-vm-datav8 --definition 'trade-generatorv8 | trade-validationv8 | trade-processorv8'
+
+#=======================================================================================================================
+#passing/overriding the properties value while deplying the stream
+#=========================================================================================================================
+#app.app-name.{property-value} should be passed for all the apps registered
+#=========================================================================================================================
+stream deploy stream-topic-vm-datav8 --properties "app.trade-generatorv8.spring.kafka.bootstrap-servers=192.168.43.85:9092,app.trade-generatorv8.spring.kafka.properties.sasl.mechanism=GSSAPI,app.trade-generatorv8.spring.kafka.properties.request.timeout.ms=120000,app.trade-generatorv8.spring.kafka.properties.security.protocol= PLAINTEXT,app.trade-generatorv8.spring.kafka.properties.sasl.jaas.config=null,app.trade-generatorv8.spring.cloud.stream.kafka.binder.replication-factor=1,app.trade-validationv8.spring.kafka.bootstrap-servers=192.168.43.85:9092,app.trade-validationv8.spring.kafka.properties.sasl.mechanism=GSSAPI,app.trade-validationv8.spring.kafka.properties.request.timeout.ms=120000,app.trade-validationv8.spring.kafka.properties.security.protocol= PLAINTEXT,app.trade-validationv8.spring.kafka.properties.sasl.jaas.config=null,app.trade-validationv8.spring.cloud.stream.kafka.binder.replication-factor=1,app.trade-processorv8.spring.kafka.bootstrap-servers=192.168.43.85:9092,app.trade-processorv8.spring.kafka.properties.sasl.mechanism=GSSAPI,app.trade-processorv8.spring.kafka.properties.request.timeout.ms=120000,app.trade-processorv8.spring.kafka.properties.security.protocol= PLAINTEXT,app.trade-processorv8.spring.kafka.properties.sasl.jaas.config=null,app.trade-processorv8.spring.cloud.stream.kafka.binder.replication-factor=1"
+#=========================================================================================================================
+
+#under the spring-cloud-dataflow-server
+#logs will be generated for trade-generatorv1 under the below path
+cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628943/stream-topic-vm-datav1.trade-generatorv1
+ls -al
+cat stdout_0.log
+cd
+
+#logs will be generated for trade-validationv1 under the below path
+cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628830/stream-topic-vm-datav1.trade-validationv1
+ls -al
+cat stderr_0.log
+cat stdout_0.log
+cd
+
+#logs will be generated for trade-processorv1 under the below path
+cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628686/stream-topic-vm-datav1.trade-processorv1
+ls -al
+cat stderr_0.log
+cat stdout_0.log
+#log update
+cat tail -f stdout_0.log
+
+#also verify in the confluent cloud, topic will be created with the stream-name.app-name
+#stream-topic-vm-datav1.trade-generatorv1
+#stream-topic-vm-datav1.trade-validationv1
+#stream-topic-vm-datav1.trade-processorv1
+
+=========================================================================================================================
+#Unegister app,undeploy or destroy the stream
+#=========================================================================================================================
+
+Unregister app
+app unregister --name trade-generatorv8  --type source
+app unregister --name trade-validationv8 --type processor 
+app unregister --name trade-processorv8 --type sink 
+
+destroy stream
+stream undeploy --name stream-topic-vm-datav8
+stream destroy  --name stream-topic-vm-datav8
+#=========================================================================================================================
+
+#to get the path of a file
+readlink -f stream-apps.properties
+
+#steps to copy file from windows to ubuntu
+#First, Install and configure SSH on your Ubuntu server
+#Execute the following commands :
+$ sudo apt update
+$ sudo apt install openssh-server
+#Enable port 22 SSH in firewall
+$ sudo ufw allow 22
+#Check status whether SSH is running in a linux machine
+$ sudo systemctl status ssh
+#You can start or stop SSH using the following commands
+$ sudo systemctl start ssh
+$ sudo service ssh stop
+
+#Copy file from Windows to Ubuntu server
+#Execute this command on windows
+scp Filepathinwindows username@ubuntuserverip:linuxserverpath
+#Example
+scp D:/TxtFile.txt root@ipaddress:/home/usr/
+
+#log out/in to activate the changes to groups.
+
+#==============================================================================
+#az vm delete 
+az vm delete -g ragini_azure_vm_res_grp -n ragini_azure_vm_1 --yes
+
+#delete all VM in resource group
+az vm delete --ids $(az vm list -g ragini_azure_vm_res_grp --query "[].id" -o tsv)
+
+#delete everything
+az group delete --name ragini_azure_vm_res_grp --yes
+
+#==============================================================================
+
+https://tanzu.vmware.com/content/springone-platform-2017/orchestrating-data-microservices-with-spring-cloud-data-flow-mark-pollack
