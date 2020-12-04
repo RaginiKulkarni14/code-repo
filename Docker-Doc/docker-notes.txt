@@ -1,0 +1,198 @@
+FROM openjdk:8 
+
+##specifies the jar location which is under target folder
+ARG JAR_FILE=target/*.jar
+
+##the jar located under target folder is copied to the destination with the new name "trade-validation-1.0.jar" that could be anything(ex:trade-1.0.jar or validation-1.0.jar) not mandatory that both the name should be same.
+COPY ${JAR_FILE} trade-validation-1.0.jar 
+
+##specifies on which port it is running in the container, we can do a port forwarding using -p 8080:8087 then the local port/outside running port will be 8080 and the one running on container is 8087
+EXPOSE 8087 
+
+##to run this file docker container should know how to run/excecute with parameters it will use the passed arguments and run it here the jar name is same as the destination with new jar name
+ENTRYPOINT ["java","-jar","/trade-validation-1.0.jar"] 
+
+===============================================================
+ARG JAR_FILE=target/*.jar 
+COPY ${JAR_FILE} trade-validation-1.0.jar
+================================================================
+above 2 lines could be combined and written as below
+================================================================
+ADD target/*.jar trade-validation-1.0.jar
+================================================================
+
+Projects in Eclipse using Dockerfiles for multiple application deployment and interaction between them using Networks(creating bridge n/w)
+1. employee-consumer 
+2. employee-producer 
+
+5. To connect more than 1 Microservices running in different containers on Docker. 
+
+	==>For this to run we need to have the microservices on the same network so that they can interact with each other by making rest calls 
+	
+		1. Check the networks available in docker by using below 
+			docker network ls 
+			
+		2. Create your own network which will be default' to bride type, using below 
+			docker network create consumer-producer 
+			
+			If you check now then a new network will be available in the list of networks. You can check by using above command. 
+			
+		3. Once the network is created you can run the images in containers in the same network using the below command 
+			
+			docker run --network consumer-producer --name producer -p 8081:8080 employee-producer 
+												OR 
+			docker container run --network consumer-producer --name producer -p 8081:8080 employee-producer 
+			
+			"--network consumer-producer" ---> to make the container run in this mentioned network 
+			
+			"producer" ---> name of the container given for image employee-producer. f not given any random name will be given by docker 
+			
+			employee-producer ---> name of the image.: to be run in the container 
+			
+		4. Similar way run the consumer as well using the below command 
+		
+			docker container run --network consumer-producer --name consumer employee-consumer 
+			
+NOTE: In( point 4 the port is not defined. As it is defined in application.properties file for embedded tomacat and the port for container 
+		will be allocated randomly to it. 
+		
+		In the consumer controller the url for accessing producer changed from 
+		http://localhost:8081/employee  
+					TO 
+		http://producer:8080/employee  
+
+6. Now create a docker-compose.yml file anywhere in the system but for example we are creating it in employee-consumer project. 
+
+		1. The file will have all the details mentioned like the version of docker-compose to be used which is primary and important to declare 
+		
+		2. the services will be the microservice applications that needs to be deployed with names as producer and consumer for containers. 
+		
+		3. Each service will be having an image that will be deployed and will run on container. It is mentioned in the images section of the r 
+		
+		4. Make sure the image is available in the repository or else, it will not be able to deply it on container. 
+		
+		5. Networks within a service name define on which networks this microservice needs to be deployed. It can be more than one as well. 
+		
+		6. ports define the port forwarding that for respective service, it should run on specific container port an be exposed to outside worl 
+		
+		7. networks in the last define by which name the network needs to be created. in this case it is "consumer-producer". 
+
+		Now Go in the directory where the docker-compose.yml file is available in cmd and then execute below command to make the Microservices • different containers but yet in the same network so that they cn interact with each other. 
+
+		--> docker-compose up 
+		
+NOTE: The network created will be of different name that we mentioned in our docker-compose file. It is because the network name is combinati directory name and the network in our compose file. In this example it will be like: 
+
+		employee-consumer_consumer-producer 
+	
+	where 
+	
+		"employee-consumer" ---> directory name in which the doker file is present. 
+		"consumer-producer" ---> name of the network mentioned in the compose file. 
+	
+		If we dont mention the network name then it will pick as default. 
+		
+==================================================================================================================================================================
+		
+to show all the images that are available. 
+
+dockr ps -a
+----------------------------------------------------------------
+
+will reveal the list of containers running on docker' 
+	
+4. docker ps 
+----------------------------------------------------------------
+A container can be deleted by using the following command
+
+5. docker rm [CONTAINER ID]  
+
+----------------------------------------------------------------
+
+to stop the container that is running at present 
+
+6. CTRL+C 
+
+-------------------------------------
+ docker system prune -f
+ 
+ to delete all the containers
+-------------------------------------
+docker -it exec -it container_name bash 
+
+to enter into the container
+
+-------------------------------------
+docker logs <container_id>
+
+Most of the time you’ll end up tailing these logs in real time, or checking the last few logs lines.
+----------------------------------------------------------------
+
+Using the --follow or -f flag will tail -f (follow) the Docker container logs:
+
+docker logs <container_id> -f
+----------------------------------------------------------------
+
+The --tail flag will show the last number of log lines you specify:
+
+docker logs <container_id> --tail N
+----------------------------------------------------------------
+
+The -t or --timestamp flag will show the timestamps of the log lines:
+
+docker logs <container_id> -t
+----------------------------------------------------------------
+
+The --details flag will show extra details about the log lines:
+
+docker logs <container_id> --details
+----------------------------------------------------------------
+
+But what if you only want to see specific logs? Luckily, grep works with Docker logs as well.
+
+docker logs <container_id> | grep pattern
+----------------------------------------------------------------
+
+This command will only show errors:
+
+docker logs <container_id> | grep -i error
+----------------------------------------------------------------
+
+Once an application starts growing, you tend to start using Docker Compose. Don’t worry, it has a logs command as well.
+
+docker-compose logs
+
+This will display the logs from all services in the application defined in the Docker Compose configuration file.
+-------------------------------------
+
+7. PUSH and PULL to and from Docker Hub Repository: 
+
+------------------------------------
+a. 	login by entering the below command  
+	
+	docker login 
+	
+	enter username and password 
+
+b. 	general syntax docker tag [image] [username/repository:tag]  
+	
+	example : 
+			docker tag first-application demoApplicationTest/first-application 
+
+			--> Instead of demoApplicationTest/first-application, please replace it with your 
+
+			Pushing steps : htt sq/docs docker com/docker-hub/re os/
+			
+------------------------------------------------------------------------------------------------------------------------------
+docker push scdf-trade-generated
+
+=>denied: requested access to the resource is denied
+
+===================================
+
+docker tag scdf-trade-generated raginikulkarni/scdf-trade-generated
+docker login
+docker push scdf-trade-generated
+
+=========================================================================================================================================
+

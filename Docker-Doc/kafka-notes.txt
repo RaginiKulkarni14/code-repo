@@ -1,0 +1,47 @@
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic test
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+
+Spring Cloud Data Flow Example with Kafka-binder
+
+Follow Below Steps
+
+1) Apache-Kafka Binary Distribution Download.
+
+2) Strat Zookeeper server
+
+    zookeeper-server-start.bat D:\software\kafka_2.11-2.3.1\config\zookeeper.properties
+
+3) Strat Kafka server
+
+    kafka-server-start.bat D:\software\kafka_2.11-2.3.1\config\server.properties
+
+4) Download Spring Cloud Data Flow Server jar Download.
+
+5) Strat Spring Cloud Data Flow Server
+
+    java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+
+6) Download Spring Cloud Data Flow Shell jar Download.
+
+7) Strat Spring Cloud Data Flow shell
+
+    java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+
+8) Register all 3 microservices to Spring Cloud Data Flow Server using below commands
+
+    app register --name product-service --type source --uri maven://com.javatechie:product-service:jar:0.0.1-SNAPSHOT
+
+    app register --name discount-service --type processor --uri maven://com.javatechie:discount-service:jar:0.0.1-SNAPSHOT
+
+    app register --name courier-service --type sink --uri maven://com.javatechie:courier-service:jar:0.0.1-SNAPSHOT
+
+9) Create Cloud Stream to connect between all microservices registered in spring cloud data flow server
+
+    create --name log-data --definition 'product-service | discount-service | courier-service'
+
+10) Strat & Deploy Stream
+
+    stream deploy --name log-data
