@@ -1,0 +1,102 @@
+git commands
+===============================================
+
+1) git init
+
+initiates the empty repo
+
+=> This command turns a directory into an empty Git repository. This is the first step in creating a repository. After running git init, adding and committing files/directories is possible.
+----------------------------------
+
+2) git pull [URL : http://github.com/Raginik/reso-name]
+
+pull the latest code from specified repo path
+
+=> To get the latest version of a repository run git pull. This pulls the changes from the remote repository to the local computer.
+
+$ git pull <branch_name> <remote_URL/remote_name>
+-------------------------------------------
+
+3) git checkout -b [new-branch-name]
+
+switch to new branch-name
+
+# Checkout an existing branch
+$ git checkout <branch_name>
+
+# Checkout and create a new branch with that name
+$ git checkout -b <new_branch>git merge
+
+Integrate branches together. git merge combines the changes from one branch to another branch. For example, merge the changes made in a staging branch into the stable branch.
+---------------------------------------
+
+4) git branch
+
+gives you current branch-name
+
+=>To start working in a different branch, use git checkout to switch branches.
+------------------------------------
+
+5) git status
+
+gives you status of the file newly added/upto-date if no changes
+
+=>This command returns the current state of the repository.
+
+=>git status will return the current working branch. If a file is in the staging area, but not committed, it shows with git status. Or, if there are no changes it’ll return nothing to commit, working directory clean.
+----------------------------------------------------------------------
+
+6) git add .
+
+add the changes from . current path 
+
+=>Adds files in the to the staging area for Git. Before a file is available to commit to a repository, the file needs to be added to the Git index (staging area). There are a few different ways to use git add, by adding entire directories, specific files, or all unstaged files.
+
+# To add all files not staged:
+$ git add .
+
+# To stage a specific file:
+$ git add index.html
+
+# To stage an entire directory:
+$ git add css
+----------------------------------------------------------------------
+
+7) git commit
+
+Record the changes made to the files to a local repository. For easy reference, each commit has a unique ID.
+
+It’s best practice to include a message with each commit explaining the changes made in a commit. Adding a commit message helps to find a particular change or understanding the changes.
+
+# Adding a commit with message
+$ git commit -m "Commit message in quotes"
+-------------------------------------------------------------------------
+
+8) git merge
+
+Integrate branches together. git merge combines the changes from one branch to another branch. For example, merge the changes made in a staging branch into the stable branch.
+
+# Merge changes into current branch
+$ git merge <branch_name>
+------------------------------------------------------------------
+
+9) git remote
+
+To connect a local repository with a remote repository. A remote repository can have a name set to avoid having to remember the URL of the repository.
+
+# Add remote repository
+$ git remote <command> <remote_name> <remote_URL>
+
+# List named remote repositories
+$ git remote -v
+-----------------------------------------------------------------
+
+10) git clone
+
+To create a local working copy of an existing remote repository, use git clone to copy and download the repository to a computer. Cloning is the equivalent of git init when working with a remote repository. Git will create a directory locally with all files and repository history.
+
+$ git clone <remote_URL>
+---------------------------------------------------------------------
+
+===========================================================================================================================================================================
+

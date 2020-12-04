@@ -1,0 +1,58 @@
+git solutions
+=================================================================
+
+C:\Users\rukulkar\Desktop\10-20>git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+
+C:\Users\rukulkar\Desktop\10-20>git remote add ragini-microservice https://github.com/RaginiKulkarni14/Service-Bus-Queue
+
+C:\Users\rukulkar\Desktop\10-20>git remote add ragini-microservice https://github.com/RaginiKulkarni14/Service-Bus-Queue
+fatal: remote ragini-microservice already exists.
+
+C:\Users\rukulkar\Desktop\10-20>git push ragini-microservice
+fatal: The current branch ragini-microservice has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream ragini-microservice ragini-microservice
+
+
+C:\Users\rukulkar\Desktop\10-20>git push --set-upstream master ragini-microservice
+fatal: 'master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+C:\Users\rukulkar\Desktop\10-20>git push --set-upstream https://github.com/RaginiKulkarni14/Service-Bus-Queue ragini-microservice
+
+===============================================================================
+
+C:\Users\rukulkar\Desktop\10-20>git push
+To https://github.com/RaginiKulkarni14/Service-Bus-Queue
+ ! [rejected]        ragini-microservice -> ragini-microservice (fetch first)
+error: failed to push some refs to 'https://github.com/RaginiKulkarni14/Service-Bus-Queue'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+C:\Users\rukulkar\Desktop\10-20>git pull
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (2/2), 605 bytes | 30.00 KiB/s, done.
+From https://github.com/RaginiKulkarni14/Service-Bus-Queue
+ * branch            ragini-microservice -> FETCH_HEAD
+Merge made by the 'recursive' strategy.
+
+==================================================================================
