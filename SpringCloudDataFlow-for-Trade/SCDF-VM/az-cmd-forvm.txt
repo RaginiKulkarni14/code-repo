@@ -1,0 +1,49 @@
+#==============================================================================
+az group create --name ragini_azure_vm_res_grp --location westeurope
+
+az vm create --resource-group ragini_azure_vm_res_grp --name ragini_azure_vm_1 --image UbuntuLTS --admin-username azureuser --generate-ssh-keys
+
+az vm open-port --port 0-65535  --resource-group ragini_azure_vm_res_grp --name ragini_azure_vm_1
+
+#--------------------------------
+ssh azureuser@20.67.107.158
+
+
+#==============================================================================
+#Install required software in the VM
+
+sudo apt-get update
+sudo apt-get install -y jq dos2unix zip unzip
+sudo apt-get install -y maven
+sudo apt-get install -y openjdk-8-jdk
+
+git clone https://github.com/SSAzSeedTeam/daytrader
+
+wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+
+#docker
+sudo apt-get install -y docker.io
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+
+#docker-compose
+VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+sudo cp docker-compose /usr/local/bin/docker-compose
+sudo chmod 755 /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+#log out/in to activate the changes to groups.
+
+#==============================================================================
+#az vm delete 
+az vm delete -g ragini_azure_vm_res_grp -n ragini_azure_vm_1 --yes
+
+#delete all VM in resource group
+az vm delete --ids $(az vm list -g ragini_azure_vm_res_grp --query "[].id" -o tsv)
+
+#delete everything
+az group delete --name ragini_azure_vm_res_grp --yes
+
+#==============================================================================

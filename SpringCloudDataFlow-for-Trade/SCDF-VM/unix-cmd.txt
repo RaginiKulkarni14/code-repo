@@ -1,0 +1,1233 @@
+#to list all the files
+ls -l
+
+#to unzip the folder
+tar xvf kafka_2.13-2.6.0.tgz
+
+#to switch to new dir
+cd new_dir
+
+#to view the file
+cat docker-compose-new-build.yaml
+
+#to edit the file
+nano docker-compose-new-build.yaml
+
+#giving permission to rwx on a file  
+chmod 755 docker-build.sh
+
+#to run docker build
+./docker-compose-new-build.sh
+
+#to run docker compose file 
+docker-compose -f docker-compose-new-build.yaml up
+
+#update-alternatives java
+update-alternatives --list java
+
+#to run jar on alternative java
+ /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+ 
+***********************************************************************************************************************************************************************
+ 
+	1  sudo apt-get update
+    2  sudo apt-get install -y jq dos2unix zip unzip
+    3  sudo apt-get install -y maven
+    4  sudo apt-get install -y openjdk-8-jdk
+    5  git clone https://github.com/SSAzSeedTeam/daytrader
+    6  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+    7  sudo apt-get install -y docker.io
+    8  sudo groupadd docker
+    9  sudo gpasswd -a $USER docker
+   10  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   11  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   12  sudo cp docker-compose /usr/local/bin/docker-compose
+   13  sudo chmod 755 /usr/local/bin/docker-compose
+   14  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   15  docker-compose --version
+   16  exit
+   17  ls -l
+   18  cd daytrader
+   19  ls -l
+   20  cd day-trader-java-app
+   21  ls -l
+   22  cat docker-compose-new-build-readme.txt
+   23  mvn install -Dmaven.test.skip=true
+   24  ls -l
+   25  ./docker-compose-new-build.yaml
+   26  ./docker-compose-new-build.sh
+   27  cat docker-compose-new-build.sh
+   28  ./daytrader-scdf-trade-generator
+   29  cd daytrader-scdf-trade-generator
+   30  ls -l
+   31  chmod 755 docker-build.sh
+   32  cd .
+   33  cd ..
+   34  cd daytrader-scdf-trade-processor
+   35  chmod 755 docker-build.sh
+   36  cd ..
+   37  cd daytrader-scdf-trade-validation
+   38  chmod 755 docker-build.sh
+   39  cd ..
+   40  ls -l
+   41  ./docker-compose-new-build.sh
+   42  docker-compose -f docker-compose-new-build.yaml up
+   43  git checkout ragini_kafka_scdf
+   44  git pull
+   45  git checkout ragini_kafka_scdf
+   46  ls -l
+   47  cd daytrader-scdf-trade-generator
+   48  ls -l
+   49  cd src/main/java/com/ofss/daytrader/
+   50  ls -l
+   51  cat TradeGeneratorApplication.java
+   52  cd ..
+   53  mvn clean install
+   54  ./docker-build.sh
+   55  cd ..
+   56  ls -l
+   57  docker-compose -f docker-compose-new-build.yaml up
+   58  history
+  
+*********************************************************************************************************************************************************************
+
+    1  sudo apt-get update
+    2  sudo apt-get install -y jq dos2unix zip unzip
+    3  sudo apt-get install -y maven
+    4  sudo apt-get install -y openjdk-8-jdk
+    5  git clone https://github.com/SSAzSeedTeam/daytrader
+    6  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+    7  sudo apt-get install -y docker.io
+    8  sudo groupadd docker
+    9  sudo gpasswd -a $USER docker
+   10  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   11  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   12  sudo cp docker-compose /usr/local/bin/docker-compose
+   13  sudo chmod 755 /usr/local/bin/docker-compose
+   14  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   15  docker-compose --version
+   16  exit
+   17  wget http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar).
+   18  wget http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   19  wget -k http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   20  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   21  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   22  stream deploy --name log-VM-data
+   23  sudo apt install imagemagick-6.q16
+   24  stream deploy --name log-VM-data
+   25  ls -l
+   26  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   27  history
+   
+ ****************************************************************************************************************************************************************
+ 
+     1  sudo apt-get update
+    2  sudo apt-get install -y jq dos2unix zip unzip
+    3  sudo apt-get install -y maven
+    4  sudo apt-get install -y openjdk-8-jdk
+    5  git clone https://github.com/SSAzSeedTeam/daytrader
+    6  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+    7  sudo apt-get install -y docker.io
+    8  sudo groupadd docker
+    9  sudo gpasswd -a $USER docker
+   10  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   11  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   12  sudo cp docker-compose /usr/local/bin/docker-compose
+   13  sudo chmod 755 /usr/local/bin/docker-compose
+   14  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   15  docker-compose --version
+   16  exit
+   17  ls -l
+   18  cat spring-shell.log
+   19  ls -al
+   20  /usr
+   21  cd /usr
+   22  ls -al
+   23  cd /local
+   24  cd
+   25  cd /usr/local
+   26  ls -al
+   27  cd
+   28  cd /tmp
+   29  ls -al
+   30  cat deployer-resource-cache15533554403278495093
+   31  cd deployer-resource-cache15533554403278495093
+   32  la -al
+   33  cd
+   34  cd  /tmp/spring-cloud-deployer-488790290037462445/logs-VM-data-1603893213984/logs-VM-data.trade-generatr
+   35  ls -al
+   36  cat stderr_0.log
+   37  cat stdout_0.log
+   38  nano stdout_0.log
+   39  vim stdout_0.log
+   40  cd
+   41  docker image
+   42  docker images
+   43  cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628943/logs-vm-datav1.trade-generatorv1
+   44  ls -al
+   45  cat stdout_0.log
+   46  date
+   47  cd
+   48  cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628830/logs-vm-datav1.trade-validationv1
+   49  ls -al
+   50  cat stderr_0.log
+   51  cat stdout_0.log
+   52  cd
+   53  cd /tmp/spring-cloud-deployer-488790290037462445/logs-vm-datav1-1603897628686/logs-vm-datav1.trade-processorv1
+   54  ls -al
+   55  cat stderr_0.log
+   56  cat stdout_0.log
+   57  history
+   
+***************************************************************************************************************************************************************
+
+    1  sudo apt-get update
+    2  sudo apt-get install -y jq dos2unix zip unzip
+    3  sudo apt-get install -y maven
+    4  sudo apt-get install -y openjdk-8-jdk
+    5  git clone https://github.com/SSAzSeedTeam/daytrader
+    6  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+    7  sudo apt-get install -y docker.io
+    8  sudo groupadd docker
+    9  sudo gpasswd -a $USER docker
+   10  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   11  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   12  sudo cp docker-compose /usr/local/bin/docker-compose
+   13  sudo chmod 755 /usr/local/bin/docker-compose
+   14  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   15  docker-compose --version
+   16  exit
+   17  ls -l
+   18  ls -al
+   19  cd .m2
+   20  ls -al
+   21  cd repository/
+   22  ls -al
+   23  cd com
+   24  cd ofss/daytrader/
+   25  ls -l
+   26  history
+   
+ ****************************************************************************************************************************************************************
+ 
+    1  sudo apt-get update
+    2  sudo apt-get install -y jq dos2unix zip unzip
+    3  sudo apt-get install -y maven
+    4  sudo apt-get install -y openjdk-8-jdk
+    5  git clone https://github.com/SSAzSeedTeam/daytrader
+    6  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+    7  sudo apt-get install -y docker.io
+    8  sudo groupadd docker
+    9  sudo gpasswd -a $USER docker
+   10  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   11  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   12  sudo cp docker-compose /usr/local/bin/docker-compose
+   13  sudo chmod 755 /usr/local/bin/docker-compose
+   14  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   15  docker-compose --version
+   16  exit
+   17  docker run helloworld
+   18  docker run hello-world
+   19  ls -l
+   20  tar xvf kafka_2.13-2.6.0.tgz
+   21  ls -l
+   22  cd kafka_2.13-2.6.0
+   23  ls -l
+   24  cd..
+   25  cd
+   26  cd daytrader
+   27  git pull
+   28  cd day-trader-java-app/
+   29  ls -l
+   30  cat docker-compose-new-build.sh
+   31  vi docker-compose-new-build.sh
+   32  cat docker-compose-new-build.yaml
+   33  git pull
+   34  cat docker-compose-new-build.yaml
+   35  nano
+   36  nano docker-compose-new-build.yaml
+   37  cd ..
+   38  sudo curl -L https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   39  ls -l
+   40  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   41  ls -l
+   42  wget http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar).
+   43  wget http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   44  ls -l
+   45  wget http://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   46  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   47  java -version
+   48  sudo apt-get install openjdk-8-jdk
+   49  ls -l
+   50  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   51  cd /usr/bin
+   52  ls -l
+   53  ls -l j*
+   54  ./java -version
+   55  update-alternative --list java
+   56  sudo apt install update-alternative
+   57  sudo apt install update-alternatives
+   58  update-alternatives --list java
+   59  cd
+   60  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   61  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   62  history
+   
+******************************************************************************************************************************************************************
+
+    1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   26  docker images
+   27  sudo systemctl restart docker
+   28  docker images
+   29  cd /var/run/docker.sock
+   30  docker run --help
+   31  sudo chmod 666 /var/run/docker.sock
+   32  docker images
+   33  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav2-1604042795210/stream-topic-vm-datav2.trade-generatorv2
+   34  ls -l
+   35  cat stderr_0.log
+   36  cat stdout_0.log
+   37  cd
+   38  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604043134254/stream-topic-vm-datav3.trade-validationv1
+   39  ls -l
+   40  cat stderr_0.log
+   41  cat stdout_0.log
+   42  cd
+   43  cd kafka_2.13-2.6.0/config/
+   44  cat server.properties
+   45  nano server.properties
+   46  cat server.properties
+   47  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604048347270/stream-topic-vm-datav3.trade-validationv1
+   48  ls -l
+   49  cat stdout_0.log
+   50  sudo apt-get update
+   51  sudo apt-get install -y jq dos2unix zip unzip
+   52  sudo apt-get install -y maven
+   53  sudo apt-get install openjdk-8-jdk
+   54  git clone https://github.com/SSAzSeedTeam/daytrader
+   55  ls -l
+   56  sudo apt-get install -y docker.io
+   57  sudo groupadd docker
+   58  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   59  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   60  sudo cp docker-compose /usr/local/bin/docker-compose
+   61  sudo chmod 755 /usr/local/bin/docker-compose
+   62  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   63  docker-compose --version
+   64  ls -l
+   65  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   66  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   67  ls -l
+   68  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   69  tar xvf kafka_2.13-2.6.0.tgz
+   70  ls -l
+   71  cd kafka_2.13-2.6.0/bin
+   72  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   73  ./zookeeper-server-start.sh \  kafka_2.13-2.6.0/config/zookeeper.properties
+   74  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   75  zookeeper-server-start.sh    kafka_2.13-2.6.0/config/zookeeper.properties
+   76  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   77  ./zookeeper-server-start.sh  ./kafka_2.13-2.6.0/config/zookeeper.properties
+   78  ls -l
+   79  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   80  cd
+   81  cd kafka_2.13-2.6.0/
+   82  bin/zookeeper-server-start.sh config/zookeeper.properties
+   83  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   84  java --version
+   85  update-alternatives --list java
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604052954144/stream-topic-vm-datav1.trade-validationv1
+   88  ls -l
+   89  cat stdout_0.log
+   90  cd
+   91  cd /tmp/spring-cloud-deployer-6988692155643553902/
+   92  ls -l
+   93  cd stream-topic-vm-datav1-1604053288168
+   94  ls -l
+   95  cd stream-topic-vm-datav1.trade-validationv1
+   96  ls -l
+   97  cat stdout_0.log
+   98  cd
+   99  cd /tmp/spring-cloud-deployer-6988692155643553902/
+  100  ls -l
+  101  cd stream-topic-vm-datav1-1604053553715
+  102  ls -l
+  103  cd stream-topic-vm-datav1.trade-validationv1
+  104  ls -l
+  105  cat stdout_0.log
+  106  cd
+  107  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604053553715/stream-topic-vm-datav1.trade-validationv1
+  108  ls -l
+  109  cat stdout_0.log
+  110  cd
+  111  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604053553715/stream-topic-vm-datav1.trade-validationv1
+  112  cat stdout_0.log
+  113  cd
+  114  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055581757/stream-topic-vm-datav1.trade-validationv1
+  115  ls -l
+  116  cat stdout_0.log
+  117  cd
+  118  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055581757/stream-topic-vm-datav1.trade-validationv1
+  119  cat stdout_0.log
+  120  cd
+  121  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055581619/stream-topic-vm-datav1.trade-processorv1
+  122  ls -l
+  123  cat stdout_0.log
+  124  cd
+  125  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055581757/stream-topic-vm-datav1.trade-validationv1
+  126  cat stdout_0.log
+  127  cd
+  128  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984387/stream-topic-vm-datav1.trade-validationv1
+  129  ls -l
+  130  cat stdout_0.log
+  131  cd
+  132  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984506/stream-topic-vm-datav1.trade-generatorv1
+  133  ls -l
+  134  cat stdout_0.log
+  135  cd
+  136  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984245/stream-topic-vm-datav1.trade-processorv1
+  137  ls -l
+  138  cat stdout_0.log
+  139  cd
+  140  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984387/stream-topic-vm-datav1.trade-validationv1
+  141  cat stdout_0.log
+  142  cd
+  143  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984387/stream-topic-vm-datav1.trade-validationv1
+  144  ls -l
+  145  cat stderr_0.log
+  146  cd
+  147  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984506/stream-topic-vm-datav1.trade-generatorv1
+  148  ls -l
+  149  cat stderr_0.log
+  150  cat stdout_0.log
+  151  cd
+  152  cd /tmp/spring-cloud-deployer-6988692155643553902/stream-topic-vm-datav1-1604055984387/stream-topic-vm-datav1.trade-validationv1
+  153  ls -l
+  154  cat stdout_0.log
+  155  history
+  
+*****************************************************************************************************************************************************************
+
+    1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   26  docker images
+   27  sudo systemctl restart docker
+   28  docker images
+   29  cd /var/run/docker.sock
+   30  docker run --help
+   31  sudo chmod 666 /var/run/docker.sock
+   32  docker images
+   33  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav2-1604042795210/stream-topic-vm-datav2.trade-generatorv2
+   34  ls -l
+   35  cat stderr_0.log
+   36  cat stdout_0.log
+   37  cd
+   38  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604043134254/stream-topic-vm-datav3.trade-validationv1
+   39  ls -l
+   40  cat stderr_0.log
+   41  cat stdout_0.log
+   42  cd
+   43  cd kafka_2.13-2.6.0/config/
+   44  cat server.properties
+   45  nano server.properties
+   46  cat server.properties
+   47  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604048347270/stream-topic-vm-datav3.trade-validationv1
+   48  ls -l
+   49  cat stdout_0.log
+   50  sudo apt-get update
+   51  sudo apt-get install -y jq dos2unix zip unzip
+   52  sudo apt-get install -y maven
+   53  sudo apt-get install openjdk-8-jdk
+   54  git clone https://github.com/SSAzSeedTeam/daytrader
+   55  ls -l
+   56  sudo apt-get install -y docker.io
+   57  sudo groupadd docker
+   58  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   59  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   60  sudo cp docker-compose /usr/local/bin/docker-compose
+   61  sudo chmod 755 /usr/local/bin/docker-compose
+   62  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   63  docker-compose --version
+   64  ls -l
+   65  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   66  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   67  ls -l
+   68  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   69  tar xvf kafka_2.13-2.6.0.tgz
+   70  ls -l
+   71  cd kafka_2.13-2.6.0/bin
+   72  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   73  ./zookeeper-server-start.sh \  kafka_2.13-2.6.0/config/zookeeper.properties
+   74  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   75  zookeeper-server-start.sh    kafka_2.13-2.6.0/config/zookeeper.properties
+   76  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   77  ./zookeeper-server-start.sh  ./kafka_2.13-2.6.0/config/zookeeper.properties
+   78  ls -l
+   79  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   80  cd
+   81  cd kafka_2.13-2.6.0/
+   82  bin/zookeeper-server-start.sh config/zookeeper.properties
+   83  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   84  java --version
+   85  update-alternatives --list java
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  history
+   
+*********************************************************************************************************************************************************************
+
+    1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   26  docker images
+   27  sudo systemctl restart docker
+   28  docker images
+   29  cd /var/run/docker.sock
+   30  docker run --help
+   31  sudo chmod 666 /var/run/docker.sock
+   32  docker images
+   33  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav2-1604042795210/stream-topic-vm-datav2.trade-generatorv2
+   34  ls -l
+   35  cat stderr_0.log
+   36  cat stdout_0.log
+   37  cd
+   38  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604043134254/stream-topic-vm-datav3.trade-validationv1
+   39  ls -l
+   40  cat stderr_0.log
+   41  cat stdout_0.log
+   42  cd
+   43  cd kafka_2.13-2.6.0/config/
+   44  cat server.properties
+   45  nano server.properties
+   46  cat server.properties
+   47  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604048347270/stream-topic-vm-datav3.trade-validationv1
+   48  ls -l
+   49  cat stdout_0.log
+   50  sudo apt-get update
+   51  sudo apt-get install -y jq dos2unix zip unzip
+   52  sudo apt-get install -y maven
+   53  sudo apt-get install openjdk-8-jdk
+   54  git clone https://github.com/SSAzSeedTeam/daytrader
+   55  ls -l
+   56  sudo apt-get install -y docker.io
+   57  sudo groupadd docker
+   58  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   59  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   60  sudo cp docker-compose /usr/local/bin/docker-compose
+   61  sudo chmod 755 /usr/local/bin/docker-compose
+   62  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   63  docker-compose --version
+   64  ls -l
+   65  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   66  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   67  ls -l
+   68  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   69  tar xvf kafka_2.13-2.6.0.tgz
+   70  ls -l
+   71  cd kafka_2.13-2.6.0/bin
+   72  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   73  ./zookeeper-server-start.sh \  kafka_2.13-2.6.0/config/zookeeper.properties
+   74  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   75  zookeeper-server-start.sh    kafka_2.13-2.6.0/config/zookeeper.properties
+   76  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   77  ./zookeeper-server-start.sh  ./kafka_2.13-2.6.0/config/zookeeper.properties
+   78  ls -l
+   79  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   80  cd
+   81  cd kafka_2.13-2.6.0/
+   82  bin/zookeeper-server-start.sh config/zookeeper.properties
+   83  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   84  java --version
+   85  update-alternatives --list java
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd kafka_2.13-2.6.0/
+   88  bin/zookeeper-server-start.sh config/zookeeper.properties
+   89  bin/kafka-server-start.sh config/server.properties
+   90  bin/zookeeper-server-start.sh config/zookeeper.properties
+   91  history
+   
+****************************************************************************************************************************************************************
+
+    1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   26  docker images
+   27  sudo systemctl restart docker
+   28  docker images
+   29  cd /var/run/docker.sock
+   30  docker run --help
+   31  sudo chmod 666 /var/run/docker.sock
+   32  docker images
+   33  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav2-1604042795210/stream-topic-vm-datav2.trade-generatorv2
+   34  ls -l
+   35  cat stderr_0.log
+   36  cat stdout_0.log
+   37  cd
+   38  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604043134254/stream-topic-vm-datav3.trade-validationv1
+   39  ls -l
+   40  cat stderr_0.log
+   41  cat stdout_0.log
+   42  cd
+   43  cd kafka_2.13-2.6.0/config/
+   44  cat server.properties
+   45  nano server.properties
+   46  cat server.properties
+   47  cd /tmp/spring-cloud-deployer-1006756576383960090/stream-topic-vm-datav3-1604048347270/stream-topic-vm-datav3.trade-validationv1
+   48  ls -l
+   49  cat stdout_0.log
+   50  sudo apt-get update
+   51  sudo apt-get install -y jq dos2unix zip unzip
+   52  sudo apt-get install -y maven
+   53  sudo apt-get install openjdk-8-jdk
+   54  git clone https://github.com/SSAzSeedTeam/daytrader
+   55  ls -l
+   56  sudo apt-get install -y docker.io
+   57  sudo groupadd docker
+   58  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   59  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   60  sudo cp docker-compose /usr/local/bin/docker-compose
+   61  sudo chmod 755 /usr/local/bin/docker-compose
+   62  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   63  docker-compose --version
+   64  ls -l
+   65  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   66  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   67  ls -l
+   68  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   69  tar xvf kafka_2.13-2.6.0.tgz
+   70  ls -l
+   71  cd kafka_2.13-2.6.0/bin
+   72  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   73  ./zookeeper-server-start.sh \  kafka_2.13-2.6.0/config/zookeeper.properties
+   74  zookeeper-server-start.sh    kafka/config/zookeeper.properties
+   75  zookeeper-server-start.sh    kafka_2.13-2.6.0/config/zookeeper.properties
+   76  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   77  ./zookeeper-server-start.sh  ./kafka_2.13-2.6.0/config/zookeeper.properties
+   78  ls -l
+   79  ./zookeeper-server-start.sh  kafka_2.13-2.6.0/config/zookeeper.properties
+   80  cd
+   81  cd kafka_2.13-2.6.0/
+   82  bin/zookeeper-server-start.sh config/zookeeper.properties
+   83  java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   84  java --version
+   85  update-alternatives --list java
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   88  hitory
+   89  history
+****************************************************************************************************************************************************************
+
+    1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  cd kafka_2.13-2.6.0/config/
+   26  nano server.properties
+   27  history
+   
+ ******************************************************************************************************************************************************************
+ 
+     1  docker images
+    2  sudo groupadd docker
+    3  sudo gpasswd -a $USER docker
+    4  docker images
+    5  sudo chmod 755 docker
+    6  ls -l
+    7  sudo apt-get install -y docker.io
+    8  ls -l
+    9  sudo apt-get update
+   10  ls -l
+   11  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   12  ls -l
+   13  docker images
+   14  su -s ${USER}
+   15  sudo groupadd docker
+   16  sudo gpasswd -a $USER docker
+   17  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   18  sudo cp docker-compose /usr/local/bin/docker-compose
+   19  sudo chmod 755 /usr/local/bin/docker-compose
+   20  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   21  docker-compose --version
+   22  exit
+   23  cd kafka_2.13-2.6.0/
+   24  bin/kafka-server-start.sh config/server.properties
+   25  cd kafka_2.13-2.6.0/
+   26  bin/kafka-server-start.sh config/server.properties
+   27  cd
+   28  cd kafka_2.13-2.6.0/config/
+   29  nano server.properties
+   30  cd
+   31  cd kafka_2.13-2.6.0/config/
+   32  bin/kafka-server-start.sh config/server.properties
+   33  cd
+   34  cd kafka_2.13-2.6.0/
+   35  bin/kafka-server-start.sh config/server.properties
+   36  history
+   
+***************************************************************************************************************************************************************
+
+    2  ls -l
+    3  cat stderr_0.log
+    4  docker login
+    5  cd
+    6  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304187517/stream-topic-vm-datav5.trade-generatorv5
+    7  ls -l
+    8  cat stderr_0.log
+    9  cd
+   10  cd  /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304504846/stream-topic-vm-datav5.trade-generatorv5
+   11  ls -l
+   12  cat stderr_0.log
+   13  cd
+   14  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304893357/stream-topic-vm-datav5.trade-generatorv5
+   15  ls -l
+   16  cat stderr_0.log
+   17  ls -l
+   18  docker images
+   19  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   20  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   21  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   22  sudo apt-get update
+   23  sudo apt-get install -y jq dos2unix zip unzip
+   24  sudo apt-get install -y maven
+   25  sudo apt-get install openjdk-8-jdk
+   26  sudo apt-get install -y docker.io
+   27  sudo groupadd docker
+   28  sudo gpasswd -a $USER docker
+   29  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   30  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   31  sudo cp docker-compose /usr/local/bin/docker-compose
+   32  sudo chmod 755 /usr/local/bin/docker-compose
+   33  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   34  docker-compose --version
+   35  sudo chmod 755 docker
+   36  docker images
+   37  sudo groupadd docker
+   38  sudo chmod 755 docker
+   39  sudo gpasswd -a $USER docker
+   40  sudo chmod 755 docker
+   41  sudo apt-get install -y docker.io
+   42  sudo groupadd docker
+   43  sudo gpasswd -a $USER docker
+   44  ls -l
+   45  sudo cp docker /usr/local/bin/docker
+   46  docker images
+   47  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   48  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   49  tar xvf kafka_2.13-2.6.0.tgz
+   50  cd kafka_2.13-2.6.0
+   51  bin/zookeeper-server-start.sh config/zookeeper.properties
+   52  docker pull raginikulkarni/scdf-trade-generated
+   53  docker images
+   54  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309533302/stream-topic-vm-datav5.trade-generatorv5
+   55  ls -l
+   56  cat stderr_0.log
+   57  cat stdout_0.log
+   58  cd
+   59  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889541/stream-topic-vm-datav5.trade-generatorv5
+   60  ls -l
+   61  cat stdout_0.log
+   62  cd
+   63  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889432/stream-topic-vm-datav5.trade-validationv5
+   64  ls -l
+   65  cat stdout_0.log
+   66  cd
+   67  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604310705254/stream-topic-vm-datav6.trade-generatorv6
+   68  ls -l
+   69  cat stderr_0.log
+   70  cat stdout_0.log
+   71  cd
+   72  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604311204138/stream-topic-vm-datav6.trade-generatorv6
+   73  ls -l
+   74  cat stdout_0.log
+   75  cd
+   76  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312410741/stream-topic-vm-datav5.trade-validationv5
+   77  ls -l
+   78  cat stdout_0.log
+   79  cd
+   80  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312556182/stream-topic-vm-datav5.trade-generatorv5
+   81  ls -l
+   82  cat stdout_0.log
+   83  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312648951/stream-topic-vm-datav5.trade-generatorv5
+   84  ls -l
+   85  cat stdout_0.log
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd kafka_2.13-2.6.0
+   88  bin/kafka-server-start.sh config/server.properties
+   89  cd kafka_2.13-2.6.0
+   90  bin/kafka-server-start.sh config/server.properties
+   91  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   92  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   93  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604327597931/stream-topic-vm-datav5.trade-generatorv5
+   94  ls -l
+   95  cat stdout_0.log
+   96  cd
+   97  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604327597813/stream-topic-vm-datav5.trade-validationv5
+   98  ls -l
+   99  cat stdout_0.log
+  100  cd
+  101  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604328344278/stream-topic-vm-datav5.trade-validationv5
+  102  ls -l
+  103  cat stdout_0.log
+  104  cd
+  105  cd kafka_2.13-2.6.0
+  106  bin/kafka-server-start.sh config/server.properties
+  107  exit
+  108  cd kafka_2.13-2.6.0
+  109  bin/zookeeper-server-start.sh config/zookeeper.properties
+  110  bin/kafka-server-start.sh config/server.properties
+  111  cd config
+  112  cat server.properties
+  113  ls -l
+  114  cat zookeeper.properties
+  115  cd
+  116  cd kafka_2.13-2.6.0
+  117  bin/zookeeper-server-start.sh config/zookeeper.properties
+  118  exit
+  119  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+  120  exit
+  121  docker exec -it dataflow-server java -jar shell.jar
+  122  history
+  
+***************************************************************************************************************************************************************
+    1  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604303848278/stream-topic-vm-datav5.trade-generatorv5
+    2  ls -l
+    3  cat stderr_0.log
+    4  docker login
+    5  cd
+    6  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304187517/stream-topic-vm-datav5.trade-generatorv5
+    7  ls -l
+    8  cat stderr_0.log
+    9  cd
+   10  cd  /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304504846/stream-topic-vm-datav5.trade-generatorv5
+   11  ls -l
+   12  cat stderr_0.log
+   13  cd
+   14  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304893357/stream-topic-vm-datav5.trade-generatorv5
+   15  ls -l
+   16  cat stderr_0.log
+   17  ls -l
+   18  docker images
+   19  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   20  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   21  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   22  sudo apt-get update
+   23  sudo apt-get install -y jq dos2unix zip unzip
+   24  sudo apt-get install -y maven
+   25  sudo apt-get install openjdk-8-jdk
+   26  sudo apt-get install -y docker.io
+   27  sudo groupadd docker
+   28  sudo gpasswd -a $USER docker
+   29  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   30  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   31  sudo cp docker-compose /usr/local/bin/docker-compose
+   32  sudo chmod 755 /usr/local/bin/docker-compose
+   33  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   34  docker-compose --version
+   35  sudo chmod 755 docker
+   36  docker images
+   37  sudo groupadd docker
+   38  sudo chmod 755 docker
+   39  sudo gpasswd -a $USER docker
+   40  sudo chmod 755 docker
+   41  sudo apt-get install -y docker.io
+   42  sudo groupadd docker
+   43  sudo gpasswd -a $USER docker
+   44  ls -l
+   45  sudo cp docker /usr/local/bin/docker
+   46  docker images
+   47  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   48  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   49  tar xvf kafka_2.13-2.6.0.tgz
+   50  cd kafka_2.13-2.6.0
+   51  bin/zookeeper-server-start.sh config/zookeeper.properties
+   52  docker pull raginikulkarni/scdf-trade-generated
+   53  docker images
+   54  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309533302/stream-topic-vm-datav5.trade-generatorv5
+   55  ls -l
+   56  cat stderr_0.log
+   57  cat stdout_0.log
+   58  cd
+   59  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889541/stream-topic-vm-datav5.trade-generatorv5
+   60  ls -l
+   61  cat stdout_0.log
+   62  cd
+   63  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889432/stream-topic-vm-datav5.trade-validationv5
+   64  ls -l
+   65  cat stdout_0.log
+   66  cd
+   67  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604310705254/stream-topic-vm-datav6.trade-generatorv6
+   68  ls -l
+   69  cat stderr_0.log
+   70  cat stdout_0.log
+   71  cd
+   72  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604311204138/stream-topic-vm-datav6.trade-generatorv6
+   73  ls -l
+   74  cat stdout_0.log
+   75  cd
+   76  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312410741/stream-topic-vm-datav5.trade-validationv5
+   77  ls -l
+   78  cat stdout_0.log
+   79  cd
+   80  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312556182/stream-topic-vm-datav5.trade-generatorv5
+   81  ls -l
+   82  cat stdout_0.log
+   83  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312648951/stream-topic-vm-datav5.trade-generatorv5
+   84  ls -l
+   85  cat stdout_0.log
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd kafka_2.13-2.6.0
+   88  bin/kafka-server-start.sh config/server.properties
+   89  cd kafka_2.13-2.6.0
+   90  bin/kafka-server-start.sh config/server.properties
+   91  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   92  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   93  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604327597931/stream-topic-vm-datav5.trade-generatorv5
+   94  ls -l
+   95  cat stdout_0.log
+   96  cd
+   97  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604327597813/stream-topic-vm-datav5.trade-validationv5
+   98  ls -l
+   99  cat stdout_0.log
+  100  cd
+  101  cd /tmp/spring-cloud-deployer-710579612038581353/stream-topic-vm-datav5-1604328344278/stream-topic-vm-datav5.trade-validationv5
+  102  ls -l
+  103  cat stdout_0.log
+  104  cd
+  105  cd kafka_2.13-2.6.0
+  106  bin/kafka-server-start.sh config/server.properties
+  107  exit
+  108  cd kafka_2.13-2.6.0
+  109  bin/zookeeper-server-start.sh config/zookeeper.properties
+  110  bin/kafka-server-start.sh config/server.properties
+  111  cd config
+  112  cat server.properties
+  113  ls -l
+  114  cat zookeeper.properties
+  115  cd
+  116  cd kafka_2.13-2.6.0
+  117  bin/zookeeper-server-start.sh config/zookeeper.properties
+  118  exit
+  119  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+  120  exit
+  121  cat docker-compose.yml
+  122  history
+  
+******************************************************************************************************************************************************************
+    1  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604303848278/stream-topic-vm-datav5.trade-generatorv5
+    2  ls -l
+    3  cat stderr_0.log
+    4  docker login
+    5  cd
+    6  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304187517/stream-topic-vm-datav5.trade-generatorv5
+    7  ls -l
+    8  cat stderr_0.log
+    9  cd
+   10  cd  /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304504846/stream-topic-vm-datav5.trade-generatorv5
+   11  ls -l
+   12  cat stderr_0.log
+   13  cd
+   14  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304893357/stream-topic-vm-datav5.trade-generatorv5
+   15  ls -l
+   16  cat stderr_0.log
+   17  ls -l
+   18  docker images
+   19  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   20  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   21  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   22  sudo apt-get update
+   23  sudo apt-get install -y jq dos2unix zip unzip
+   24  sudo apt-get install -y maven
+   25  sudo apt-get install openjdk-8-jdk
+   26  sudo apt-get install -y docker.io
+   27  sudo groupadd docker
+   28  sudo gpasswd -a $USER docker
+   29  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   30  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   31  sudo cp docker-compose /usr/local/bin/docker-compose
+   32  sudo chmod 755 /usr/local/bin/docker-compose
+   33  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   34  docker-compose --version
+   35  sudo chmod 755 docker
+   36  docker images
+   37  sudo groupadd docker
+   38  sudo chmod 755 docker
+   39  sudo gpasswd -a $USER docker
+   40  sudo chmod 755 docker
+   41  sudo apt-get install -y docker.io
+   42  sudo groupadd docker
+   43  sudo gpasswd -a $USER docker
+   44  ls -l
+   45  sudo cp docker /usr/local/bin/docker
+   46  docker images
+   47  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   48  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   49  tar xvf kafka_2.13-2.6.0.tgz
+   50  cd kafka_2.13-2.6.0
+   51  bin/zookeeper-server-start.sh config/zookeeper.properties
+   52  docker pull raginikulkarni/scdf-trade-generated
+   53  docker images
+   54  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309533302/stream-topic-vm-datav5.trade-generatorv5
+   55  ls -l
+   56  cat stderr_0.log
+   57  cat stdout_0.log
+   58  cd
+   59  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889541/stream-topic-vm-datav5.trade-generatorv5
+   60  ls -l
+   61  cat stdout_0.log
+   62  cd
+   63  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889432/stream-topic-vm-datav5.trade-validationv5
+   64  ls -l
+   65  cat stdout_0.log
+   66  cd
+   67  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604310705254/stream-topic-vm-datav6.trade-generatorv6
+   68  ls -l
+   69  cat stderr_0.log
+   70  cat stdout_0.log
+   71  cd
+   72  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604311204138/stream-topic-vm-datav6.trade-generatorv6
+   73  ls -l
+   74  cat stdout_0.log
+   75  cd
+   76  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312410741/stream-topic-vm-datav5.trade-validationv5
+   77  ls -l
+   78  cat stdout_0.log
+   79  cd
+   80  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312556182/stream-topic-vm-datav5.trade-generatorv5
+   81  ls -l
+   82  cat stdout_0.log
+   83  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312648951/stream-topic-vm-datav5.trade-generatorv5
+   84  ls -l
+   85  cat stdout_0.log
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd kafka_2.13-2.6.0
+   88  bin/kafka-server-start.sh config/server.properties
+   89  cd kafka_2.13-2.6.0
+   90  bin/kafka-server-start.sh config/server.properties
+   91  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   92  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   93  stream create --name stream-topic-vm-datav1 --definition 'trade-generatorv7 | trade-validationv1 | trade-processorv1'
+   94  app register --name trade-generatorv8  --type source     --uri docker:azseed/daytrader-scdf-trade-generator:0
+   95  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   96  history
+   
+*********************************************************************************************************************************************************
+
+    1  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604303848278/stream-topic-vm-datav5.trade-generatorv5
+    2  ls -l
+    3  cat stderr_0.log
+    4  docker login
+    5  cd
+    6  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304187517/stream-topic-vm-datav5.trade-generatorv5
+    7  ls -l
+    8  cat stderr_0.log
+    9  cd
+   10  cd  /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304504846/stream-topic-vm-datav5.trade-generatorv5
+   11  ls -l
+   12  cat stderr_0.log
+   13  cd
+   14  cd /tmp/spring-cloud-deployer-6295748260679341936/stream-topic-vm-datav5-1604304893357/stream-topic-vm-datav5.trade-generatorv5
+   15  ls -l
+   16  cat stderr_0.log
+   17  ls -l
+   18  docker images
+   19  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-server-local/1.7.4.RELEASE/spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   20  wget https://repo.spring.io/milestone/org/springframework/cloud/spring-cloud-dataflow-shell/1.3.0.M1/spring-cloud-dataflow-shell-1.3.0.M1.jar
+   21  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   22  sudo apt-get update
+   23  sudo apt-get install -y jq dos2unix zip unzip
+   24  sudo apt-get install -y maven
+   25  sudo apt-get install openjdk-8-jdk
+   26  sudo apt-get install -y docker.io
+   27  sudo groupadd docker
+   28  sudo gpasswd -a $USER docker
+   29  VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | jq .name -r)
+   30  sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o docker-compose
+   31  sudo cp docker-compose /usr/local/bin/docker-compose
+   32  sudo chmod 755 /usr/local/bin/docker-compose
+   33  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   34  docker-compose --version
+   35  sudo chmod 755 docker
+   36  docker images
+   37  sudo groupadd docker
+   38  sudo chmod 755 docker
+   39  sudo gpasswd -a $USER docker
+   40  sudo chmod 755 docker
+   41  sudo apt-get install -y docker.io
+   42  sudo groupadd docker
+   43  sudo gpasswd -a $USER docker
+   44  ls -l
+   45  sudo cp docker /usr/local/bin/docker
+   46  docker images
+   47  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   48  wget https://mirrors.estointernet.in/apache/kafka/2.6.0/kafka_2.13-2.6.0.tgz
+   49  tar xvf kafka_2.13-2.6.0.tgz
+   50  cd kafka_2.13-2.6.0
+   51  bin/zookeeper-server-start.sh config/zookeeper.properties
+   52  docker pull raginikulkarni/scdf-trade-generated
+   53  docker images
+   54  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309533302/stream-topic-vm-datav5.trade-generatorv5
+   55  ls -l
+   56  cat stderr_0.log
+   57  cat stdout_0.log
+   58  cd
+   59  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889541/stream-topic-vm-datav5.trade-generatorv5
+   60  ls -l
+   61  cat stdout_0.log
+   62  cd
+   63  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604309889432/stream-topic-vm-datav5.trade-validationv5
+   64  ls -l
+   65  cat stdout_0.log
+   66  cd
+   67  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604310705254/stream-topic-vm-datav6.trade-generatorv6
+   68  ls -l
+   69  cat stderr_0.log
+   70  cat stdout_0.log
+   71  cd
+   72  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav6-1604311204138/stream-topic-vm-datav6.trade-generatorv6
+   73  ls -l
+   74  cat stdout_0.log
+   75  cd
+   76  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312410741/stream-topic-vm-datav5.trade-validationv5
+   77  ls -l
+   78  cat stdout_0.log
+   79  cd
+   80  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312556182/stream-topic-vm-datav5.trade-generatorv5
+   81  ls -l
+   82  cat stdout_0.log
+   83  cd /tmp/spring-cloud-deployer-1884059939705715002/stream-topic-vm-datav5-1604312648951/stream-topic-vm-datav5.trade-generatorv5
+   84  ls -l
+   85  cat stdout_0.log
+   86  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   87  cd kafka_2.13-2.6.0
+   88  bin/kafka-server-start.sh config/server.properties
+   89  cd kafka_2.13-2.6.0
+   90  bin/kafka-server-start.sh config/server.properties
+   91  /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar spring-cloud-dataflow-server-local-1.7.4.RELEASE.jar
+   92  java -jar spring-cloud-dataflow-shell-1.3.0.M1.jar
+   93  cd /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330295780/stream-topic-vm-datav8.trade-generatorv8
+   94  ls -l
+   95  cat stdout_0.log
+   96  cd
+   97  cat /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330295672/stream-topic-vm-datav8.trade-validationv8/
+   98  cat /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330295672/stream-topic-vm-datav8.trade-validationv8/stdout_0.log
+   99  tail -f /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330295672/stream-topic-vm-datav8.trade-validationv8/stdout_0.log
+  100  tail -f /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330992549/stream-topic-vm-datav8.trade-processorv8/stdout_0.log
+  101  tail -100f /tmp/spring-cloud-deployer-450974626965708224/stream-topic-vm-datav8-1604330992549/stream-topic-vm-datav8.trade-processorv8/stdout_0.log
+  102  wget -O docker-compose.yml https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.3/spring-cloud-dataflow-server/docker-compose.yml
+  103  docker-compose up
+  104  ls -l
+  105  export DATAFLOW_VERSION=2.6.3
+  106  export SKIPPER_VERSION=2.5.2
+  107  docker-compose up
+  108  history
