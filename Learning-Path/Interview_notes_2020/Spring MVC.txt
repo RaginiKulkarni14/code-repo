@@ -1,0 +1,53 @@
+Spring MVC Tutorial
+A Spring MVC is a Java framework which is used to build web applications. It follows the Model-View-Controller design pattern. It implements all the basic features of a core spring framework like Inversion of Control, Dependency Injection.
+
+A Spring MVC provides an elegant solution to use MVC in spring framework by the help of DispatcherServlet. Here, DispatcherServlet is a class that receives the incoming request and maps it to the right resource such as controllers, models, and views.
+
+Model - A model contains the data of the application. A data can be a single object or a collection of objects.
+Controller - A controller contains the business logic of an application. Here, the @Controller annotation is used to mark the class as the controller.
+View - A view represents the provided information in a particular format. Generally, JSP+JSTL is used to create a view page. Although spring also supports other view technologies such as Apache Velocity, Thymeleaf and FreeMarker.
+Front Controller - In Spring Web MVC, the DispatcherServlet class works as the front controller. It is responsible to manage the flow of the Spring MVC application.
+
+What is Maven?
+
+Maven is build tool only to ease out dependency inclusion in your project classpath. if your not familiar with maven then use other build tool Ant or manually include dependency jar in classpath of your project.
+
+But i advice you to use maven because it is so simple to include dependency (just add dependency in pom.xml) & you can easy find various dependency jars or artifacts on maven central repository, deploy to nexus repos, easily integrated with jenkins . Its is so cool !!!!!!
+
+Spring Web MVC Framework Example
+Let's see the simple example of a Spring Web MVC framework. The steps are as follows:
+
+Load the spring jar files (without Maven)
+Just you need to remove pom.xml from project and then include all required JARS into project classpath
+or 
+add dependencies (in the case of Maven)
+Create the controller class
+Provide the entry of controller in the web.xml file
+Define the bean in the separate XML file
+Display the message in the JSP page
+Start the server and deploy the project
+
+What is the DispatcherServlet and what is it used for? (answer)
+
+The DispatcherServlet is an implementation of the Front Controller design pattern that handles all incoming web request to a Spring MVC application. A Front Controller pattern (see Enterprise application design pattern) is a common pattern in web applications whose job is to receive all request and route it to different components of application for actual processing.
+
+In case of Spring MVC, the DispatcherServlet route web requests the Spring MVC controllers.
+
+In Spring MVC, DispatcherServlet is used for finding the correct Controller to process a request, which it does with the help of handler mapping, e.g. the @RequestMapping annotation.
+
+It is also responsible for delegating logical view name to ViewResolver and then sending the rendered response to the client.
+
+controller class
+Spring Controller. Spring Controller annotation can be applied on classes only. It's used to mark a class as a web request handler. It's mostly used with Spring MVC application
+
+To create the controller class, we are using two annotations @Controller and @RequestMapping.
+
+The @Controller annotation marks this class as Controller.
+
+The @Requestmapping annotation is used to map the class with the specified URL name.
+
+Spring MVC Model Interface. In Spring MVC, the model works a container that contains the data of the application. Here, a data can be in any form such as objects, strings, information from the database, etc.
+
+In Spring MVC, view resolvers enable you to render models in a browser without tying you to a specific view technology like JSP, Velocity, XML…etc.
+
+There are two interfaces that are important to the way Spring handles views are ViewResolver and View. The ViewResolver provides a mapping between view names and actual views. The View interface addresses the preparation of the request and hands the request over to one of the view technologies.

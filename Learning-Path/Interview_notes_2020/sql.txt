@@ -1,0 +1,158 @@
+select * from emp;
+
+select DISTINCT * from emp;
+
+select DISTINCT city,address from emp;
+
+select count(DISTINCT city) from emp;
+
+<>	Not equal. Note: In some versions of SQL this operator may be written as !=	
+BETWEEN	Between a certain range	
+LIKE	Search for a pattern	
+IN	To specify multiple possible values for a column
+
+select * from emp where city='abc' AND (name='xyz' OR name='pqr');
+
+select * from emp where NOT city='abc';
+
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+select * from emp ORDER BY city;
+
+select * from emp ORDER BY city DESC;
+
+select * from emp ORDER by city; //will work (not a case sensitive)
+
+The following SQL statement selects all customers from the "Customers" table, sorted by the "Country" and the "CustomerName" column. This means that it orders by Country, but if some rows have the same Country, it orders them by CustomerName:
+
+SELECT * FROM emp
+ORDER BY Country ASC, CustomerName DESC; (first will be priority)
+
+insert into emp (name,city)
+	values('abc','xyz');
+	
+What is a NULL Value?
+A field with a NULL value is a field with no value.
+
+If a field in a table is optional, it is possible to insert a new record or update a record without adding a value to this field. Then, the field will be saved with a NULL value.
+
+Note: A NULL value is different from a zero value or a field that contains spaces. A field with a NULL value is one that has been left blank during record creation!
+
+select city,name from emp where address IS NULL;
+
+select city,name from emp where address IS NOT NULL;
+
+update emp set city='abc' where name='pqr';
+
+The DELETE statement is used to delete existing records in a table.
+
+DELETE FROM table_name WHERE condition;
+
+Note: Be careful when deleting records in a table! Notice the WHERE clause in the DELETE statement. The WHERE clause specifies which record(s) should be deleted. If you omit the WHERE clause, all records in the table will be deleted!
+
+Delete All Records
+It is possible to delete all rows in a table without deleting the table. This means that the table structure, attributes, and indexes will be intact:
+
+DELETE FROM table_name;
+
+The SQL SELECT TOP Clause
+The SELECT TOP clause is used to specify the number of records to return.
+
+The SELECT TOP clause is useful on large tables with thousands of records. Returning a large number of records can impact performance.
+
+SQL Server / MS Access Syntax:
+
+SELECT TOP number|percent column_name(s)
+FROM table_name
+WHERE condition;
+
+select TOP 3 * from emp;
+
+MySQL Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+
+SELECT Price FROM Products ORDER BY Price DESC LIMIT 3;
+
+selcet city,name
+from emp
+where city='abc'
+LIMIT 3;
+
+SELECT Country FROM Customers
+LIMIT 3;
+
+Oracle Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE ROWNUM <= number;
+
+select city,name
+from emp 
+where ROWNUM <= 3;
+
+select MIN(Price) AS Smallest from emp;
+select MAX(Price) AS Largest from emp;
+
+The SQL COUNT(), AVG() and SUM() Functions
+The COUNT() function returns the number of rows that matches a specified criteria.
+
+The AVG() function returns the average value of a numeric column.
+
+The SUM() function returns the total sum of a numeric column.
+
+COUNT() Syntax
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+
+select count(*) from emp where emp_id = 1;
+
+AVG() Syntax
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+select AVG(price) from product;
+
+SUM() Syntax
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+select sum(price) from emp;
+
+The SQL LIKE Operator
+
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+There are two wildcards often used in conjunction with the LIKE operator:
+
+% - The percent sign represents zero, one, or multiple characters
+_ - The underscore represents a single character
+
+Note: MS Access uses an asterisk (*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+
+The percent sign and the underscore can also be used in combinations!
+
+LIKE Syntax
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+
+Tip: You can also combine any number of conditions using AND or OR operators.
+
+Here are some examples showing different LIKE operators with '%' and '_' wildcards:
+
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that start with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that end with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+WHERE CustomerName LIKE 'a__%'	Finds any values that start with "a" and are at least 3 characters in length
+WHERE ContactName LIKE 'a%o'	Finds any values that start with "a" and ends with "o"

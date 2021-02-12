@@ -1,0 +1,158 @@
+Java 8 features :
+
+Why can't this() and super() both be used together in a constructor?
+
+There is a difference between super() and this().
+
+super()- calls the base class constructor whereas
+this()- calls current class constructor.
+
+Both this() and super() are constructor calls.
+Constructor call must always be the first statement. So we can not have two statements as first statement, hence either we can call super() or we can call this() from the constructor, but not both.
+
+Why String is Immutable or Final in Java
+
+The string is Immutable in Java because String objects are cached in String pool. Since cached String literals are shared between multiple clients there is always a risk, where one client's action would affect all another client. For example, if one client changes the value of String "Test" to "TEST", all other clients will also see that value as explained in the first example. Since caching of String objects was important from performance reason this risk was avoided by making String class Immutable. At the same time, String was made final so that no one can compromise invariant of String class e.g. Immutability, Caching, hashcode calculation etc by extending and overriding behaviors. Another reason of why String class is immutable could die due to HashMap.
+
+Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve the value object which was stored in HashMap. Since HashMap works in the principle of hashing, which requires same has value to function properly. Mutable String would produce two different hashcodes at the time of insertion and retrieval if contents of String was modified after insertion, potentially losing the value object in the map.
+
+If you are an Indian cricket fan, you may be able to correlate with my next sentence. The string is VVS Laxman of Java, i.e. very very special class. I have not seen a single Java program which is written without using String. That's why a solid understanding of String is very important for a Java developer.
+
+
+Read more: https://javarevisited.blogspot.com/2010/10/why-string-is-immutable-or-final-in-java.html#ixzz658fTg9UL
+
+What is stream pipelining in Java 8?
+
+Answer:
+Stream pipelining is the concept of chaining operations together. This is done by splitting the operations that can happen on a stream into two categories. They are "intermediate operations" and "terminal operations". Each intermediate operation returns an instance of Stream itself when it runs, an arbitrary number of intermediate operations can, therefore, be set up to process data forming a processing pipeline. There must then be a terminal operation which returns a final value and terminates the pipeline.
+
+What is interface default method in java 8?
+
+Answer:
+Before Java 8, the interface only contains method signatures. With Java 8 new feature Default Methods or Defender Methods, you can include method body within the interface.
+
+All you need to do is add "default" keyword infront of the implementation method with in the interface. This is the new way of declaring the method body in Java 8 for an interface, default methods comes along with implementation.
+
+Why do we need to implement a method within the interface?
+
+Let's say you have an interface which has multiple methods, and multiple classes are implementing this interface. One of the method implementation can be common across the class, we can make that method as a default method, so that the implementation is common for all classes.
+
+How to work with existing interfaces?
+
+Second scenario where you have already existing application, for a new requirements we have to add a method to the existing interface. If we add new method then we need to implement it through out the implementation classes. By using the Java 8 default method we can add a default implementation of that method which resolves the problem.
+
+When working with multiple inheritance:
+
+If we have two interfaces, one with default method and another with just method signature (normal way of defining method in the interfaces).
+
+Java-8: Interface with default methods vs Abstract class.
+
+Answer:
+After introducing Default Method, it seems that interfaces and abstract classes are same. However, they are still different concept in Java 8.
+
+Abstract class can define constructor. They are more structured and can have a state associated with them. While in contrast, default method can be implemented only in the terms of invoking other interface methods, with no reference to a particular implementation's state. Hence, both use for different purposes and choosing between two really depends on the scenario context.
+
+Default methods in Java interface enables interface evolution. Given an existing interface, if you wish to add a method to it without breaking the binary compatibility with older versions of the interface, you have two options at hands: add a default or a static method. Indeed, any abstract method added to the interface would have to be implemented by the classes or interfaces implementing this interface.
+
+A static method is unique to a class. A default method is unique to an instance of the class. If you add a default method to an existing interface, classes and interfaces which implement this interface do not need to implement it.
+
+How Java-8 Streams differ from collections?
+
+Answer:
+First of all, please note that "Streams are not collections". java.util.stream is introduced to process elements in sequence. Streams are wrappers for collections and arrays. They wrap an existing collection to support operations expressed with lambdas, so you specify what you want to do, not how to do it. Also don't get confused with InputStream, java.util.stream does not have any relationship with InputStream or OutputStreams. java.util.stream are part of functional programming.
+
+Streams differ from collection framework in several ways:
+
+No storage. A stream is not a data structure that stores elements; instead, it conveys elements from a source such as a data structure, an array, a generator function, or an I/O channel, through a pipeline of computational operations.
+Functional in nature. An operation on a stream produces a result, but does not modify its source. For example, filtering a Stream obtained from a collection produces a new Stream without the filtered elements, rather than removing elements from the source collection.
+Laziness-seeking. Many stream operations, such as filtering, mapping, or duplicate removal, can be implemented lazily, exposing opportunities for optimization. For example, "find the first String with three consecutive vowels" need not examine all the input strings. Stream operations are divided into intermediate (Stream-producing) operations and terminal (value- or side-effect-producing) operations. Intermediate operations are always lazy.
+Possibly unbounded. While collections have a finite size, streams need not. Short-circuiting operations such as limit(n) or findFirst() can allow computations on infinite streams to complete in finite time.
+Consumable. The elements of a stream are only visited once during the life of a stream. Like an Iterator, a new stream must be generated to revisit the same elements of the source.
+
+What are the various ways to obtain Streams in Java-8?
+
+Answer:
+In Java-8, Streams can be obtained in a number of ways. Some examples are:
+
+From a Collection via the stream() and parallelStream() methods.
+From an array via Arrays.stream(Object[]).
+From static factory methods on the stream classes, such as Stream.of(Object[]), IntStream.range(int, int) or Stream.iterate(Object, UnaryOperator).
+The lines of a file can be obtained from BufferedReader.lines().
+Streams of file paths can be obtained from methods in Files.
+Streams of random numbers can be obtained from Random.ints().
+Numerous other stream-bearing methods in the JDK, including BitSet.stream(), Pattern.splitAsStream(java.lang.CharSequence), and JarFile.stream().
+
+List Java-8 Streams intermediate operations.
+
+Answer:
+Java 8 Stream intermediate operations return another Stream which allows you to call multiple operations in a form of a query. Stream intermediate operations do not get executed until a terminal operation is invoked. All Intermediate operations are lazy, so they’re not executed until a result of a processing is actually needed. Traversal of the Stream does not begin until the terminal operation of the pipeline is executed.
+
+Here is the list of all Stream intermediate operations:
+
+filter()
+map()
+flatMap()
+distinct()
+sorted()
+peek()
+limit()
+skip()
+
+List Java-8 Streams terminal operations.
+
+Answer:
+Java-8 Stream terminal operations produces a non-stream, result such as primitive value, a collection or no value at all. Terminal operations are typically preceded by intermediate operations which return another Stream which allows operations to be connected in a form of a query.
+
+Here is the list of all Stream terminal operations:
+
+toArray()
+collect()
+count()
+reduce()
+forEach()
+forEachOrdered()
+min()
+max()
+anyMatch()
+allMatch()
+noneMatch()
+findAny()
+findFirst()
+
+Can we reuse Java-8 Streams?
+
+Answer:
+A stream should be operated on (invoking an intermediate or terminal stream operation) only once. A stream implementation may throw IllegalStateException if it detects that the stream is being reused.
+
+So the answer is no, streams are not meant to be reused.
+
+Difference between map and flatMap methods in Java 8
+
+Answer:
+Both map and flatMap can be applied to a Stream<T> and they both return a Stream<R>. The difference is that the map operation produces one output value for each input value, whereas the flatMap operation produces an arbitrary number (zero or more) values for each input value. This is reflected in the arguments to each operation.
+
+The map operation takes a Function, which is called for each value in the input stream and produces one result value, which is sent to the output stream.
+
+The flatMap operation takes a function that conceptually wants to consume one value and produce an arbitrary number of values. However, in Java, it's cumbersome for a method to return an arbitrary number of values, since methods can return only zero or one value. One could imagine an API where the mapper function for flatMap takes a value and returns an array or a List of values, which are then sent to the output. Given that this is the streams library, a particularly apt way to represent an arbitrary number of return values is for the mapper function itself to return a stream! The values from the stream returned by the mapper are drained from the stream and are passed to the output stream. The "clumps" of values returned by each call to the mapper function are not distinguished at all in the output stream, thus the output is said to have been "flattened."
+
+What is the difference between Closure and Lambda in Java 8?
+
+Answer:
+Lambdas are a language construct (anonymous functions), closures are an implementation technique to implement first-class functions (whether anonymous or not).
+
+A lambda is just an anonymous function - a function defined with no name. In some languages, they are equivalent to named functions. In fact, the function definition is re-written as binding a lambda to a variable internally. In other languages, like Python, there are some (rather needless) distinctions between them, but they behave the same way otherwise.
+
+A closure is a function that is evaluated in its own environment, which has one or more bound variables that can be accessed when the function is called. They come from the functional programming world, where there are a number of concepts in play. Closures are like lambda functions, but smarter in the sense that they have the ability to interact with variables from the outside environment of where the closure is defined.
+
+Does Java 8 Lambda supports recursive call?
+
+Answer:
+In general, Lambda implementations are mostly anonymous functions. In recursion, a method calls itself. Since anonymous function doesnot have a name, it cannot be called by itself. That means an anonymous Lambda can not be called by itself. But if we have a Lambda function declaration as a member variable or class variable, Java 8 supports recursion with Lambda functions. Java 8 does not support Lambda function declaration with local variable.
+
+Can Java 8 default methods override equals, hashCode and toString?
+
+Answer:
+The methods declared in java.lang.Object class can not be override in Java 8 default methods. It is forbidden to define default methods in interfaces for methods in java.lang.Object.
+
+Default interface methods can be overwritten in classes implementing the interface and the class implementation of the method has a higher precedence than the interface implementation, even if the method is implemented in a superclass. Since all classes inherit from java.lang.Object, the methods in java.lang.Object would have precedence over the default method in the interface and be invoked instead.
+

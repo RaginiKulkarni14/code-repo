@@ -1,0 +1,17 @@
+when we are extending the parent class in the child class we have to use Super keyword in order to access the methods in the parent class and use the child class object to access the child class methods, so the compiler will not get confused even if the method name and signature are same(overriding)
+
+try with the resourse will be the newer one, which will replacethe need of finally
+
+ex: try(fileopen) ---- is open
+
+	{
+	
+	}will be closed automatically after reaching the end
+	
+static will be sharing the same memory
+
+static belongs the class and instace belongs to the object
+
+List---------------------
+
+treeMap will alsways overrids the comereTo method hence comparing a null value with anything will get you nullpointer exception, so treemap will not allow null value

@@ -1,0 +1,215 @@
+Top 20 Java Interview Questions on Final keyword
+April 16, 2019 by javainterviewpoint Leave a Comment
+
+1. What is the use of the final keyword in Java?
+
+Final keyword can be applied to variable, method, and class. Each of them has its own uses
+
+The final variable is a variable whose value cannot be changed at any time once assigned, it remains as a constant forever.
+The final method cannot be overridden
+A final class cannot be subclassed (cannot be extended)
+2. What is a blank final variable?
+
+A blank final variable is a final variable, which is not initialized during declaration.
+
+Java Interview Questions on Final keyword
+
+3. Can we declare final variable without initialization?
+
+       Yes, We can declare a final variable without initialization and these final variables are called a blank final variable but must be initialized before usage.
+
+The final variable can be initialized in the below four ways
+
+1. Through Instance Initialization Block (IIB)
+
+The Instance Initialization Block is used to initialize the instance data member, this block runs every time whenever the object of the class is created. Instance Initialization Block gets executed exactly before the code in the constructor. We can use IIB to initialize an instance final variable
+
+public class Test
+{
+    // Blank final variable
+    final int SPEED;
+    // Instance Initialization Block
+    {
+        SPEED = 5;
+    }
+    public static void main(String args[])
+    {
+        Test t=new Test();
+        System.out.println("Travelling Speed is :"+t.SPEED);
+    }
+}
+2. Through Static Initialization Block
+
+The static block is a block of code inside a Java class, which will be executed when a class is first loaded into the JVM. The Static Initialization Block can be used to initialize a class final variable/static final variable
+
+public class Test
+{
+    // Blank final variable
+    static final int SPEED;
+
+    // Static Initialization Block
+    static
+    {
+        SPEED = 10;
+    }
+
+    public static void main(String args[])
+    {
+        System.out.println("Travelling Speed is :" + SPEED);
+    }
+}
+3. Through Constructor
+
+A constructor also can be used to initialize a blank final variable.
+
+ public class Test
+{
+    // Blank final variable
+    final int SPEED;
+
+    // No Parameter Constructor
+    Test()
+    {
+        SPEED = 15;
+    }
+
+    public static void main(String args[])
+    {
+        Test t=new Test();
+        System.out.println("Travelling Speed is :"+t.SPEED);
+    }
+}
+4. Within Method
+
+The local final variable can be initialized during declaration or any place after the declaration. It must be initialized before used.
+
+public class Test
+{
+    public static void main(String args[])
+    {
+        // Local final variable
+        final int SPEED;
+
+        SPEED = 25;
+
+        System.out.println("Travelling Speed is :" + SPEED);
+    }
+}
+4. What is a final method?
+
+When a method is declared as final, then it is called as a final method, The subclass can call the final method of the parent class but cannot override it.
+
+5. What is a final class?
+
+A class declared with a final keyword is called a final class, a final class cannot be subclassed. This means a final class cannot be inherited by any class.
+
+6. Can a main() method be declared final?
+
+Yes, the main() method can be declared as final and cannot be overridden.
+
+7. Can we declare constructor as final?
+
+        No, Constructor cannot be declared as final. Constructors are not inherited and so it cannot be overridden, so there is no use to have a final constructor.
+
+You will get an error like “Illegal modifier for the constructor in type Test; only public, protected & private are permitted”
+
+8. Can we declare an interface as final?
+
+       The sole purpose of Interface is to have the subclass implement it if we make it final it cannot be implemented. Only public & abstract are permitted while creating an interface
+
+9. Can Final Variable be serialized in Java?
+
+Yes, the final variable can be serialized in Java
+
+10. What will happen if you add final to a List / ArrayList?
+
+Once we created a final List/ ArrayList we can add or remove data from the list but the final list cannot be assigned with a value. Let’s look into the below code
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FinalList
+{
+    public static void main(String[] args)
+    {
+        final List myList = new ArrayList();
+        myList.add("one");
+        myList.add("two");
+        myList.add("three");
+        
+        System.out.println(myList);
+        
+        List tmp = new ArrayList();
+        tmp.add("four");
+        
+        myList = tmp; // Throws Compilation error
+        myList = null;
+    }
+}
+When we assign our myList with tmp or null, we will be getting a compilation error like “The final local variable myList cannot be assigned”
+
+11. Can we make a method final in Java?
+
+Yes, We can make a method final, the only constraint is that it cannot be overridden.
+
+12. What is effectively final in Java?
+
+The term effectively final variable is introduced in Java 8. A variable which is not declared as final but the value never changed after initialization is called as effectively final.
+
+13. Can we make the local variable be final?
+
+       Yes, we can make a local variable final in Java. In fact, the final is the only modifier which can be applied to a local variable. If we apply any other modifier we will be getting compile time error [only final is permitted].
+
+The below code will throw compile time error as we have declared the temp local variable as public.
+
+public class Test
+{
+    public static void main(String[] args) 
+    { 
+        //Public local variable
+        public int temp; // Error Only final is permitted
+        System.out.println(temp); 
+    }
+}
+14. Can final method be overloaded in Java?
+
+       Yes, the final method can be overloaded but cannot be overridden. Which means you can have more than one final method with the same name with different parameters.
+
+15. Can we create object for final class?
+
+       Yes, it is possible to create an object for a final class. The best example in Java would be String class. The string is a final class, in almost all code we will be creating the object for it but you cannot extend the String class.
+
+16. What is the main difference between abstract methods and final methods?
+
+Abstract methods are declared in abstract classes and cannot be implemented in the same class. They must be implemented in the subclass. The only way to use an abstract method is by overriding it
+
+Final methods are quite opposite to abstract, final methods cannot be overridden.
+
+17. What is the difference between abstract class and final class?
+
+ABSTRACT CLASS	FINAL CLASS
+Abstract class can be subclassed and the abstract methods should be overridden	Final class cannot be subclassed and the final methods cannot be overridden
+Can contain abstract methods	Cannot contain abstract methods
+Abstract class can be inherited	Final class cannot be inherited
+Abstract class cannot be instantiated	Final class can be instantiated
+Immutable object cannot be created	Immutable objects can be created
+Not all methods of the abstract class need to have a method body (abstract methods)	All methods of the final class should have a method body
+18. Can we make an abstract method final in Java?
+
+        No, We cannot make an abstract method final in Java because both abstract and final are both extremes as an abstract method must be overridden while the final method cannot be overridden.
+
+19. What is the difference between static and final in Java?
+
+STATIC KEYWORD	FINAL KEYWORD	
+Static keyword can be applied to a nested class, block, method and variables	Final keyword can be applied to class, block, method and variables
+We can declare static methods with the same signature in subclass but it is not considered as overriding as there won’t be any runtime polymorphism.
+If a subclass contains the same signature as a static method in the base class, then the method of the subclass hides the base class method it is called Method Hiding.
+
+Final class methods cannot be overridden.
+Static variable can be changed after initialization	Final variable cannot be changed after initialization
+Static method or variable can be accessed directly by the class name and doesn’t need any object as they belong to the class	Object can be created to call the final method or final variables
+20. What is a Static Final variable in Java?
+
+When have declared a variable as static final then the variable becomes a CONSTANT.  Only one copy of variable exists which cannot be changed by any instance.
+
+ 

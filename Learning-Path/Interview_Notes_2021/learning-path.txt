@@ -1,0 +1,171 @@
+https://www.linkedin.com/learning/paths/become-a-spring-developer?u=42751868
+
+https://www.linkedin.com/learning/spring-boot-2-0-essential-training-2018/welcome-to-spring-boot?contextUrn=urn%3Ali%3AlyndaLearningPath%3A5b101b04498e06fb6e2d8785&u=42751868
+
+===================================================================================================================================================================
+
+1) downcasting and upcasting
+ class A
+	public static String msg()
+	{
+		return "ofss";
+	}
+	
+  class B extends A
+	public static String msg()
+	{
+		return "oracle";
+	}
+	
+	public static void main()
+	{
+	A a = new B(); //upcasting
+	print(a.msg())  //outputs ofss
+	}
+===============================================================	
+B b=a; ----> wont work //difference class reference 
+B b=(B) a; ---> works, b.msg prints oracle //downcasting
+===============================================================
+A a=new A();
+B b=(B) a(); //will throw classcastexcp
+================================================================
+
+https://www.geeksforgeeks.org/upcasting-vs-downcasting-in-java/
+
+https://www.geeksforgeeks.org/built-exceptions-java-examples/
+
+=================================================================================================================
+A subclass can have its own exception defined which can be differnet from the super class and that works fine.
+---------------------------------------------------------------------------------------------------------------------
+
+class C
+{
+	public String msg() throws IOException
+	{
+		return "ofss";
+	}
+}
+
+class D extends C
+{
+	public String msg() throws FileNotFoundException
+	{
+		return "oracle";
+	}
+}
+
+public class test2 {
+
+	public static void main(String[] args) throws IOException {
+
+		C c=new C();
+		System.out.println(c.msg());
+		D d=new D();
+		System.out.println(d.msg());
+		
+	}
+
+}
+=====================================================================
+Rule: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but can declear unchecked exception.
+
+If the superclass method does not declare an exception
+   If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception.
+If the superclass method declares an exception
+   If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+   
+https://www.javatpoint.com/exception-handling-with-method-overriding
+
+===============================================================================================
+2) diff between inner class and subclass
+inner classes are in the same file, whereas subclasses can be in another file, maybe in another package. 
+You cannot get an instance of an inner class without an instance of the class that contains it. 
+inner classes have the methods they want, whereas subclasses have the methods of their parent class.
+
+Inner Class is a class that is nested within another class whereas sub class is a class that extends or inherit another class.
+
+Inner class can only be accessed using reference of outer class ( Class name , if inner class is static or object reference, if inner class is non static ) whereas Sub class is accessed directly.
+
+In terms of memory, inner class is stored just like another class having it's own body whereas sub class carries the body of parent class as well as it's own fields in memory.
+
+===============================================================================================
+How to iterate list on age in java -------- streams/filter
+===============================================================================================
+transient keyword in java
+https://www.educative.io/edpresso/what-is-the-transient-keyword-in-java
+=================================================================================================
+what is a dead thread in
+javahttps://www.whizlabs.com/blog/thread-states-java/
+
+A thread dies naturally when its run() method exits normally. For example, the while loop in this method is a finite loop--it will iterate 100
+ times and then exit. A thread with this run() method will die naturally after the loop and the run() method completes.
+==================================================================================================
+when the jvm reaches 100% cpu usage how do you fix it?
+
+==================================================================================================
+how to deploy war file in tomcat
+
+We can start the Tomcat server by simply running the startup script located at $CATALINA_HOME\bin\startup. 
+There is a .bat and a .sh in every installation.
+
+Choose the appropriate option depending on whether you are using a Windows or Unix based operating system.
+
+https://www.baeldung.com/tomcat-deploy-war
+====================================================================================================
+2) diff btw websphere and tomcat
+
+https://www.mulesoft.com/tcat/tomcat-websphere
+
+3) how the data comes from database to frontend
+http://geronimo.apache.org/GMOxDOC30/daytrader-a-more-complex-application.html 
+
+===============================================================================================================================
+different ways to create threads;
+=========================================================================================================================
+how to find duplicates in arraylist?
+
+for (int i = 0; i < names.length; i++) {
+     for (int j = i + 1 ; j < names.length; j++) {
+          if (names[i].equals(names[j])) {
+                   // got the duplicate element
+          }
+     }
+ }
+
+====================================================================================================================================
+how do u get only keys in map?
+
+To retrieve just keys, if you don't really need any information from the values, instead of the entry set, you can get the key set:
+
+for(String key: map.keySet()){
+    System.out.println(key);
+}
+=================================================================================================================================
+can IOExp overrided by Filenotfound?
+===============================================================================================================================
+diff btw callback and prepared statement?
+===============================================================================================================================
+contructor:
+
+//wrong
+public class temp
+{
+  temp(int a)
+  {
+  temp c=new temp();
+  }
+
+} 
+
+//right
+public class temp
+{
+  temp(int a)
+  {
+  temp c=new temp(a);
+  }
+
+} 
+==================================================================================================================================
+how to read excel file in java?
+

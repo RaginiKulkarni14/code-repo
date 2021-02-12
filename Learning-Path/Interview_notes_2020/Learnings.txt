@@ -1,0 +1,414 @@
+1) Diff b/w
+String x="abc";
+String y=new String("ABC")
+
+https://stackoverflow.com/questions/3052442/what-is-the-difference-between-text-and-new-stringtext
+
+Object creation line by line:
+
+String str1 = new String("java5");
+Using string literal "java5" in the constructor, a new string value is stored in string constant pool. Using new operator, a new string object is created in the heap with "java5" as value.
+
+String str2 = "java5"
+Reference "str2" is pointed to already stored value in string constant pool
+
+String str3 = new String(str2);
+A new string object is created in the heap with the same value as reference by "str2"
+
+String str4 = "java5";
+Reference "str4" is pointed to already stored value in string constant pool
+
+Total objects : Heap - 2, Pool - 1
+
+2) What if we use static behind the contructor?
+
+We know that static methods, block or variables belong to the class. Whereas a Constructor belongs to the object and called when we use the new operator to create an instance. Since a constructor is not class property, it makes sense that it’s not allowed to be static.
+
+3) Can we have private contructor?
+
+Yes, a constructor can be private. There are different uses of this. One such use is for the singleton design anti-pattern, which I would advise against you using. Another, more legitimate use, is in delegating constructors; you can have one constructor that takes lots of different options that is really an implementation detail, so you make it private, but then your remaining constructors delegate to it.
+
+As an example of delegating constructors, the following class allows you to save a value and a type, but it only lets you do it for a subset of types, so making the general constructor private is needed to ensure that only the permitted types are used. The common private constructor helps code reuse.
+
+public class MyClass {
+     private final String value;
+     private final String type;
+
+     public MyClass(int x){
+         this(Integer.toString(x), "int");
+     }
+
+     public MyClass(boolean x){
+         this(Boolean.toString(x), "boolean");
+     }
+
+     public String toString(){
+         return value;
+     }
+
+     public String getType(){
+         return type;
+     }
+
+     private MyClass(String value, String type){
+         this.value = value;
+         this.type = type;
+     }
+}
+
+Edit
+Looking at this answer from several years later, I would like to note that this answer is both incomplete and also a little bit extreme. Singletons are indeed an anti-pattern and should generally be avoided where possible; however, there are many uses of private constructors besides singletons, and my answer names only one.
+
+To give a couple more cases where private constructors are used:
+
+To create an uninstantiable class that is just a collection of related static functions (this is basically a singleton, but if it is stateless and the static functions operate strictly on the parameters rather than on class state, this is not as unreasonable an approach as my earlier self would seem to suggest, though using an interface that is dependency injected often makes it easier to maintain the API when the implementation requires larger numbers of dependencies or other forms of context).
+
+When there are multiple different ways to create the object, a private constructor may make it easier to understand the different ways of constructing it (e.g., which is more readable to you new ArrayList(5) or ArrayList.createWithCapacity(5), ArrayList.createWithContents(5), ArrayList.createWithInitialSize(5)). In other words, a private constructor allows you to provide factory function's whose names are more understandable, and then making the constructor private ensures that people use only the more self-evident names. This is also commonly used with the builder pattern. For example:
+
+MyClass myVar = MyClass
+    .newBuilder()
+    .setOption1(option1)
+    .setOption2(option2)
+    .build();
+
+4) How do we get the occurance of "String"? if not regex/patter matching
+
+s.matches("regex")
+
+Evaluates if "regex" matches s. Returns only true if the WHOLE string can be matched.
+
+s.split("regex")
+
+Creates an array with substrings of s divided at occurrence of "regex". "regex" is not included in the result.
+
+s.replaceFirst("regex"), "replacement"
+
+Replaces first occurance of "regex" with "replacement.
+
+s.replaceAll("regex"), "replacement"
+
+Replaces all occurances of "regex" with "replacement.
+
+-----------
+
+String someString = "elephant";
+char someChar = 'e';
+int count = 0;
+  
+for (int i = 0; i < someString.length(); i++) {
+    if (someString.charAt(i) == someChar) {
+        count++;
+    }
+}
+assertEquals(2, count);
+
+5)diff b/w arrays and arraylist
+
+=> First and Major difference between Array and ArrayList in Java is that Array is a fixed length data structure while ArrayList is a variable length Collection class.
+
+=>Another difference between Array and ArrayList in Java is that you can not use Generics along with Array, as Array instance knows about what kind of type it can hold and throws ArrayStoreException, if you try to store type which is not convertible into type of Array. ArrayList allows you to use Generics to ensure type-safety.
+
+=>All kinds of Array provides length variable which denotes length of Array while ArrayList provides size() method to calculate size of ArrayList
+
+=>One more major difference between ArrayList and Array is that, you can not store primitives in ArrayList, it can only contain Objects. While Array can contain both primitives and Objects in Java. Though Autoboxing of Java 5 may give you an impression of storing primitives in ArrayList, it actually automatically converts primitives to Object. e.g.
+
+ArrayList<Integer> integerList = new ArrayList<Integer>();
+integerList.add(1); //here we are not storing primitive in ArrayList, instead autoboxing will convert int primitive to Integer object
+
+=>Java provides add() method to insert element into ArrayList and you can simply use assignment operator to store element into Array e.g. In order to store Object to specified position use
+
+Object[] objArray = new Object[10];
+objArray[1] = new Object();
+
+=>One more difference on Array vs ArrayList is that you can create instance of ArrayList without specifying size, Java will create Array List with default size but its mandatory to provide size of Array while creating either directly or indirectly by initializing Array while creating it
+
+6)how do you have a fixed sized arrayList? arraylist not arrays
+---------------------------------------------------------------------
+Yes,
+
+Commons library provides a built-in FixedSizeList which does not support the add, remove and clear methods (but the set method is allowed because it does not modify the List's size). In other words, if you try to call one of these methods, your list still retain the same size.
+
+To create your fixed size list, just call
+
+List<YourType> fixed = FixedSizeList.decorate(Arrays.asList(new YourType[100]));
+-------------------------------------------------------------------------------------
+List<String> fixedSizeList = Arrays.asList(new String[100]);
+
+fixedSizeList.set(7, "new value");
+
+7)how do you add objects for arrays and arraylist?
+
+----------------------------------------------------------------
+ArrayList uses add method to insert the values into the object
+
+List<Person> persons = new ArrayList<Person>();
+
+        Person person = new Person();
+        person.setName("Tester");
+
+------------------------------------------------
+Arrays 
+
+public class Car{
+
+public Car(String name, String color)
+{
+     this.name = name,
+     this.color = color
+}
+
+Car carList[i] = new Car("lambo","RED");
+
+--------------------------------------------------
+
+//Arrays
+
+class Student {
+   int marks;
+}
+
+public static void main(String[] args) {
+    Student[] studentArray = new Student[7];
+    studentArray[0] = new Student();
+    studentArray[0].marks = 99;
+    System.out.println(studentArray[0].marks); // prints 99
+}
+
+
+8)How do you store values of different types(int,string,float) in list?-----Generics
+
+-------------------------------------------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class Tester4 {
+
+    public static void main(String args[]) {
+
+        List<Person> persons = new ArrayList<Person>();
+
+        Person person = new Person();
+        person.setName("Tester");
+        person.setPersonNr(1245L);
+        persons.add(person);
+
+        person = new Person();
+        person.setName("Tester 2");
+        person.setPersonNr(1299L);
+        persons.add(person);
+    }
+}
+
+class Person {
+
+    private String name;
+
+    private Long personNr;
+
+    public String getName() {
+        return name;
+    }
+----------------------------------------------------------------------------------------
+9)what are the classes for reading files?
+
+Reader: An abstract class to read a character stream.
+InputStreamReader: Class used to read the byte stream and converts to character stream.
+FileReader: A class to read the characters from a file.
+BufferedReader: This is a wrapper over the Reader class that supports buffering capabilities. In many cases this is most preferable class to read data because more data can been read from the file in one read() call, reducing the number of actual I/O operations with file system.
+And here are some classes you can use to write character data to a file:
+
+Writer: This is an abstract class to write the character streams.
+OutputStreamWriter: This class is used to write character streams and also convert them to byte streams.
+FileWriter: A class to actually write characters to the file.
+BufferedWriter: This is a wrapper over the Writer class, which also supports buffering capabilities. This is most preferable class to write data to a file since more data can be written to the file in one write() call. And like the BufferedReader, this reduces the number of total I/O operations with file system.
+
+10)how do you read files line by line?
+
+We can use java.io.BufferedReader readLine() method to read file line by line to String. This method returns null when end of file is reached
+
+11)Can overloading be done in different classes?
+
+If two methods of a class (whether both declared in the same class, or both inherited by a class, or one declared and one inherited) have the same name but signatures that are not override-equivalent, then the method name is said to be overloaded. So, in short, in your example, the hello method is indeed overloaded.
+
+class P {
+    public void hello() {}
+}
+
+class C extends P {
+    public void hello(String s) {}
+}
+
+12)what is the difference between .equals and ==(double equals) for string
+
+Method 1: using == operator
+Double equals operator is used to compare two or more than two objects, If they are referring to the same object then return true, otherwise return false. String is immutable in java. When two or more objects are created without new keyword, then both object refer same value. Double equals operator actually compares objects references.
+
+Method 2: Using equals() method
+In Java, string equals() method compares the two given strings based on the data / content of the string. If all the contents of both the strings are same then it returns true. If all characters are not matched then it returns false.
+
+Method 3: Using compareTo() method
+In java Comparable interface compares values and returns an int, these int values may be less than, equal, or greater than. The java compare two string is based on the Unicode value of each character in the strings. If two strings are different, then they have different characters at some index that is a valid index for both strings, or their lengths are different, or both.
+Assuming index ‘i’ is where characters are different then compareTo() will return firstString.charAt(i)-secondString.charAt(i).
+
+Method 4: Using compare() method
+In Java for locale specific comparison, one should use Collator class which is in java.text package. The one most important feature of Collator class is the ability to define our own custom comparison rules.
+
+13)Instance Variable in Java
+
+Instance variable in Java is used by Objects to store their states. Variables which are defined without the STATIC keyword and are Outside any method declaration are Object specific and are known as instance variables. They are called so because their values are instance specific and are not shared among instances.
+
+Rules for Instance variable in Java
+Instance variables can use any of the four access levels
+They can be marked final
+They can be marked transient
+They cannot be marked abstract
+They cannot be marked synchronized
+They cannot be marked strictfp
+They cannot be marked native
+They cannot be marked static
+
+14) Difference b/w String/StringBuffer/StringBuilder
+
+---------String vs StringBuffer
+Since String is immutable in Java, whenever we do String manipulation like concatenation, substring etc, it generates a new String and discards the older String for garbage collection.
+
+These are heavy operations and generate a lot of garbage in heap. So Java has provided StringBuffer and StringBuilder class that should be used for String manipulation.
+
+StringBuffer and StringBuilder are mutable objects in java and provide append(), insert(), delete() and substring() methods for String manipulation.
+
+---------StringBuffer vs StringBuilder
+StringBuffer was the only choice for String manipulation till Java 1.4 but it has one disadvantage that all of its public methods are synchronized. StringBuffer provides Thread safety but on a performance cost.
+
+In most of the scenarios, we don’t use String in a multithreaded environment, so Java 1.5 introduced a new class StringBuilder that is similar to StringBuffer except thread safety and synchronization.
+
+So if you are in a single threaded environment or don’t care about thread safety, you should use StringBuilder else use StringBuffer. See this post for performance benchmarking between StringBuffer and StringBuilder.
+
+---------String vs StringBuffer vs StringBuilder
+String is immutable whereas StringBuffer and StringBuider are mutable classes.
+StringBuffer is thread safe and synchronized whereas StringBuilder is not, thats why StringBuilder is more faster than StringBuffer.
+String concat + operator internally uses StringBuffer or StringBuilder class.
+For String manipulations in non-multi threaded environment, we should use StringBuilder else use StringBuffer class.
+
+15) Meaning thread safe
+
+Java supports the concept of concurrent, or multi-threaded, programs. The basic unit of concurrency is a thread, and several threads can run within a single program. It’s quite usual to have threads access a common data structure. In such access, it is possible that one thread interrupts another thread’s read operation, to do its own update or delete. If not properly managed, these can lead to unexpected data contents!
+
+So, Thread safe means means making a particular portion of code accessible by only one at a time.
+
+StringBuffer ----------- Thread Safe  
+StringBuilde --------- faster (better when used on single threaded)
+
+-------------------------------------------
+
+Iterator vs Foreach In Java
+Background :
+
+Iterator is an interface provided by collection framework to traverse a collection and for a sequential access of items in the collection.
+   
+   // Iterating over collection 'c' using terator
+   for (Iterator i = c.iterator(); i.hasNext(); ) 
+       System.out.println(i.next());
+ 
+
+For eachloop is meant for traversing items in a collection.
+
+   // Iterating over collection 'c' using for-each 
+   for (Element e: c)
+       System.out.println(e);
+We read the ‘:’ used in for-each loop as “in”. So loop reads as “for each element e in elements”, here elements is the collection which stores Element type items.
+
+Note : In Java 8 using lambda expressions we can simply replace for-each loop with
+
+elements.forEach (e -> System.out.println(e) );
+ 
+ 
+
+Difference between the two traversals
+
+In for-each loop, we can’t modify collection, it will throw a ConcurrentModificationException on the other hand with iterator we can modify collection.
+Modifying a collection simply means removing an element or changing content of an item stored in the collection. This occurs because for-each loop implicitly creates an iterator but it is not exposed to the user thus we can’t modify the items in the collections.
+
+When to use which traversal?
+
+If we have to modify collection, we can use Iterator.
+While using nested for loops it is better to use for-each loop, consider the below code for better understanding.
+
+https://www.geeksforgeeks.org/iterator-vs-foreach-in-java/
+
+----------------------------------------------------------------------------------
+
+Generics in Java
+Generics in Java is similar to templates in C++. The idea is to allow type (Integer, String, … etc and user defined types) to be a parameter to methods, classes and interfaces. For example, classes like HashSet, ArrayList, HashMap, etc use generics very well. We can use them for any type.
+
+ 
+
+Generic Class
+
+Like C++, we use <> to specify parameter types in generic class creation. To create objects of generic class, we use following syntax.
+// To create an instance of generic class 
+BaseType <Type> obj = new BaseType <Type>()
+
+Note: In Parameter type we can not use primitives like 
+      'int','char' or 'double'.
+filter_none
+edit
+play_arrow
+
+brightness_4
+// A Simple Java program to show working of user defined 
+// Generic classes 
+   
+// We use < > to specify Parameter type 
+class Test<T> 
+{ 
+    // An object of type T is declared 
+    T obj; 
+    Test(T obj) {  this.obj = obj;  }  // constructor 
+    public T getObject()  { return this.obj; } 
+} 
+   
+// Driver class to test above 
+class Main 
+{ 
+    public static void main (String[] args) 
+    { 
+        // instance of Integer type 
+        Test <Integer> iObj = new Test<Integer>(15); 
+        System.out.println(iObj.getObject()); 
+   
+        // instance of String type 
+        Test <String> sObj = 
+                          new Test<String>("GeeksForGeeks"); 
+        System.out.println(sObj.getObject()); 
+    } 
+	
+---------------------------------Non-generic Vs Generic Collection in Java
+
+Differences between Non-generic and Generic Collection
+
+Programs that uses Generics has got many benefits over non-generic code.
+
+Code Reuse: By using Generics, one needs to write a method/class/interface only once and use for any type. Whereas in the non-generics, the code needs to be written again and again whenever needed.
+
+Type Safety: Generics make errors to appear compile time than at run time (It’s always better to know problems in your code at compile time rather than making your code fail at run time).
+
+For Example: To create an ArrayList that store name of students and if by mistake programmer adds an integer object instead of string, compiler allows it. But, when this data is retrieved from ArrayList, it causes problems at runtime for Non-generic ArrayList.
+
+ ArrayList al = new ArrayList(); 
+  
+        al.add("Sachin"); 
+        al.add("Rahul"); 
+        al.add(10); // Compiler allows this 
+  
+        String s1 = (String)al.get(0); 
+        String s2 = (String)al.get(1); 
+  
+        try { 
+            // Causes Runtime Exception 
+            String s3 = (String)al.get(2); 
+        } 
+        catch (Exception e) { 
+            System.out.println("Exception: " + e); 
+        } 
+		
+Individual Type Casting is not needed: If Generics is not needed, then, in the above example every-time the data is to be retrieved from ArrayList, it needs to be typecasted. Typecasting at every retrieval operation is a big headache. This can be avoided if by somehow it is already known that the list only holds string data.
