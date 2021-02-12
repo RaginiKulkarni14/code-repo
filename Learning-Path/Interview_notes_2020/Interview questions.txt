@@ -1,0 +1,155 @@
+Why is String immutable in Java ?	Core Java	
+	
+Ans. 1. String Pool - When a string is created and if it exists in the pool, the reference of the existing string will be returned instead of creating a new object. If string is not immutable, changing the string with one reference will lead to the wrong value for the other references.
+
+Example -
+
+String str1 = "String1";
+String str2 = "String1"; // It doesn't create a new String and rather reuses the string literal from pool
+
+// Now both str1 and str2 pointing to same string object in pool, changing str1 will change it for str2 too
+
+2. To Cache its Hashcode - If string is not immutable, One can change its hashcode and hence it's not fit to be cached.
+
+3. Security - String is widely used as parameter for many java classes, e.g. network connection, opening files, etc. Making it mutable might possess threats due to interception by the other code segment.
+
+Q2. Explain the scenerios to choose between String , StringBuilder and StringBuffer ?
+
+or
+
+What is the difference between String , StringBuilder and StringBuffer ?	Core Java	
+	
+Ans. If the Object value will not change, use String Class because a String object is immutable.
+
+If the Object value can change and will only be modified from a single thread, use StringBuilder because StringBuilder is unsynchronized(means faster).
+
+If the Object value may change, and can be modified by multiple threads, use a StringBuffer because StringBuffer is thread safe(synchronized)
+
+Can we serialize static variables ?	Core Java	
+	
+Ans. No. Only Object and its members are serialized. Static variables are shared variables and doesn't correspond to a specific object.
+
+Q7. Difference between Vector and ArrayList ?	Core Java	
+	
+Ans. Vectors are synchronized whereas Array lists are not.
+
+Q8. What are various types of Class loaders used by JVM ?	Core Java	
+	
+Ans. Bootstrap - Loads JDK internal classes, java.* packages.
+
+Extensions - Loads jar files from JDK extensions directory - usually lib/ext directory of the JRE
+
+System - Loads classes from system classpath.
+
+ Q9. What is the use of Transient Keyword ?	Core Java	
+	
+Ans. It in Java is used to indicate that a field should not be serialized.
+
+Q11. How to implement an immutable class ?	Core Java	
+	
+Ans. We can make a class immutable by
+
+1. Making all methods and variables as private.
+
+2. Setting variables within constructor.
+
+Public Class ImmutableClass{ 
+
+private int member; 
+ImmutableClass(int var){ 
+member=var; 
+} 
+} 
+
+and then we can initialize the object of the class as
+
+ImmutableClass immutableObject = new ImmutableClass(5);
+
+Now all members being private , you cant change the state of the object.
+
+Q12. Write an algorithm / Java Program to show duplicates in an array of n elements?	
+	
+Ans. int duplicateArray[] = { 1, 2, 2, 3, 4, 5, 6, 8, 9}
+Set unique = new HashSet();
+for (int i = 0; i < duplicateArray.length; i) {
+if (unique.contains(duplicateArray[i])) {
+System.out.println(duplicateArray[i]);
+} else {
+unique.add(duplicateArray[i]);
+}
+}
+
+Complexity O(n) = nHashSet contains and add has O(n) = 1
+
+ Q20. What is ConcurrentModificationException ?		
+	
+Ans. This is the exception that is thrown when we try to modify the non concurrent collection class while iterating through it.
+
+Q22. Difference between jar , war and ear ?	Java EE	
+	
+Ans. Jar is Java Archieve i.e compressed Class or Class / Java files.
+
+War comprises of compressed Servlet class files,JSP FIles,supporting files, GIF and HTML files.
+
+Ear comprise of compressed Java and web module files ( was files ).
+
+What is Jenkins ?	Jenkins	
+	
+Ans. It is a continuous integration tool written in Java.
+
+What is the use of synchronized keyword ?		
+	
+Ans. Synchronize is used to achieve mutual exclusion i.e at one time, the segment of the code, method that has been declared synchronized should be executed by single thread only and hence the lock needs to be retrieved before executing the segment and then released.
+
+Q24. What are the disadvantages of multithreading ?		
+	
+Ans. 1. Switching Overheads - Even though multi threading aims at improving performance by reducing the wait time and hence improving overall throughput, there is a cost of switching resources between threads and sometime this cost can surpass the benefits if there isnt much wait for IO or external communication.
+
+2. Debugging is hard with multi threaded code.
+
+3. Deadlock - Execution of multi threaded code many a times lead to deadlock due to shared resources.
+
+Question 7. What Is The Use Of The Finally Block? Is Finally Block In Java Guaranteed To Be Called? When Finally Block Is Not Called?
+
+Answer :
+
+Finally is the block of code that executes always. The code in finally block will execute even if an exception is occurred. Finally block is NOT called in following conditions
+
+If the JVM exits while the try or catch code is being executed, then the finally block may not execute. This may happen due to System.exit() call.
+if the thread executing the try or catch code is interrupted or killed, the finally block may not execute even though the application as a whole continues.
+If a exception is thrown in finally block and not handled then remaining code in finally block may not be executed.
+
+Question 8. What’s The Difference Between The Methods Sleep() And Wait()?
+
+Answer :
+
+The code sleep(2000); puts thread aside for exactly two seconds. The code wait(2000), causes a wait of up to two second. A thread could stop waiting earlier if it receives the notify() or notifyAll() call. The method wait() is defined in the class Object and the method sleep() is defined in the class Thread.
+
+Question 10. Difference Between Final, Finally And Finalize ?
+
+Answer :
+
+Final is used to apply restrictions on class, method and variable. Final class can’t be inherited, final method can’t be overridden and final variable value can’t be changed.
+Finally is used to place important code, it will be executed whether exception is handled or not.
+Finalize is used to perform clean up processing just before object is garbage collected
+
+--------------------------------------------------------------------------------------------------------------
+
+when we are extending the parent class in the child class we have to use Super keyword in order to access the methods in the parent class and use the child class object to access the child class methods, so the compiler will not get confused even if the method name and signature are same(overriding)
+
+try with the resourse will be the newer one, which will replacethe need of finally
+
+ex: try(fileopen) ---- is open
+
+	{
+	
+	}will be closed automatically after reaching the end
+	
+static will be sharing the same memory
+
+static belongs the class and instace belongs to the object
+
+List---------------------
+
+treeMap will alsways overrids the compareTo method hence comparing a null value with anything will get you nullpointer exception, so treemap will not allow null value
+

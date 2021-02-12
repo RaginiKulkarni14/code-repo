@@ -1,0 +1,319 @@
+Java Interview Questions 2019 Set 2
+
+What is HTTP basic authentication?
+
+Answer:
+In the context of a HTTP transaction, basic access authentication is a method for an HTTP user agent to provide a user name and password when making a request.
+
+HTTP Basic authentication implementation is the simplest technique for enforcing access controls to web resources because it doesn't require cookies, session identifier and login pages. Rather, HTTP Basic authentication uses static, standard HTTP headers which means that no handshakes have to be done in anticipation.
+
+When the user agent wants to send the server authentication credentials it may use the Authorization header. The Authorization header is constructed as follows:
+
+1) Username and password are combined into a string "username:password"
+2) The resulting string is then encoded using Base64 encoding
+3) The authorization method and a space i.e. "Basic " is then put before the encoded string.
+
+For example, if the user agent uses 'Aladdin' as the username and 'open sesame' as the password then the header is formed as follows:
+
+Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+
+What is functional interface in java?
+
+Answer:
+In Java, a Marker interface is an interface without any methods or fields declaration, means it is an empty interface. Similarly, a Functional Interface is an interface with just one abstract method declared in it. Runnable interface is an example of a Functional Interface. It has only run() method declared in it.
+
+Lambda expression works on functional interfaces to replace anonymous classes.
+
+@FunctionalInterface is a new annotation added in Java 8 to indicate that an interface declaration is intended to be a functional interface as defined by the Java Language Specification. @FunctionalInterface can be used for compiler level errors when the interface you have annotated is not a valid Functional Interface.
+
+What is the difference between HTTP methods GET and POST?
+
+Answer:
+
+HTTP works as a request-response protocol between a client and server. A web browser may be the client, and an application on a computer that hosts a web site may be the server. Two commonly used HTTP methods to make a request to the server are GET and POST.
+
+When you use GET method, the data will be sent to the server as a query parameters. These are appended to the URL as a key value pair. In the below URL, you can see how data is passed to the server as key value pair. These values will be visible at the address bar. URL character length is limited, so you can not use it if you are sending large data. GET is recommended to use for querying information from server, kind of search operations. GET requests should never be used when dealing with sensitive data.
+
+http://java2novice.com/history?name=madhu&language=java
+
+POST method sends data as part of HTTP message body, data sent to the server, will not be visible to the user. POST requests cannot be cached. It does not have any character length restrictions. POST is recommended to submits data to be processed to a specified resource.
+
+Can Enum extend any class in Java?
+
+Answer:
+Enum can not extend any class in java, the reason is by default, Enum extends abstract base class java.lang.Enum. Since java does not support multiple inheritance for classes, Enum can not extend another class.
+
+Can Enum implements any interface in Java?
+
+Answer:
+Yes, Enum can implement any interface in Java. Since enum is a type, similar to any other class and interface, it can implement any interface in java. This gives lot of flexibility in some cases to use Enum to implement some other behavior.
+
+Can we have constructor in abstract class?
+
+Answer:
+You can not instantiate abstract class in java. In order to use abstract class in Java, You need to extend it and provide a concrete class. Abstract class is commonly used to define base class for a type hierarchy with default implementation, which is applicable to all child classes. Now based on these details, can we have constructor in abstract class? The answer is YES, we can have. You can either explicitly provide constructor to abstract class or if you don't, compiler will add default constructor of no argument in abstract class. This is true for all classes and its also applies on abstract class.
+
+What is MVC pattern?
+
+Answer:
+MVC is a design pattern called Model-View-Controller. It decouples data access logic from business logic.
+
+Model:
+
+The Model contains the core of the application's functionality. It encapsulates the state of the application. Sometimes the only functionality it contains is state. It knows nothing about the view or controller.
+
+View:
+
+The view provides the presentation of the model. It is the look and feel of the application. The view can access the model getters, but it has no knowledge of the setters. In addition, it knows nothing about the controller. The view should be notified when changes to the model occur.
+
+Controller:
+
+The controller reacts to the user input. It creates and sets the model and helps to identify which view should be part of response.
+
+What is the difference between Servlet and Filter?
+
+Answer:
+A filter is an object that can transform the header and content (or both) of a request or response. Filters differ from web components in that filters usually do not themselves create a response. Instead, a filter provides functionality that can be “attached” to any kind of web resource. Consequently, a filter should not have any dependencies on a web resource for which it is acting as a filter; this way it can be composed with more than one type of web resource.
+
+The main tasks that a filter can perform are as follows:
+
+1) Query the request and act accordingly.
+2) Block the request-and-response pair from passing any further.
+3) Modify the request headers and data. You do this by providing a customized version of the request.
+4) Modify the response headers and data. You do this by providing a customized version of the response.
+5) Interact with external resources.
+
+Servlet is used for performing the action which needs to be taken for particular request like user login, get the response based on user role, interacts with database for getting the data, business logic execution, etc.
+
+What is the difference between application server and web server?
+
+Answer:
+Web Server is designed to serve HTTP Content. Application Server can also serve HTTP Content but is not limited to just HTTP. It can be provided other protocol support such as RMI/RPC
+
+Web Server is mostly designed to serve static content, though most Web Servers have plugins to support scripting languages like Perl, PHP, ASP, JSP etc. through which these servers can generate dynamic HTTP content.
+
+Most of the application servers have Web Server as integral part of them, that means App Server can do whatever Web Server is capable of. Additionally Application Server have components and features to support Application level services such as Connection Pooling, Object Pooling, Transaction Support, Messaging services etc.
+
+As web servers are well suited for static content and app servers for dynamic content, most of the production environments have web server acting as reverse proxy to app server. That means while service a page request, static contents such as images/Static html is served by web server that interprets the request. Using some kind of filtering technique (mostly extension of requested resource) web server identifies dynamic content request and transparently forwards to app server
+
+Example of such configuration is Apache HTTP Server and BEA WebLogic Server. Apache HTTP Server is Web Server and BEA WebLogic is Application Server.
+
+What is the difference between JPA and Hibernate?
+
+Answer:
+JPA is just a specification which needs concrete implementation. The default implementation provided by oracle is "Eclipselink" now. Toplink is donated by Oracle to Eclipse foundation to merge with eclipselink.
+
+Using Eclipselink, one can be sure that the code is portable to any implementation if need arises. Hibernate is also a full JPA implementation + MORE. Hibernate is super set of JPA with some extra Hibernate specific functionality. So application developed in Hibernate may not be compatible when switched to other implementation. Still hibernate is choice of majority of developers as JPA implementation and widely used.
+
+Another JPA implementation is OpenJPA, which is an extension of Kodo implementation.
+
+What is Spring?
+
+Answer:
+Spring is an open source development framework for enterprise Java. The core features of the Spring Framework can be used in developing any Java application, but there are extensions for building web applications on top of the Java EE platform. Spring framework targets to make J2EE development easier to use and promote good programming practice by enabling a POJO-based programming model.
+
+Basically Spring is a framework for dependency-injection which is a pattern that allows to build very decoupled systems.
+
+Spring is a good framework for web development. Spring MVC is one of the many parts of Spring, and is a web framework making use of the general features of Spring, like dependency injection. It is a pretty generic framework in that it is very configurable: you can use different DB layers (Hibernate, iBatis, plain JDBC), different view layers (JSP, Velocity, Freemarker...)
+
+What is Dependency Injection?
+
+Answer:
+Any application is composed of many objects that collaborate with each other to perform some useful stuff. Traditionally each object is responsible for obtaining its own references to the dependent objects (dependencies) it collaborate with. This leads to highly coupled classes and hard-to-test code.
+
+For example, consider a Car object. A Car depends on Wheels, Engine, Fuel, Battery, etc to run. Traditionally we define the brand of such dependent objects along with the definition of the Car object.
+
+?
+1
+2
+3
+4
+5
+class Car{
+  private Wheel wh= new NepaliRubberWheel();
+  private Battery bt= new ExcideBattery();
+  //rest
+}
+Here, the Car object is responsible for creating the dependent objects.
+
+What if we want to change the type of its dependent object - say Wheel - after the initial NepaliRubberWheel() punctures? We need to recreate the Car object with its new dependency say ChineseRubberWheel(), but only the Car manufacturer can do that.
+
+Then what the Dependency Injection do us for ...
+
+When using Dependency Injection, objects are given their dependencies at run time rather than compile time (car manufacturing time). So that we can now change the Wheel whenever we want. Here, the Dependency (Wheel) can be injected into Car at run time.
+
+Inversion of Control (IoC) is a general concept, and it can be expressed in many different ways and Dependency Injection is merely one concrete example of Inversion of Control.
+
+This concept says that you do not create your objects but describe how they should be created. You don't directly connect your components and services together in code but describe which services are needed by which components in a configuration file. A container is then responsible for hooking it all up.
+
+What are the different types of dependency injections in spring?
+
+Answer:
+Spring supports 2 types of dependency injection, they are:
+
+1) Constructor-based dependency injection: It is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on other class.
+
+2) Setter-based dependency injection: It is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.
+
+What is BeanFactory in Spring?
+
+Answer:
+A BeanFactory is like a factory class that contains a collection of beans. The BeanFactory holds Bean Definitions of multiple beans within itself and then instantiates the bean whenever asked for by clients.
+
+The BeanFactory is the actual container which instantiates, configures, and manages a number of beans. These beans typically collaborate with one another, and thus have dependencies between themselves. These dependencies are reflected in the configuration data used by the BeanFactory
+
+BeanFactory also takes part in the life cycle of a bean, making calls to custom initialization and destruction methods.
+
+What is difference between BeanFactory and ApplicationContext in spring?
+
+Answer:
+Use an ApplicationContext unless you have a good reason for not doing so.
+
+Because the ApplicationContext includes all functionality of the BeanFactory, it is generally recommended over the BeanFactory, except for a few situations such as in an Applet where memory consumption might be critical and a few extra kilobytes might make a difference. However, for most typical enterprise applications and systems, the ApplicationContext is what you will want to use.
+
+Spring 2.0 and later makes heavy use of the BeanPostProcessor extension point (to effect proxying and so on). If you use only a plain BeanFactory, a fair amount of support such as transactions and AOP will not take effect, at least not without some extra steps on your part. This situation could be confusing because nothing is actually wrong with the configuration.
+
+At very high level, here are the differences:
+
+BeanFactory
+
+1) Bean instantiation/wiring
+
+ApplicationContext
+
+1) Bean instantiation/wiring
+2) Automatic BeanPostProcessor registration
+3) Automatic BeanFactoryPostProcessor registration
+4) Convenient MessageSource access (for i18n)
+5) ApplicationEvent publication
+
+How to make a bean as singleton in spring?
+
+Answer:
+Beans defined in spring framework are singleton beans. There is an attribute in bean tag called ‘singleton’. If it is specified as true then bean becomes singleton and if it sets to false then the bean becomes a prototype bean, it is non-singleton class. By default this property is set to true. So, all the beans in spring framework are by default singleton beans.
+
+What is IoC or inversion of control?
+
+Answer:
+Inversion of control (IoC) is the principle where the control flow of a program is inverted: instead the programmer controls the flow of a program, the external sources (framework, services, other components) take control of it. As the name implies Inversion of control means now we have inverted the control of creating the object from our own using new operator to container or framework. Now it’s the responsibility of container to create object as required.
+
+What are the limitations and disadvantages of spring autowiring?
+
+Answer:
+Autowiring works best when it is used consistently across a project. If autowiring is not used in general, it might be confusing to developers to use it to wire only one or two bean definitions. Consider the limitations and disadvantages of autowiring:
+
+Explicit dependencies in property and constructor-arg settings always override autowiring. You cannot autowire so-called simple properties such as primitives, Strings, and Classes (and arrays of such simple properties). This limitation is by-design.
+
+Autowiring is less exact than explicit wiring. Although, as noted in the above table, Spring is careful to avoid guessing in case of ambiguity that might have unexpected results, the relationships between your Spring-managed objects are no longer documented explicitly.
+
+Wiring information may not be available to tools that may generate documentation from a Spring container.
+
+Multiple bean definitions within the container may match the type specified by the setter method or constructor argument to be autowired. For arrays, collections, or Maps, this is not necessarily a problem. However for dependencies that expect a single value, this ambiguity is not arbitrarily resolved. If no unique bean definition is available, an exception is thrown.
+
+
+Is the spring singleton bean thread safe?
+
+Answer:
+Spring framework does not do anything under the hood concerning the multi-threaded behavior of a singleton bean. It is the developer’s responsibility to deal with concurrency issue and thread safety of the singleton bean.
+
+While practically, most spring beans have no mutable state, and as such are trivially thread safe. But if your bean has mutable state, so you need to ensure thread safety. The most easy and obvious solution for this problem is to change bean scope of mutable beans from “singleton” to “prototype“.
+
+Why ConcurrentHashMap is faster than Hashtable in Java?
+
+Answer:
+ConcurrentHashMap is introduced in Java 1.5. ConcurrentHashMap uses multiple buckets to store data. This avoids read locks and greatly improves performance over a HashTable. Both are thread safe, but there are obvious performance wins with ConcurrentHashMap.
+
+When you read from a ConcurrentHashMap using get(), there are no locks, contrary to the HashTable for which all operations are simply synchronized. HashTable was released in old versions of Java whereas ConcurrentHashMap is a java 1.5 thing.
+
+HashMap is the best thing to use in a single threaded application.
+
+What is the difference between ORM, JPA and Hibernate?
+
+Answer:
+ORM: Object Relational Mapping is concept/process of converting the data from Object oriented language to relational DB and vice versa. For example in java its done with the help of reflection and jdbc.
+
+Hibernate: Its the implementation of above concept.
+
+JPA: Its the one step above ORM. Its high level API and specification so that different ORM tools can implement so that it provides the flexibility to developer to change the implementation from one ORM to another (for example if application uses the JPA api and implementaion is hibernate. In future it can switch to IBatis if required. But on the other if application directly lock the implementation with Hibernate without JPA platform, switiching is going to be herculean task)
+
+How does Maven resolve version conflicts of dependencies?
+
+Answer:
+Maven works on the principle of nearest wins strategy while resolving the dependency conflicts, that means whichever version it finds nearer in the tree, it will take that version and ignore the other versions. Actually Maven is little bit lazy, so whenever it starts looking for a dependency it starts traversing the tree from the root and whichever version it found earlier, it will select that and returns from their without going further. If it goes further their might be a chance that it can find some newer version but as it returns from there and take the older version with it to resolve the dependencies.
+
+Honestly speaking it is not a fault of maven because it wants to finish the job as soon as possible. Most importantly maven doesn’t know which version your application is expecting so Maven will say to you, Hey, it is yours responsibility to let me know which version you want and if you don’t tell me I will work my own way i.e. nearer the better.
+
+What are the standard Spring build-in events?
+
+Answer:
+Spring core framework provides application level event firing and event listening which is based on the standard Observer design pattern. There are built-in application events available or we can create our own custom events in spring. Here is the list of standard built-in Spring events:
+
+ContextRefreshedEvent: Event fired when an ApplicationContext gets initialized or refreshed (refreshed via context.refresh() call).
+
+ContextStartedEvent: This event is published when the ApplicationContext is started. Event fired when context.start() method is called.
+
+ContextStoppedEvent: This event is published when the ApplicationContext is stopped. Event fired when context.stop() method is called.
+
+ContextClosedEvent: This event is published when the ApplicationContext is closed. Event fired when context.close() method is called. A closed context reaches its end of life; it cannot be refreshed or restarted.
+
+RequestHandledEvent: This event can only be used in spring MVC environment. It is called just after an HTTP request is completed.
+
+
+What is Spring IoC container?
+
+Answer:
+Inversion of Control (IoC) is also known as dependency injection (DI). It is a process whereby objects define their dependencies, that is, the other objects they work with, only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method. The container then injects those dependencies when it creates the bean. This process is fundamentally the inverse, hence the name Inversion of Control (IoC), of the bean itself controlling the instantiation or location of its dependencies by using direct construction of classes, or a mechanism such as the Service Locator pattern.
+
+The IoC container is responsible to instantiate, configure and assemble the objects. The IoC container gets informations from the XML file and works accordingly. The main tasks performed by IoC container are:
+
+To instantiate the application class.
+To configure the object.
+To assemble the dependencies between the objects.
+There are two types of IoC containers. They are:
+
+BeanFactory
+ApplicationContext
+
+Difference between constructor injection and setter injection in Spring.
+
+Answer:
+We need the assurance from the Inversion of control (IoC) container that, before using any bean, the injection of necessary beans must be done.
+
+In setter injection strategy, we trust the Inversion of control (IoC) container that it will first create the bean first but will do the injection right before using the bean using the setter methods. And the injection is done according to your configuration. If you somehow misses to specify any beans to inject in the configuration, the injection will not be done for those beans and your dependent bean will not function accordingly when it will be in use!
+
+But in constructor injection strategy, container imposes (or must impose) to provide the dependencies properly while constructing the bean. This was addressed as "container-agnostic manner", as we are required to provide dependencies while creating the bean, thus making the visibility of dependency, independent of any IoC container.
+
+Hibernate Eager vs Lazy Fetch Type
+
+Answer:
+The relationships are defined through joins in database. Hibernate represents joins in the form of associations like One-to-One, One-to-Many and Many-to-One. It is required to define Fetch Type when you use any of these associations. Fetch Type decides on whether or not to load all the data belongs to associations as soon as you fetch data from parent table. Fetch type supports two types of loading: Lazy and Eager. By default, Fetch type would be Lazy.
+
+FetchType.LAZY: It fetches the child entities lazily, that is, at the time of fetching parent entity it just fetches proxy (created by cglib or any other utility) of the child entities and when you access any property of child entity then it is actually fetched by hibernate.
+
+FetchType.EAGER: it fetches the child entities along with parent.
+
+Lazy initialization improves performance by avoiding unnecessary computation and reduce memory requirements.
+
+Eager initialization takes more memory consumption and processing speed is slow.
+
+Having said that, depends on the situation either one of these initialization can be used.
+
+What is POJO?
+
+Answer:
+POJO stands for “Plain Old Java Object” — it’s a pure data structure that has fields with getters and possibly setters, and may override some methods from Object (e.g. equals) or some other interface like Serializable, but does not have behavior of its own.
+
+POJO is an ordinary Java object, not bound by any special restriction and not requiring any class path.
+
+A Java Bean is a specification which requires a Java Class to be serializable, have a no-arg constructor and a getter and setter for each field
+
+Therefore a bean is a POJO but a POJO may not be a bean, except that some tools refer to classes as beans when strictly they are not (such as in Spring) but this usually for the better since it makes the classes easier to use.
+
+What is HQL (Hibernate Query Language)?
+
+Answer:
+HQL stands for Hibernate Query Language. Hibernate allows the user to express queries in its own portable SQL extension and this is called as HQL.
+
+Hibernate uses a powerful query language (HQL) that is similar in appearance to SQL. Compared with SQL, however, HQL is fully object-oriented and understands notions like inheritance, polymorphism and association.
+
+

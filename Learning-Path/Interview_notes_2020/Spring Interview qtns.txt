@@ -1,0 +1,273 @@
+DZone  / Java Zone
+
+Decoupled
+
+Two or more systems that are able to transact without being connected, or coupled. The systems do not interact with each other, and also one system usually has only a very limited knowledge of any other system, and that knowledge is usually limited to information about shared interfaces. A decoupled system allows changes to be made to any one system without having an effect on any other system.
+
+Also called uncoupled.
+
+Inversion of Control
+
+Here is an informal definition of IoC: “IoC is when you have someone else create objects for you.” So instead of writing “new MyObject” in your code, the object is created by someone else. This ‘someone else’ is normally referred to as an IoC container.
+
+This simple explanation illustrates some very important ideas:
+
+It is called IoC because control of the object is inverted. It is not the programmer, but someone else who controls the object.
+IoC is relative in the sense that it only applies to some objects of the application. So there may be IoC for some objects, whereas others are under the direct control of the programmer.
+
+Another thing to consider is that, although programmers relinquish their control on the objects, they still need to define the templates used by the IoC container to create said objects.
+
+For instance, in Spring, classes are annotated with @Service or @Component (among many others) to indicate that the Spring Container is to manage the instances of those classes (it is also possible to use XML configuration instead of annotations). Spring-managed objects, as you likely know, are called Beans.
+
+Dependency Injection (DI)
+Dependency Injection (DI) is a software design pattern that implements inversion of control for resolving dependencies.
+
+An injection is the passing of a dependency to a dependent object that would use it.
+
+DI is a process whereby objects define their dependencies. The other objects they work with—only through constructor arguments or arguments to a factory method or property—are set on the object instance after it is constructed or returned from a factory method.
+
+The container then injects those dependencies, and it creates the bean. This process is named Inversion of Control (IoC) (the bean itself controls the instantiation or location of its dependencies by using direct construction classes or a Service Locator).
+
+DI refers to the process of supplying an external dependency to a software component.
+
+Dependency Injection Performed Two Ways
+1. Constructor-Based Dependency Injection
+Constructor-based DI is when the container invokes a constructor with a number of arguments, each of which represents a dependency or other class.
+
+Calling a static factory method with particular arguments to construct the bean is approximately equivalent, treating arguments to a constructor and to a static factory method. The following example shows a class that can only be dependency-injected with constructor injection. It is a POJO that has no dependencies on container specific interfaces, base classes, or annotations.
+
+public class SimpleStudentList {
+    // the SimpleStudentList has a dependency on StudentFind
+    private StudentFind studentFind;
+    // a constructor that Spring container can 'inject' a StudentFind
+    public SimpleStudentList(StudentFind studentFind ) {
+        this.studentFind = studentFind ;
+    }
+    // business logic code
+}
+Example of Constructor-Based DI
+Book.java
+package com.spring.example;  
+public class Book {  
+    private int id;  
+    private String bookName;  
+    public Book() {System.out.println("Java");}  
+    public Book(int id) {this.id = id;}  
+    public Book(String bookName) {  this.bookName = bookName;}  
+    public Book(int id, String bookName) {  
+        this.id = id;  
+        this.bookName = bookName;  
+    }  
+    void display(){  
+        System.out.println(id+" "+bookName);  
+    }  
+}
+applicationContext.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+<bean id="book" class="com.spring.example.Book">  
+<constructor-arg value="1" type="int"></constructor-arg>  
+</bean>  
+</beans>
+Main.java
+package com.spring.example;  
+import org.springframework.beans.factory.BeanFactory;  
+import org.springframework.beans.factory.xml.XmlBeanFactory;  
+import org.springframework.core.io.*;  
+public class Main {  
+    public static void main(String[] args) {  
+        Resource r=new ClassPathResource("applicationContext.xml");  
+        BeanFactory factory=new XmlBeanFactory(r);  
+        Book b=(Book)factory.getBean("book");  
+        b.display();  
+    }  
+}
+Output:
+1 null
+
+2. Setter-Based Dependency Injection
+Setter-based DI is the when the container calls setter methods on your beans after it has invoked a no-argument constructor or no-argument static factory method to instantiate that bean.
+
+The following example shows a class that can only have pure setter injection.
+
+public class SimpleStudentList {
+    // the SimpleStudentList has a dependency on StudentFind
+    private StudentFind studentFind;
+    // a setter method that Spring container can 'inject' a StudentFind
+    public void setStudentFind(StudentFind studentFind ) {
+        this.studentFind = studentFind ;
+    }
+    // business logic
+}
+
+
+Example of Setter Based DI
+
+Book.java
+package com.spring.example;  
+public class Book {  
+    private int id;  
+    private String bookName;  
+    private String author;  
+    public int getId() {  
+        return id;  
+    }  
+    public void setId(int id) {  
+        this.id = id;  
+    }  
+    public String getBookName() {  
+        return bookName;  
+    }  
+    public void setBookName(String bookName) {  
+        this.bookName = bookName;  
+    }  
+    public String getAuthor() {  
+        return author;  
+    }  
+    public void setAuthor(String author) {  
+        this.author = author;  
+    }  
+    void display(){  
+        System.out.println(id+" "+bookName+" "+author);  
+    }  
+}
+
+
+applicationContext.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+<bean id="book" class="com.spring.example.Book">  
+<property name="id">  
+<value>1</value>  
+</property>  
+<property name="bookName">  
+<value>The Complete Reference J2EE</value>  
+</property>  
+<property name="author">  
+<value>Herbert Schildt</value>  
+</property>  
+</bean>  
+</beans>
+Main.java
+package com.spring.example;  
+import org.springframework.beans.factory.BeanFactory;  
+import org.springframework.beans.factory.xml.XmlBeanFactory;  
+import org.springframework.core.io.*;  
+public class Main {  
+    public static void main(String[] args) {  
+        Resource r=new ClassPathResource("applicationContext.xml");  
+        BeanFactory factory=new XmlBeanFactory(r);  
+        Book b=(Book)factory.getBean("book");  
+        b.display();  
+    }  
+}
+Output :
+The Complete Reference J2EE  Herbert Schildt
+
+Need for Dependency Injection:
+
+Suppose class One needs the object of class Two to instantiate or operate a method, then class One is said to be dependent on class Two. Now though it might appear okay to depend a module on the other but, in the real world, this could lead to a lot of problems, including system failure. Hence such dependencies need to be avoided.
+
+Spring IOC resolves such dependencies with Dependency Injection, which makes the code easier to test and reuse. Loose coupling between classes can be possible by defining interfaces for common functionality and the injector will instantiate the objects of required implementation. The task of instantiating objects is done by the container according to the configurations specified by the developer.
+
+Here is a quick summary of the ideas discussed so far:
+
+IoC containers control and manage the lifecycle of some objects: creation, destruction, and callback invocations.
+The programmer must identify the classes whose instances are to be managed by the IoC container. There are several ways to do this: with annotations, by extending some specific classes, using external configuration.
+The programmer can influence, to some extent, the way the objects are managed by the IoC container. Normally, this is achieved by overriding the default behavior of the object callbacks.
+
+With IoC, the dependencies are managed by the container, and the programmer is relieved of that burden.
+
+Using annotations like @Autowired, the container is asked to inject a dependency where it is needed, and the programmers do not need to create/manage those dependencies by themselves.
+
+What is ApplicationContext?
+ApplicationContext is an interface for providing configuration information to an application. There are multiple classes provided by springframework that implements this interface and helps us use configuration information in applications. ApplicationContext provides standard bean factory lifecycle capabilities. An important capability which we will be using in below code example is, class implementing ApplicationContext should scan for ApplicationContextAware beans and invoke setApplicationContext by passing an implementation of its instance.
+
+The Spring container is responsible for instantiating, configuring and assembling objects known as beans, as well as managing their lifecycle.
+
+The Spring IoC container is at the core of the Spring Framework. The container will create the objects, wire them together, configure them, and manage their complete life cycle from creation till destruction. The Spring container uses dependency injection (DI) to manage the components that make up an application.
+
+Spring provides following two distinct types of containers.
+
+BeanFactory container
+ApplicationContext container
+
+BeanFactory vs ApplicationContext in Spring
+Before seeing difference between ApplicationContext and BeanFactory, let see some similarity between both of them. Spring provides two kinds of IOC container, one is BeanFactory and other is ApplicationContext. Syntactically BeanFactory and ApplicationContext both are Java interfaces and ApplicationContext extends BeanFactory. Both of them are configuration using XML configuration file. In short BeanFactory provides basic IOC and DI features while ApplicationContext provides advanced features. Apart from these, Here are few more difference between BeanFactory and ApplicationContext which is mostly based upon features supported by them.
+
+
+1) BeanFactory doesn't provide support for internationalization i.e. i18n but ApplicationContext provides support for it.
+
+2) Another difference between BeanFactory vs ApplicationContext is ability to publish event to beans that are registered as listener.
+
+3) One of the popular implementation of BeanFactory interface is XMLBeanFactory while one of the popular implementation of ApplicationContext interface is ClassPathXmlApplicationContext. On Java web application we use WebApplicationContext  which extends ApplicationContext interface and adds getServletContext method.
+
+4) If you are using auto wiring and using BeanFactory than you need to register AutoWiredBeanPostProcessor using API which you can configure in XML if you are using  ApplicationContext. In summary BeanFactory is OK for testing and non production use but ApplicationContext is more feature rich container implementation and should be favored over BeanFactory
+
+
+Read more: https://javarevisited.blogspot.com/2012/11/difference-between-beanfactory-vs-applicationcontext-spring-framework.html#ixzz5w6ivWube
+
+Both BeanFactory and ApplicationContext provides a way to get a bean from Spring IOC container by calling getBean("bean name"), but there is some difference in there working and features provided by them. One difference between bean factory and application context is that former only instantiate bean when you call getBean() method while ApplicationContext instantiates Singleton bean when the container is started,  It doesn't wait for getBean to be called.
+
+
+Autowiring
+
+Spring can autowire a relationship between collaborating beans without using constructor-arg and property tags which helps with the amount of XML configuration.
+You can allow Spring to resolve collaborators automatically for your bean by inspecting the contents of the Application Context.
+Autowiring of the Spring framework enables you to inject the object dependency implicitly. Autowiring needs significantly less specification with properties or constructor arguments.
+Autowiring can update configuration as your objects. For example, if you need to add a dependency to a class, that dependency can automatically satisfy your need to modify the configuration. Autowiring can be especially useful during development, without negation the option of switching to explicit wiring when the 
+code becomes more stable.
+
+Spring @Component
+
+Spring Component annotation is used to denote a class as Component. It means that Spring framework will autodetect these classes for dependency injection when annotation-based configuration and classpath scanning is used.
+
+Spring Component
+In layman terms, a Component is responsible for some operations. Spring framework provides three other specific annotations to be used when marking a class as Component.
+
+Service: Denotes that the class provides some services. Our utility classes can be marked as Service classes.
+Repository: This annotation indicates that the class deals with CRUD operations, usually it’s used with DAO implementations that deal with database tables.
+Controller: Mostly used with web applications or REST web services to specify that the class is a front controller and responsible to handle user request and return appropriate response.
+
+FAQ: Constructor Injection - Autowired Optional?
+Question
+
+I have finished the video "Constructor Injection - Writing Code part2". 
+
+I have commented the Autowired annotation. But still it worked. How did it work?
+
+    //@Autowired
+    public TennisCoach(FortuneService theFortuneService) {
+        System.out.println(" theFortuneService " + theFortuneService);
+        fortuneService = theFortuneService;
+    }
+===
+
+Answer
+
+This is a new feature of Spring 4.3.
+
+Here is the snippet from the Spring Docs.
+
+Section 1.9.2: Autowired
+
+As of Spring Framework 4.3, an @Autowired annotation on such a constructor is no longer necessary if the target bean only defines one constructor to begin with. However, if several constructors are available, at least one must be annotated to teach the container which one to use.
+
+I personally prefer to use the @Autowired annotation because it makes the code more readable. But as mentioned, the @Autowired is not required for this scenario.
+---
+
+See link to the docs.
+
+https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-autowired-annotation
+
+

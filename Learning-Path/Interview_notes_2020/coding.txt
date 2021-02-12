@@ -1,0 +1,58 @@
+/**
+	 * Return ZERO for null BigDecimals
+	 * @param fbdAmt
+	 * @return
+	 */
+	private BigDecimal getZeroForNull(BigDecimal fbdAmt)
+	{
+		System.out.println("fbdAmt:"+ fbdAmt);
+		if(fbdAmt == null)
+		{
+			return BigDecimal.ZERO;
+		}
+		return fbdAmt;
+	}
+	
+-------------------------------------------------------------------------------------
+
+/*
+	 * If String is exceeding its max length truncating it to 60 char.
+	 *
+	 */
+
+	//BEGIN ADVACADAC-13392
+	private String trimDemogName(String fsString) {
+		if(!checkNullString(fsString) && fsString.length() > 60){
+			return fsString.substring(0,60);
+		}
+
+		return fsString;
+	}
+
+--------------------------------------------------------------------------------------
+
+/**
+	 * If String is null or empty return true.
+	 * @param foString
+	 * @return
+	 */
+	private boolean checkNullString(String foString) {
+		if (foString == null || foString.isEmpty() || foString.equals(" ")) {
+			return true;
+		}
+		return false;
+	}
+	
+-------------------------------------------------------------------------------------
+
+public boolean checkNotNullAndNotEmpty(List list) {
+		return list == null || list.isEmpty() ? false : true;
+	}
+
+	public boolean checkNullAndEmptyString(String str) {
+		return str == null || str.trim().isEmpty() ? false : true;
+	}
+
+	public boolean checkNullAndEmptyDate(Date date) {
+		return date == null || date.equals("") ? false : true;
+	}

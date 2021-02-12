@@ -1,0 +1,409 @@
+Method overriding and Method hiding Interview Question in Java
+
+Method overriding and Method hiding Interview Question in Java. Can we Override static methods in java? What is method hiding in Java?  
+ 
+Java interview questions and answers focused on "Method overriding and Method hiding". 
+There are interview questions on other topics like Multithreading, Exception Handling, Type Casting, Ambiguous Overloaded methods etc with detailed explanation on each question.
+
+You will get link of all articles at bottom of this post. 
+
+ 
+
+Question 1:  
+Can we Override static methods in java? What is method hiding in Java? What is the output of below program?
+  
+class Parent{ 
+ public static void print(){ 
+  System.out.println("I am Parent"); 
+ } 
+}
+
+class Child extends Parent{ 
+ public static void print(){ 
+  System.out.println("I am Child"); 
+ } 
+}
+
+public class MainClass { 
+ public static void main(String args[]) { 
+  Parent parent = new Parent(); 
+  parent.print(); 
+  
+  parent = new Child(); 
+  parent.print(); 
+  
+  Child child = new Child(); 
+  child.print(); 
+ } 
+}
+Output : 
+I am Parent 
+I am Parent 
+I am Child 
+
+Explanation: No. Static methods cannot be overridden. 
+
+Static methods are not polymorphic and doesn't take part in run time or dynamic polymorphism and the decision as to which method will be called is resolved at compile time based on the type alone.
+
+We can declare static methods with same signature in subclass, but it is not considered as overriding because there won’t be any run-time or dynamic polymorphism.
+If a derived class defines a static method with same signature as a static method in base class, the method in the derived class hides the method in the base class.
+  
+even if caller writes like,  
+Parent parent = new Parent();  
+parent.print(); 
+
+Compiler at compile time will change above line to Parent.print() because static methods need to be called in static way and is not associated to any instance. 
+
+
+Parent parent = new Child();  
+parent.print();
+
+Above line would have printed "I am Child" if static methods are polymorphic.
+So internally what it does is, Compiler checks whether print() method is static, if yes, then it replace the instance to instance type.
+parent object is of type Parent, so it replaces it to,
+Parent.print();
+Question 2: 
+Can a Static method be called using instance variable? What if that instance variable is null, will it throw Null pointer exception? 
+For class (or static) methods, the type of reference on which the method is invoked is important or object being referred is important? 
+Static method call is evaluated at compile time or run-time?
+What is the output of below program?
+
+class Parent{ 
+ public static void print(){ 
+  System.out.println("I am Parent"); 
+ } 
+}
+
+public class MainClass { 
+ public static void main(String args[]) { 
+  Parent parent = null; 
+  parent.print();
+ } 
+}
+
+Output :
+I am Parent 
+
+Explanation:
+Parent parent = null;
+parent.print();
+
+So internally what Compiler does is it checks whether print() method is static, if yes, then it replace the instance to instance type.
+parent object is of type Parent, so it replaces it to, Parent.print(); at compile time itself and at runtime there is no Null Pointer Exception.
+
+Question 3: 
+What do you mean by instance method of Subclass cannot override static method of Base class? 
+What is the output of below program?
+  
+class Parent{ 
+ public static void print(){ 
+  System.out.println("I am Parent"); 
+ } 
+}
+
+class Child extends Parent{ 
+ public void print(){ 
+  System.out.println("I am Child"); 
+ } 
+}
+
+public class MainClass { 
+ public static void main(String args[]) { 
+  Parent parent = new Child(); 
+  parent.print(); 
+ } 
+}
+
+Output :
+Compilation Error at line 8. 
+Error says: "This instance method cannot override the static method from Parent"
+
+Explanation:
+
+An instance method from subclass cannot override static(class) method from super class.
+
+Lets say Java allows instance method overriding static method from parent class, then "parent.print();" will call print() method of Parent or Child class?
+
+print() method is static in Parent class, so call should be evaluated to Parent.print() but at the same time print() method in subclass is not static and it supports polymorphic behavior. so what to do?
+
+that is why it gives compile error and doesn't supports instance method overriding static methods from Super class.  
+Question 4: 
+What do you mean by static method of Subclass cannot hide instance method of Base class? 
+What is the output of below program?
+  
+class Parent{ 
+ public void print(){ 
+  System.out.println("I am Parent"); 
+ } 
+}
+
+class Child extends Parent{ 
+ public static void print(){ 
+  System.out.println("I am Child"); 
+ } 
+}
+
+public class MainClass { 
+ public static void main(String args[]) { 
+  Parent parent = new Child(); 
+  parent.print(); 
+ } 
+}
+
+Output :
+Compilation Error at line 8. 
+Error says: "This static method cannot hide the instance method from Parent"
+
+Explanation:
+An static method from subclass cannot hide instance method from super class.
+
+Lets say Java allows static method hiding instance method from parent class, then "parent.print();" will call print() method of Parent or Child class?
+
+print() method is not static in Parent class, it will check whether Subclass has provided overridden version of print(), yes it has, so it should call print() of Child class, but print method of child class is static and 
+and call can be resolved to both child and parent class print() method, now which method to invoke? so to remove this ambiguity java doesn't allows static method from subclass hiding instance method from super class..
+
+that is why it gives compile error and doesn't supports static method hiding instance methods from Super class. 
+
+
+Question 5: 
+Methods exhibits polymorphic behavior in case of dynamic polymorphism? What about variables?
+Are variables polymorphic? Variables are resolved at compile time or run time? 
+What is the output of below program?
+  
+class Parent{ 
+ public int var = 10;
+ 
+ public void print(){ 
+  int var = 20;
+   
+  System.out.println("I am Parent 1:"+var);
+  System.out.println("I am Parent 2:"+this.var);
+ }
+}
+
+class Child extends Parent{ 
+ public int var = 30;
+ 
+ public void print(){ 
+  int var = 40;
+   
+  System.out.println("I am Child 1:"+var);
+  System.out.println("I am Child 2:"+this.var);
+  System.out.println("I am Child 3:"+super.var);
+ } 
+}
+
+public class MainClass {
+
+ public static void main(String[] args) {
+  Parent p = new Parent();
+  System.out.println(p.var);
+  p.print();
+  System.out.println("---------------");
+  
+  Child c = new Child();
+  System.out.println(c.var);
+  c.print();
+  System.out.println("---------------");
+  
+  Parent pc = new Child(); //(OR p = c)
+  System.out.println(pc.var);
+  pc.print();
+  System.out.println("---------------");
+ }
+}
+
+Output :
+10
+I am Parent 1:20
+I am Parent 2:10
+---------------
+30
+I am Child 1:40
+I am Child 2:30
+I am Child 3:10
+---------------
+10
+I am Child 1:40
+I am Child 2:30
+I am Child 3:10
+---------------
+
+Explanation:
+Variables doesn't exhibit polymorphic behavior but exhibits inheritance
+Subclass will have access to both variables, one from parent and one of its own.
+
+If you declare a variable of the same name in subclass, that's called hiding.  
+You can access the one from the superclass with super.var or ((SuperClass)this).var. 
+The variables don't even have to be of the same type; they are just two variables sharing a same name, much like two overloaded methods.
+
+The scope of field being accessed(super class field or subclass field) will be determined at compile time by the type of the class that the field is being referenced from. 
+Example:
+Superclass sc = new Subclass()
+System.out.println(sc.var);
+The compile time type of sc is Superclass, so var of superclass is binded at compile time. 
+
+This is resolved at compile time and not at run time. 
+Resolving anything at compile time doesn't exhibit polymorphic behavior.
+
+If the variable "var" is made static at both parent class and in subclass or at either class, it will be perfectly valid and there would be no change in output.
+
+
+Question 6: 
+If variable is bind at Compile time then what is the output of below program?
+
+public class MainClass {
+ public static void main(String[] args) {
+  Parent p = new Child();
+  System.out.println(p.getObject().x);
+ }
+}
+
+class Parent {
+ int x = 10;
+
+ public Parent getObject() {
+  return new Parent();
+ }
+} 
+
+class Child extends Parent {
+ int x = 20;
+
+ public Child getObject() {
+  return new Child();
+ }
+}
+
+Output :
+10
+
+Explanation:
+Variables doesn't exhibit polymorphic behavior but exhibits inheritance.
+
+p.getObject().x
+
+In this case, Compiler checks the type of "p" which is "Parent" and at compile time it just checks whether Parent class has "getObject()" method or not. 
+
+If not then it throws "The method getObject() is undefined for the type Parent"
+If yes then it just check the return type of getObject() method because ultimately "x" is going to be invoked on that reference and in our case it is Parent, 
+
+So p.getObject().x will be evaluated to Parent.x at compile time logically.
+
+If you change the return type of getObject method in Parent class to Child then output will be 20. 
+
+Question 7: 
+What is the output of below program?
+
+public class MainClass {
+
+ public static void main(String[] args) {
+  Parent p = new Child();
+  p.print();
+ }
+}
+
+class Parent {
+ public static int x = 10;
+
+ public void print() {
+  System.out.println(x);
+ }
+} 
+
+class Child extends Parent {
+ public Child() {
+  x = 30;
+ }
+}
+
+Output :
+30
+
+Explanation:
+Child class is not hiding the x variable(hiding happens when it declares the variable with same name) but it simply changes the value of static variable that it has received from Parent class.
+
+
+
+Question 8: What do you mean by Method hiding, are static methods inherited to subclass, explain with example?
+public class MainClass {
+ public static void main(String[] args){
+  Parent.print();
+  Child.print();
+ }
+}
+
+class Parent {
+    public static void print() {
+        System.out.println("I am Parent");
+    }
+}
+
+class Child extends Parent {
+   
+}
+
+
+Output:
+I am Parent
+I am Parent
+
+Explanation:
+Static methods including instance methods(public, protected and default) are inherited to subclass.
+
+Only difference is, if subclass defines method with same name and signature that is present in super class then there is difference in the way static method and instance method will work.
+
+STATIC METHODS: 
+
+If subclass defines method with same name & signature as one present in Superclass then for STATIC METHODS it is said to be method hiding and not method overriding.
+It is said to be method hiding because there will be no polymorphic behavior achieved.
+
+Lets understand with example,
+public class MainClass {
+ public static void main(String[] args){
+  Parent parent = new Child();
+  parent.print();
+  
+  Child child = new Child();
+  child.print();
+ }
+}
+
+class Parent {
+    public static void print() {
+        System.out.println("I am Parent");
+    }
+}
+
+class Child extends Parent {
+    public static void print() {
+        System.out.println("I am Child");
+    }   
+}
+
+
+Output of above program is 
+I am Parent, 
+I am Child, 
+
+because no polymorphism is achieved and instance type that is,
+for line parent.print(); instance type is Parent and print() method of Parent  class will be invoked.
+for line child.print(); instance type is Child and print() method of Child class will be invoked.
+
+Note: If it exhibits polymorphism then output will be "I am Child" for line parent.print().
+
+METHOD HIDING
+
+Child class also provides implementation of print method. so child.print(); method invokes print() method of Child class and not Parent class because Child class has hide the super class print() method by providing implementation of it and that is why it is called Method hiding.
+
+
+INSTANCE METHODS:
+  
+If subclass defines method with same name & signature as one present in Superclass then for INSTANCE METHODS it is said to be method overriding and not method hiding.
+It is said to be method overriding because there will be polymorphic effect.
+
+If we run the same above program by removing static to print() method and making it instance method then output will be . 
+I am Child.
+I am Child.
+
+output of line parent.print(); is "I am Child" because it checks whether Parent class has print() method and yes it has then it checks whether Subclass has provided his own implementation of print method, Yes, so print() method of Child class is invoked.

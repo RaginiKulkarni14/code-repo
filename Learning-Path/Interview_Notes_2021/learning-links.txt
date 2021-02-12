@@ -1,0 +1,41 @@
+Java 8 Features :  https://www.youtube.com/watch?v=QaQK3oNWn5s&list=PLd3UqWTnYXOlrKZWFTbgguqNRA_uVyeBl&index=5
+
+Core java : https://www.youtube.com/watch?v=4XfL2wJYLsU&list=PLd3UqWTnYXOnjGmyjD3zbIkyLXP15-6w0&index=155
+
+in28min learning path : https://github.com/in28minutes/learn/tree/master/learning-paths
+
+Microservices using SpringBoot | Full Example : https://www.youtube.com/watch?v=BnknNTN8icw
+
+MySQL Integration with Spring Boot Application : https://www.youtube.com/watch?v=qsioDgfs7jc&list=PLhfxuQVMs-nx3YQa3XJ9-4g_EoK0J8WhU&index=9
+
+JSP & Servlets : https://www.youtube.com/watch?v=Vvnliarkw48
+
+Spring MVC : https://www.youtube.com/watch?v=BjNhGaZDr0Y
+
+Spring boot : https://www.youtube.com/watch?v=pcdpk3Yd1EA
+
+MAVEN Tutorial for Beginners : https://www.youtube.com/watch?v=0CFWeVgzsqY
+
+Hacker Rank : https://github.com/nik3212/challenges/tree/master/HackerRank/Java
+
+Spring Boot - What is Spring Boot Starter Parent? : https://www.youtube.com/watch?v=vPvHRZwY8l0
+
+JPA And Hibernate Tutorial : https://www.youtube.com/watch?v=MaI0_XdpdP8
+
+Java ArrayList Tutorial | Coding Examples : https://www.youtube.com/watch?v=6kXYTOchCLM
+
+Spring Boot Rest API Validation with Hibernate Validator : https://www.youtube.com/watch?v=pjA9Pc7aTic&list=PLGRDMO4rOGcNSBOJOlrgQqGpIgo6_VZgR&index=3
+
+Spring Boot, MySQL, JPA, Hibernate Restful CRUD API Tutorial : https://www.youtube.com/watch?v=QXFgzomuDOg
+
+Spring Tutorial 45 - Using Hibernate with Spring Core : https://www.youtube.com/watch?v=0lqlg5tnDag
+
+Spring MVC and Hibernate Tutorial for Beginners - Introduction : https://www.youtube.com/watch?v=v_5KM69DEiE
+
+REST API with Spring Boot - Catch a Specific Exception : https://www.youtube.com/watch?v=aNMGO-lemrE&list=PLdW9lrB9HDw101ImXtR_xkvTe1HWx7Gc6&index=8
+
+Top 30 Collection interview Questions : https://javahungry.blogspot.com/2019/02/collection-programs-in-java-for-interview.html
+
+Top 50 Java Collection Questions : https://medium.com/javarevisited/50-java-collections-interview-questions-for-beginners-and-experienced-programmers-4d2c224cc5ab
+
+Autosys | Introduction Of Autosys | Benefits | Workflow Of Autosys | Autosys Tutorial For Beginners : https://www.youtube.com/watch?v=mMwpjWspFyM https://www.youtube.com/watch?v=qDqhcR4ShKU

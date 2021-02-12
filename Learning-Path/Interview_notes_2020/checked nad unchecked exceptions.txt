@@ -1,0 +1,337 @@
+What is Exception handling?
+
+Any program is a set of instructions executing in predefined sequence, but due to some Run-time Error or Exceptions program flow gets disturbed and gives erroneous result and to handle this un-expected behavior or condition is known as Exception handling. 
+
+
+There are mainly 2 types of problems that can occur at run time,
+1. Error: It is further classified into,
+Compile time error. 
+(Error that are known and catch at Compile time are Compile time error, It occurs mainly due to Syntax error)
+Runtime error 
+(Error that are unknown at compile time but occur at run time are Run time error. 
+Example: Recursive call to method may lead to Stack overflow error)
+2. Exception: It is further classified into,
+Checked Exception
+(Exception that are checked at compile time is known as Checked exception)
+Unchecked Exception
+(Exception that are not checked at compile time is known as Unchecked exception)
+
+Let's see which all exception and checked and unchecked
+
+
+
+Interview Questions on Exception Handling in Java?
+
+Question 1. What is the output of below program? 
+
+class ExceptionExample {
+ 
+ public static void main(String[] args) {
+  System.out.println("Value of a :"+test());
+ }
+  
+ private static int test(){
+  int a = 10;
+  try {
+   return a;
+  } catch (Exception e) {
+   a = 20;
+   System.out.println("a in catch : "+a);
+  }finally{
+   a = 30;
+   System.out.println("a in finally : "+a);
+  }
+  a = 40;
+  System.out.println("a outside try-catch : "+a);
+  return a;
+ }
+}
+Output:  
+a in finally : 30
+Value of a :10
+ 
+Why value of a is printed as 10 in main() method? 
+
+The order of return statements matters a lot.  
+First return statement is encountered in try block, So at this point JVM will take a note of value of "a" and whatever is the value of "a" at this time will be the marked as the return value of method.
+(JVM marks the value of "a" as value to return and not variable "a" as to return )
+
+At that point value of "a" was 10, so JVM will mark 10 as return value, once the value to return is marked after this JVM has no relation with the variable "a".
+
+After this point whatever is the value of "a" changed in either catch block or finally block will change the value of "a" but not the return value.  
+
+Question 2. What is the output of below program? 
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+class ExceptionExample {
+ 
+ public static void main(String[] args) {
+  System.out.println("Value of a :"+test());
+ }
+  
+ private static int test(){
+  int a = 10;
+  try {
+   return a;
+  } catch (Exception e) {
+   a = 20;
+   System.out.println("a in catch : "+a);
+   return a;
+  }finally{
+   a = 30;
+   System.out.println("a in finally : "+a);
+   return a;
+  }
+ }
+}
+Output:  
+a in finally : 30
+Value of a :30
+ 
+Why value of a is printed as 30 in main() method? 
+
+Note: return statements have overwriting behavior.
+Finally block is guaranteed to be executed (except abrupt shutdown or calling System.exit()).
+
+The return statement in the try block will be overwritten by the return statement in finally block. 
+
+First return statement is encountered in try block, So at this point JVM will take a note of value of "a" and whatever is the value of "a" at this time will be the marked as the return value of method.
+At that point value of "a" was 10, so JVM will mark 10 as return value
+
+After this finally block gets executed and it overwrites the return statement of try block, 
+So return value 10 is overwritten to new value of "a" that is value 30.
+
+Question 3. Is it valid to write try block without catch block?
+?
+
+class ExceptionExample {
+ 
+ public static void main(String[] args) {
+  System.out.println("Value of a :"+test());
+ }
+  
+ private static int test(){
+  int a = 10;
+  try {
+   return a;
+  }finally{
+   return a;
+  }
+ }
+}
+Output:  
+Value of a :10
+ 
+Yes. It is perfectly valid to write try block without catch block.
+Rule: 
+1. After try block, there can be direct finally block. OR
+2. After try block, there can be direct catch block.
+
+Note: Only try block without catch or finally is compile time error. 
+
+Question 4. Is below code valid?
+?
+
+class ExceptionExample {
+ private static void test(){
+  try { } catch (IOException e) {}     
+ }
+}
+Output:  Compile time error: Unreachable catch block for IOException. 
+                This exception is never thrown from the try statement body
+
+It is not allowed to catch a Checked Exception which is not thrown from try block except for class Exception and Throwable which has RuntimeException as subclass for which decision is taken at run time and not compile time.
+
+Example: 
+?
+
+class ExceptionExample {
+ private static void test(){
+  try { } catch (Exception e) {}     
+ }
+}
+Above code is perfectly valid because catch block catches Exception class and even though it is checked exception, Compiler doesn't complain because compiler is not sure that catch block is wrote to handle checked exception or unchecked(Runtime) exception as Exception class can handle both so above code is perfectly valid.
+
+Example: 
+?
+
+class ExceptionExample {
+ private static void test(){
+  try { } catch (NullPointerException e) {}     
+ }
+}
+Above code is perfectly valid and compiler doesn't complains because when you catch Unchecked exception that is either RuntimeException or Error or any subclass of it then compiler doesn't check what is written in try block because this Exception/Error can occur at run time, so for compilation it is perfectly valid call.
+
+Question 5. Which exception will be thrown by code below?
+?
+
+class ExceptionExample {
+ public static void main(String[] args) {
+  test();
+ }
+ private static void test(){
+  try{
+   System.out.println("In try");
+   throw new ArithmeticException();
+  } catch(Exception e){
+   System.out.println("In catch");
+   throw new ArrayIndexOutOfBoundsException();
+  } finally{
+   System.out.println("In finally");
+   throw new NullPointerException();
+  }
+ }
+}
+Output:  NullPointerException will be thrown in output.                
+                Initially ArithmeticException will be thrown which is catch by catch block, 
+                catch block throws ArrayIndexOutOfBoundsException which is Runtime Exception and 
+                actually no need to catch it(same is for ArithmeticException but handler was there so it 
+                catch it.) after that finally block is executed and it throws NullPointerException. 
+                So the final exception thrown by test() method is NullPointerException.
+
+Question 6. Which will be output of code below?
+?
+
+class ExceptionExample {
+ public static void main(String[] args) {
+  test();
+ }
+ private static void test(){
+  throw new Exception();
+ }
+}
+Output:  Compile Time Error : Unhandled exception type Exception
+                Exception class is checked exception and when some method throw CHECKED exception,
+                then it requires a handler for checked exception or the method itself throws the exception 
+                claiming as I am not going to handle exception and whoever calls me need to be handled. 
+
+                So test() method here doesn't provided a handler for it nor it throws Exception as  
+                indication to compiler that it is not going to handle it that is why it is compile time error.
+
+Question 7. Which will be output of code below?
+?
+
+class ExceptionExample {
+ public static void main(String[] args) {
+  test();
+ }
+ private static void test() throws NullPointerException{
+  throw new NullPointerException();
+ }
+}
+Output:  Program will compile properly and it will throw NullPointerException at Runtime. 
+                test() method throws NullPointerException which is Unchecked exception, 
+                So it is not mandatory for caller to catch it, If it catches still it is fine, that is why compiler 
+                doesn't complain for catch block. 
+
+Question 8. Which will be output of code below? Do you think compiler will complain as "The type ExceptionExample must implement the inherited abstract method InterfaceTest.test()"? 
+?
+
+interface InterfaceTest{ 
+ public void test() throws Exception; 
+}
+ 
+class ExceptionExample implements InterfaceTest{ 
+ public void test() throws Exception, IOException, RuntimeException, Error {
+ }
+  
+ public static void main(String[] args) {
+ }
+}
+Output:  Program will compile properly and no output. 
+                In InterfaceTest, one method is declared name test() which throws Exception. 
+                So for the class which implements InterfaceTest need to define method test() which either 
+                throws Exception class or any number of subclass of Exception and is perfectly valid 
+                inherited test() method. 
+
+Question 9. What is the output of Program below? 
+?
+
+class ExceptionExample{ 
+ 
+ public static final void main(String[] args) {
+  System.out.println(test());
+ }
+ 
+ private static String test() {
+  try {
+   String str = null;
+   return str.toString();
+   
+  }finally {
+   return "hello finally";
+  }
+ } 
+}
+Output:  hello finally (and no exception is thrown)
+                How come NullPointerException is not thrown? So as we see in previous example, 
+                finally block if present will always be a deciding block for return value of method if return 
+                statement is present in finally block irrespective of return present in try and catch block.
+
+                In try block NullPointerException is thrown but and as it is Unchecked exception compiler 
+                didn't complain for handling it and it is generated at run time. 
+
+                After executing try block NullPointerException is generated but that is not the output of 
+                the program as finally block was present in method which is returning "hello finally", 
+                So control went to finally block and it encountered return statement there, which is final 
+                return of method and exception which JVM planned to return after final block execution
+                get lost.
+
+Question 10. What is the output of Program below? 
+?
+
+class ExceptionExample{ 
+ 
+ public static final void main(String[] args) {
+  System.out.println(test());
+ }
+ 
+ private static boolean test() {
+  boolean flag = false;
+   
+  try{
+   return true;
+  }
+  catch(Exception e){}
+  finally{}
+   
+  System.out.println("Outside try-catch-finally");
+  return flag;
+ } 
+}
+Output:  true
+                Why control never reached to line "Outside try-catch-finally" because in try block JVM 
+                encountered return statement, which is indication for JVM to return from here, but as a 
+                contract to execute finally block always (except in few conditions), finally block get 
+                executed which doesn't contain any statement, so control returned from finally back to try 
+                block and method returned from there without executing statements after finally block.
+
+
+Question 11. What is Checked and Unchecked exception in Java?
+
+Checked Exceptions are those exceptions which can be expected by the program due to various conditions, such as trying to read the file which doesn't exist. It is responsibility of developer to
+provide what to do in case of possible exception occurrence.
+Also this is called Checked exception because they are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using throws keyword indicating that method caller should handle the exception.
+
+Unchecked Exceptions are those exceptions which are not predictable to occur but can occur, so is not checked at compile time and is called Unchecked exception.
+Also, it is advised not to handle Unchecked exception because mainly it is caused due to programming issue and it must be fixed instead of handling it.

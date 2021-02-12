@@ -1,0 +1,18 @@
+select * from emp;
+
+select DISTINCT * from emp;
+
+select DISTINCT city,address from emp;
+
+select count(DISTINCT city) from emp;
+
+<>	Not equal. Note: In some versions of SQL this operator may be written as !=	
+BETWEEN	Between a certain range	
+LIKE	Search for a pattern	
+IN	To specify multiple possible values for a column
+
+select * from emp where city='abc' AND (name='xyz' OR name='pqr');
+
+select * from emp where NOT city='abc';
+
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.

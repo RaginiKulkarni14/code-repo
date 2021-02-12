@@ -1,0 +1,352 @@
+1. Classic Java Singleton pattern
+The following code is the simplest implementation of Singleton Pattern in Java. However it is not multiple thread-safe. 
+
+Java Singleton Pattern 1Java
+
+public class Singleton {
+    private static Singleton instance;
+    private Singleton (){}
+
+    public static Singleton getInstance() {
+	if (instance == null) {
+	    instance = new Singleton();
+	}
+	return instance;
+    }
+}
+---------------------------------------
+public class Singleton {
+    private static Singleton instance;
+    private Singleton (){}
+ 
+    public static Singleton getInstance() {
+    if (instance == null) {
+        instance = new Singleton();
+    }
+    return instance;
+    }
+}
+The singleton pattern implemented in the above example is easy to understand. We maintain a static reference to the singleton instance and returns that reference from the static getInstance() method. We also make the Constructor private, such that the client can only get the object of the Singleton class by calling the static getInstance() method. 
+
+The above example also uses a technique known as lazy instantiation to create the singleton object. So the singleton instance is not created until the getInstance() method is called for the first time.
+
+The advantage of the lazy instantiation is that it ensures the singleton instances are created only when needed. This is important for the system performance if it is very expensive to create the singleton instance. 
+
+Why the above code is not thread-safe
+The code in example 1 is not thread-safe because of the following code:
+
+Java
+
+1: if(instance == null) {
+2:    instance = new Singleton();
+3: }
+1
+2
+3
+1: if(instance == null) {
+2:    instance = new Singleton();
+3: }
+If a thread is preempted at Line 2 before the assignment is made, the instance member variable will still be null, and another thread can subsequently enter the ifblock. In that case, two distinct singleton instances will be created. Unfortunately, that scenario rarely occurs and is therefore difficult to produce during testing. 
+
+ 
+
+2 A thread-safe singleton pattern in java using Synchronization
+We can synchronize thegetInstance() method to make the above code thread-safe:
+
+thread save singleton pattern in JavaJava
+
+public synchronized static Singleton getInstance() {
+   if(singleton == null) {
+      singleton = new Singleton();
+   }
+   return singleton;
+}
+-------------------------------------------------
+public synchronized static Singleton getInstance() {
+   if(singleton == null) {
+      singleton = new Singleton();
+   }
+   return singleton;
+}
+The code in example 2 is thread-safe now, as only one thread can enter to the getInstance() method.
+
+However, this method is not efficient, as we actually only need the method be synchronized the first time when it is called . Because synchronization is very expensive, synchronized methods can run up to 100 times slower than unsynchronized methods, we need to introduce a performance enhancement that only synchronize the singleton assignment in getInstance().
+
+3.  Synchronize the critical code only
+We might choose to rewrite thegetInstance() method by synchronizing the critical code only, like the following example:
+
+Java
+
+public static Singleton getInstance() {
+   if(singleton == null) {
+      synchronized(Singleton.class) { 
+         singleton = new Singleton();
+      }
+   }
+   return singleton;
+}
+-----------------------------------------
+public static Singleton getInstance() {
+   if(singleton == null) {
+      synchronized(Singleton.class) { 
+         singleton = new Singleton();
+      }
+   }
+   return singleton;
+}
+ However, this method is not thread-safe. Consider the following scenario: Thread 1 enters the synchronized block, and, before it can assign the singleton member variable, the thread is preempted. Then another thread can enter the if block. The second thread will wait for the first thread to finish, but we will still wind up with two distinct singleton instances. Is there a way to fix this problem? 
+
+4. Double-checked locking
+Double-checked locking is a technique appears to make lazy instantiation thread-safe. That technique is illustrated in the following code:
+
+Java
+
+public static Singleton getInstance() {
+  if(singleton == null) {
+     synchronized(Singleton.class) {
+       if(singleton == null) {
+         singleton = new Singleton();
+       }
+    }
+  }
+  return singleton;
+}
+----------------------------------------------------
+public static Singleton getInstance() {
+  if(singleton == null) {
+     synchronized(Singleton.class) {
+       if(singleton == null) {
+         singleton = new Singleton();
+       }
+    }
+  }
+  return singleton;
+}
+Let’s reconsider the case that two threads enter the if code at the same tie. Imagine Thread 1 enters the synchronized block and is preempted. Subsequently, a second thread enters the if block. When Thread 1 exits the synchronized block, Thread 2 makes a second check to see if the singleton instance is still null. Since Thread 1 set thesingleton member variable, Thread 2’s second check will fail, and a second singleton will not be created. Or so it seems.
+
+Unfortunately, double-checked locking is not guaranteed to work because the compiler is free to assign a value to the singleton member variable before the singleton’s constructor is called. If that happens, Thread 1 can be preempted after the singleton reference has been assigned, but before the singleton is initialized, so Thread 2 can return a reference to an uninitialized singleton instance.
+
+Since double-checked locking is not guaranteed to work, we have to develop alternative methods 
+
+5.Double-checked locking with volatile keyword
+A thread safe Single patternJava
+
+public class Singleton {
+    private volatile static Singleton instance; //声明成 volatile
+    private Singleton (){}
+
+    public static Singleton getSingleton() {
+        if (instance == null) {                         
+            synchronized (Singleton.class) {
+                if (instance == null) {       
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+----------------------------------------------------
+public class Singleton {
+    private volatile static Singleton instance; //声明成 volatile
+    private Singleton (){}
+ 
+    public static Singleton getSingleton() {
+        if (instance == null) {                         
+            synchronized (Singleton.class) {
+                if (instance == null) {       
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+ The volatile prevents memory writes from being re-ordered, making it impossible for other threads to read uninitialized fields of your singleton through the singleton’s pointer.
+
+However, we should avoid use the volatile based method, as it is hard to understand and it is easy to make mistakes. 
+
+6. Thread-safe but not lay initialized 
+Java
+
+public class Singleton{
+    //the variable will be created when the class is loaded 
+    private static final Singleton instance = new Singleton();
+    private Singleton(){}
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+--------------------------------------------
+public class Singleton{
+    //the variable will be created when the class is loaded 
+    private static final Singleton instance = new Singleton();
+    private Singleton(){}
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+This method is thread-safe, but it is not lazy initialized . The singleton object is created as soon as the class is loaded. 
+
+7. The ultimate Thread-safe and efficient singleton pattern in Java 
+Java singleton PatternJava
+
+// Correct lazy initialization in Java 
+@ThreadSafe
+class Singleton {
+    private static class SingletonHolder {
+       public static Singleton instance = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return SingletonHolder.instance;
+    }
+-----------------------------------------------
+// Correct lazy initialization in Java 
+@ThreadSafe
+class Singleton {
+    private static class SingletonHolder {
+       public static Singleton instance = new Singleton();
+    }
+ 
+    public static Singleton getInstance() {
+        return SingletonHolder.instance;
+    }
+}
+The method is recommend by effective java.  It is lazy initialized, and multiple-thread safe. 
+
+8. Using Enum
+The best way to implement a thread safe Singleton Pattern in Java is using Enum. See the following example. 
+
+Enum Java Singleton PatternJava
+
+enum Color {
+
+    RED(1), GREEN(2), YELLOW(3);
+
+    private int nCode ;
+
+    private Color( int _nCode) {
+
+        this.nCode = _nCode;
+
+    }
+
+    @Override
+
+    public String toString() {
+
+        return String.valueOf ( this . nCode );
+
+    }
+
+}
+
+public class ColorTest {
+    public static void main(String[] args) {
+        Color red = Color.RED;
+        Color red2 = Color.RED;
+
+        System.out.println(red == red2); // return true
+
+    }
+}
+--------------------------------------------------------
+enum Color {
+ 
+    RED(1), GREEN(2), YELLOW(3);
+ 
+    private int nCode ;
+ 
+    private Color( int _nCode) {
+ 
+        this.nCode = _nCode;
+ 
+    }
+ 
+    @Override
+ 
+    public String toString() {
+ 
+        return String.valueOf ( this . nCode );
+ 
+    }
+ 
+}
+ 
+public class ColorTest {
+    public static void main(String[] args) {
+        Color red = Color.RED;
+        Color red2 = Color.RED;
+ 
+        System.out.println(red == red2); // return true
+ 
+    }
+}
+ 
+
+Summary
+
+In this post, I described 8 ways to implement java Singleton pattern. Actually, only 5 ways are correct: Synchronization the method, static final variable, using double checking lock with volatile keyword, using SingletonHolder, and Enum.  The last two methods should be used in practice
+
+=======================================================================================================================================================
+
+Java - Interview Questions - Design Pattern - Singleton
+Q1. What is Singleton ?
+
+Ans. It's a Design Pattern.
+
+Q2. What is a Singleton Class ?
+
+Ans. Class using which only one object can be created.
+
+Q3. What is the use of such a class ?
+
+Ans. There could be situations where we need not create multiple objects and hence Singleton can help in saving resources by avoiding creating new objects every time a request is made. Moreover these classes can also be helpful if we want a object to be shared among threads.
+
+Q4. Are u using Singleton in your code ?
+
+Ans. Yes, for Database connection and Property files.
+
+Q5. Write the code for a Singleton Class ?
+
+Ans.
+
+
+class Singleton {
+    private static volatile Singleton instance = null;
+    private Singleton(){}
+    public static Singleton getInstance() {
+        if (instance == null) {            
+            synchronized(Singleton.class) {
+                if (instance== null)
+                    instance = new Singleton(); 
+            }
+        }
+        return instance;
+    }
+}
+
+Q6. Why have we used synchronized here ?
+
+Ans. getInstance method can be accessed from two points simultaneously and in such case 2 instances may get created. Synchronization will make sure that the method gets accessed one by one for each call and the same object is returned for the second call.
+
+Q7. Why have we declared the instance reference volatile ?
+
+Ans. That's an instruction to JVM that the variable is getting accessed by multiple locations and hence don't cache it.
+
+Q8. Can we make the reference instance non static ?
+
+Ans. No , as non static variables cannot be accessed through static methods.
+
+Q9. Can we have this pattern implemented using Static Class ?
+
+Ans. Though we can implement this behavior using static class , but we should never do it.
+
+Q10. What are the problems in implementing this patterns using static Class ?
+
+Ans. 
+
+a. We cannot achieve runtime Polymorphism or late binding as Java doesn't allow overriding static methods.
+b. We cannot do lazy initialization as Static members are loaded during class loading only.
+c. We cannot serialize as Java doesn't serialize static members.
