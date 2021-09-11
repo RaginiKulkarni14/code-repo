@@ -28,7 +28,7 @@ public class ArrayListEx {
 	            System.out.println("ERROR!");
 	        }
 	    }
-		
+		in.close();
 	}
 
 }
