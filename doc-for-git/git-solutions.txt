@@ -56,3 +56,42 @@ From https://github.com/RaginiKulkarni14/Service-Bus-Queue
 Merge made by the 'recursive' strategy.
 
 ==================================================================================
+git@github.com:RaginiKulkarni14/Coding-repository.git
+
+…or create a new repository on the command line
+echo "# Coding-repository" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:RaginiKulkarni14/Coding-repository.git
+git push -u origin main
+
+…or push an existing repository from the command line
+git remote add origin git@github.com:RaginiKulkarni14/Coding-repository.git
+git branch -M main
+git push -u origin main
+
+===================================================================================
+
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+https://stackoverflow.com/questions/68775869/support-for-password-authentication-was-removed-please-use-a-personal-access-to
+
+
+1)  Create Personal Access Token on GitHub
+
+    From your GitHub account, go to Settings => Developer Settings => Personal Access Token => Generate New Token (Give your password) => Fillup the form => click Generate token => Copy the generated Token, it will be something like ghp_sFhFsSHhTzMDreGRLjmks4Tzuzgthdvfsrta
+	
+	git remote set-url origin https://<token>@github.com/<username>/<repo>
+
+path(https://github.com/settings/tokens)
+Also another way to do solutions-----------------------------------
+
+
+2)   For Windows OS ⤴
+
+    Go to Credential Manager from Control Panel => Windows Credentials => find git:https://github.com => Edit => On Password replace with with your GitHub Personal Access Token => You are Done
+
+    If you don’t find git:https://github.com => Click on Add a generic credential => Internet address will be git:https://github.com and you need to type in your username and password will be your GitHub Personal Access Token => Click Ok and you are done
+
