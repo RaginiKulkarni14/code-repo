@@ -3,6 +3,7 @@ package com.example.list;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SortingList {
 
@@ -14,6 +15,10 @@ public class SortingList {
 		al.add(1);
 		al.add(3);
 		al.add(2);
+		
+		System.out.println(al.stream().sorted().collect(Collectors.toList()));
+		
+		System.out.println(al.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList()));
 		
 		//descending order
 		Collections.sort(al,Collections.reverseOrder());

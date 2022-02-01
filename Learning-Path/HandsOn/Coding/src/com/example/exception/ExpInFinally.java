@@ -14,6 +14,10 @@ public class ExpInFinally {
 		} finally {
 			System.out.print("C");
 			int num = 7 / 0;
+			/*
+			 * try { int num = 7 / 0; } catch (ArithmeticException e) {
+			 * System.out.print("B"); }
+			 */
 			System.out.print("D");
 		}
 		System.out.print("E");

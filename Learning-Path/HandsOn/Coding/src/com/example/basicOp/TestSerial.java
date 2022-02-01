@@ -35,13 +35,13 @@ public class TestSerial {
 		dog.i=888;
 		dog.j=999;
 		
-			FileOutputStream fout=new FileOutputStream("C:\\Users\\rukulkar\\Desktop\\testout.ser");
+			FileOutputStream fout=new FileOutputStream("C:\\Users\\rukulkar.I-FLEX\\Desktop\\testout.ser");
 			ObjectOutputStream oos=new ObjectOutputStream(fout);
 			oos.writeObject(dog);
 			
 			System.out.println("de-serialization");
 			
-			FileInputStream fin=new FileInputStream("C:\\Users\\rukulkar\\Desktop\\testout.ser");
+			FileInputStream fin=new FileInputStream("C:\\Users\\rukulkar.I-FLEX\\Desktop\\testout.ser");
 			ObjectInputStream ois=new ObjectInputStream(fin);
 			Dog d2=(Dog) ois.readObject();
 			

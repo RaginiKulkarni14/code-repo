@@ -1,0 +1,85 @@
+=> getting 2nd highest sal from emp table
+
+select max(sal) from emp where sal < (select max(sal) from emp))
+
+select max(sal) from emp where sal NOT In (select max(sal) from emp))
+
+select max(sal) from emp where sal <> (select max(sal) from emp))
+---------------------------------------------------------------------------
+=> getting top 3 highest sal from emp table
+
+select * from emp (select distinct sal from emp order by desc) where rownum<=3
+
+--------------------------------------------------------------------------
+=> getting Nth highest sal from emp table (n be it 4)
+
+select * from emp (select distinct sal from emp order by desc) where rownum<=4
+
+minus
+
+select * from emp (select distinct sal from emp order by desc) where rownum<=3
+
+-----------------------------------------------------------------------------
+
+Select All Records from One Table That Do Not Exist in Another Table
+
+SELECT * FROM employee_details WHERE emp_id NOT IN (SELECT emp_id FROM employee_resigned)
+
+-----------------------------------------------------------------------------------------------
+Get the highest salary of each department on the table. Here our table contains a DEPT_ID and it has two different categories UI DEVELOPERS and BACKEND DEVELOPERS, and we will find out the highest salary of the column.
+
+SELECT DEPT_ID, MAX(SALARY) FROM department GROUP BY DEPT_ID;
+
+--------------------------------------------------------------------------------------------------
+
+SQL query to find details of column department where name as “DBA”.
+
+Select * from Geeks where DEPARTMENT like 'DBA%';
+
+------------------------------------------------------------------------------------------
+
+2.Query to find duplicate rows in table?(click here for explaination)
+
+    Answer :-
+
+    Select * from Employee a where row_id != select max(row_id) for Employee b where a.Employee_num=b.Employee_num;
+
+------------------------------------------------------------------------------------------
+get emp_id and mgr_name
+
+select emp_id,emp_name as mgr_name from emp where emp.emp_id=emp.mgr_id
+
+----------------------------------------------------------------------------------------------
+1) INNER JOIN: The INNER JOIN keyword selects all rows from both the tables as long as the condition satisfies. This keyword will create the result-set by combining all rows from both the tables where the condition satisfies i.e value of the common field will be same.
+
+
+SELECT StudentCourse.COURSE_ID, Student.NAME, Student.AGE FROM Student
+INNER JOIN StudentCourse
+ON Student.ROLL_NO = StudentCourse.ROLL_NO;
+
+We can also write JOIN instead of INNER JOIN. JOIN is same as INNER JOIN.
+
+-----------------------------------------------------------------------------------------
+
+2) LEFT JOIN: This join returns all the rows of the table on the left side of the join and matching rows for the table on the right side of join. The rows for which there is no matching row on right side, the result-set will contain null. LEFT JOIN is also known as LEFT OUTER JOIN
+
+
+SELECT Student.NAME,StudentCourse.COURSE_ID 
+FROM Student
+LEFT JOIN StudentCourse 
+ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+
+-----------------------------------------------------------------------------------------------
+
+3) RIGHT JOIN: RIGHT JOIN is similar to LEFT JOIN. This join returns all the rows of the table on the right side of the join and matching rows for the table on the left side of join. The rows for which there is no matching row on left side, the result-set will contain null. RIGHT JOIN is also known as RIGHT OUTER JOIN
+
+
+SELECT Student.NAME,StudentCourse.COURSE_ID 
+FROM Student
+RIGHT JOIN StudentCourse 
+ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+
+---------------------------------------------------------------------------------------------------
+
+4) FULL JOIN: FULL JOIN creates the result-set by combining result of both LEFT JOIN and RIGHT JOIN. The result-set will contain all the rows from both the tables. The rows for which there is no matching, the result-set will contain NULL values
+

@@ -1,5 +1,7 @@
 package com.example.functional.intf;
 
+import java.util.*;
+
 interface Arithmetic
 {
 	int operations(int a,int b);
@@ -22,8 +24,30 @@ public class ArithmeticOpeations {
 			if(b==0) return 0;
 			return (a/b);
 		};
-		System.out.println("safeDiv " + safeDiv.operations(10, 5));
+		
+		Arithmetic div=(a,b) -> {
+			try
+			{
+				return (a/b);
+			}
+			catch(ArithmeticException e)
+			{
+				System.out.println("e occured");
+			}
+			return (a/b);
+		};
+		System.out.println("div " + div.operations(10, 0));
 		
 		//strLength = (String str) -> str.length();
+		
+		List<Integer> al = Arrays.asList(3, 9, 7, 0, 10, 20);
+		al.forEach(i -> {
+		    try {
+		        System.out.println(50 / i);
+		    } catch (ArithmeticException e) {
+		        System.err.println(
+		          "Arithmetic Exception occured : " + e.getMessage());
+		    }
+		});
 	}
 }

@@ -1,7 +1,7 @@
 package com.example.constructor;
 
 class M {
-	static {
+	 {
 		System.out.println('A');
 	}
 
@@ -15,7 +15,7 @@ class M {
 }
 
 class N extends M {
-	static {
+	 {
 		System.out.println('D');
 	}
 

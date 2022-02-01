@@ -2,7 +2,7 @@ package com.example.constructor;
 
 class X
 {
-    int m = 1111;
+    static int m = 1111;
  
     {
         m = m++;

@@ -10,6 +10,8 @@ public class ConvertListToSet {
         // Creating a list of strings 
         List<String> aList = Arrays.asList("Geeks", "for", 
                      "GeeksQuiz", "GeeksforGeeks", "GFG"); 
+       
+        
   
         Set<String> hSet = new HashSet<String>(); 
         for (String x : aList) 
@@ -25,12 +27,14 @@ public class ConvertListToSet {
         for (String x : set) 
             System.out.println(x); 
   
-        // We can created TreeSet same way 
+        // We can create TreeSet same way 
         System.out.println("Created TreeSet is"); 
         Set<String> tSet = new TreeSet<String>(aList); 
        // tSet.addAll(aList); using addAll method
         System.out.println("Created TreeSet is"); 
         for (String x : tSet) 
             System.out.println(x); 
+        
+        
     } 
 } 

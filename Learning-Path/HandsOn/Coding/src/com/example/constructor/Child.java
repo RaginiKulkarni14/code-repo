@@ -13,17 +13,17 @@ class Parent {
 public class Child extends Parent {
 	public Child() {
 		// this("JIP");
-		super("JIP");
+		//super("JIP");
 		System.out.println("Child class no-args constructor called");
 	}
 
 	public Child(String name) {
-		// super("JIP");
-		this();
+		 super("JIP");
+		//this();
 		System.out.println("Child class Parameterized constructor called by " + name);
 	}
 
 	public static void main(String args[]) {
-		Child c = new Child("hi");
+		Parent c = new Child("hi");
 	}
 }

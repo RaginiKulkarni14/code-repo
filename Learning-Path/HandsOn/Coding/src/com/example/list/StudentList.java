@@ -1,6 +1,7 @@
 package com.example.list;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StudentList {
 
@@ -49,11 +50,26 @@ System.out.println("------------------------------------------------------------
 		
 		System.out.println("second highest" + st.get(1)); // bring 2nd index to get second highest marks
 		
+		//sorting on salary using stream()
+		st.stream().sorted((m1,m2) -> (m1.marks < m2.marks) ? 1 : (m1.marks > m2.marks) ? -1 : 0).forEach(System.out::println);
+		
 		//get marks less than 90 using stream
 		st.stream().filter(p -> p.marks < 90).map(pm -> pm.marks).forEach(System.out::println);
 		
 		//get marks less than 90 using stream without map
-		st.stream() .filter(p->p.marks<90) .forEach(System.out::println);
+		st.stream().filter(p->p.marks<90) .forEach(System.out::println);
+		
+		System.out.println(st.stream().parallel().filter(p -> p.marks < 90).map(pm -> pm.getName()).findAny());
+		
+		//List<String> val=st.stream().filter(p -> p.getName().equals("i")).map(n -> n.getName()).collect(Collectors.toList());
+		
+		Optional<String> val=st.stream().filter(p -> p.getName().equals("i")).map(n -> n.getName()).findAny();
+		
+		List<Student> val2=st.stream().filter(p -> p.getName().equals("i")).collect(Collectors.toList());
+		
+		System.out.println("val::::::::"+val);
+		
+		System.out.println("val2::::::::"+val2);
 		
 System.out.println("------------------------------------------------------------------------------------------------------------");
 		

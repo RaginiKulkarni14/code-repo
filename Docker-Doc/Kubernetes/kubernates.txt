@@ -1,0 +1,92 @@
+short comings of docker :
+
+=> 1 Ms is running on 1 docker and another MS is running on another docker if they want to make a call. In traditional way if 1 MS is running on 1 server and another MS is running on other server, we would know the Ip addres of the server. We can put the other server/IP address details in the properties file that makes it easy to communicate.
+
+=> so a docker container is running on VM1 and we have the IP address of that VM and tomorrow the VM shuts and the docker container is running on VM2 do IP address needs to be updated in that case
+
+=> also if all the MS are registered to with the Euraka server it will contain the IP address of each registered MS/docker container but what if the Eureka server itself is running as docker container.
+
+=> so these kind of components we need an orchestrater which monitors where the server is running for all the applications. kuberenetes is one good example(better than Eureka server)
+
+=> using kubernetes networking between containers will be easy, 2 docker containers running on different server can communicate easily and it also takes care of the Ip address of such servers
+
+=> when a container dies the admin has to restart the docker but in case of kuberenetes it will automatically creates a container(POD) by itself when a container dies.
+
+=> smallest unit of docker is a docker image/container but in kubernetes the smallest unit is a POD. A POD contains a docker image(also contains other componets too), if 5 docker images are created for 5 individual MS then in Kubernetes world its 5 PODs.
+
+=> kubernetes has many objects , PODs are one of them and PODs are created using a script/definition yml. We use yml to define how a POD has to be
+
+=> example of POD creation, contains the kind of object ctreating is Pod, the lable is to identify uniquly like we do have lables in the gmail likewise we can have any name foe the lables ex : you can have lable as developer: Daniel or env: Dev,the spec has container specific details like docker image name and the image path in dockerhub and the port running.
+
+apiVersion: v1
+kind: Pod
+metadata:
+	name: docker-react-pod
+	lables:
+		component: web
+spec:
+	containers: 
+	 - name: docke-react-app
+	   image: dockhubid/coderrk
+	   ports:
+	    - contaimerPort: 3000
+		
+=> after creating the definition how do we run it? if someone created a kubernetes cluster you can have a cmd line client i.e kubectl(kubernetes control)
+
+kubectl apply -f docker-react-pod.yml
+
+=> apply this definition, -f is the file name(docker-react-pod) which has the definition. Kubernetes will read the definition from the file and send it to the server and server will excecute the file and a pod will be created 
+
+=>kuberenetes cluster consists of 2 componets
+
+1)	controlplane :
+
+=> it has again different components included
+
+-> scheduler :
+
+-> etcd database : kubctl will upload the file to api endpoints and it will create the pod. Once the pod is created an entry will be made to the database. All the data will be stored in the database and access throgh endpoints
+
+-> api endpoints : whenever we need certain details we don't need to get it from dataplane always. We can query for getting the list of pods, and that will be given by the endpoints, also to create a pod. we need this api endpoints.
+
+kubctl will upload the file to api endpoints and it will create the pod. Once the pod is created an entry will be made to the database. All the data will be stored in the database and access throgh endpoints. Using endpointsto get result in the formatted way maybe json val or something.
+
+
+2)	dataplane : contains the pod inside it
+
+
+=> we can get the Pods created on the cluster by below cmd
+
+kubectl get pods
+
+----------------------------------------------------------------------------------
+NAME					READY			STATUS			RESTARTS			AGE
+docker-react-pod		1/1				Running				0				10min
+
+=> since we have not mentioned the number of instance(we do so by replica: 5, so 5 instance will be running/available ) it will take 1 as default.
+
+=> kind : deployment is a better version of pod, with some extra features and functionality. deployment has the replica as a feature. It is the count of instance which we want to start with. Pod will not restart the pod when it dies. imagePullPolicy which always pull the image from docker hub rather than usning cached/local repo one.
+
+one pod with 3 container :
+
+=> for ex. if we have 3 different application accessing 3 different database. In that case will have 6 pods running. So to reduce the num of pods will combines one application with one db. Now one pod will have 2 container and if one is getting 10000 hits and the other container is getting 100 hits, will end up increasing the instance of the container wihich is accessed less.
+
+=> we might require such pod having multiple containers for admin container , could be monitoring app we can keep it with one 
+
+=> readinessProbe : when a pod is killed/dies it takes time for the other instance to create. Might take 30se or 1 min. so readinessProbe will be the time to wait (for the initialDelaySeconds:300) until the next pod/instance to get ready or available.
+
+=> livelinessProbe : when the pod went in infinate loop or it is hanging  in between, we nned to check for it livelinessProbe for certain amont of time and then the failureCount, once after reaching the max failure count kubernetes assumes that the pod is dead and tries to create one.
+
+=> kind : service is a way to access any pod, and it is a recomended way. The selecter will have the where condition meaning which pod it will be applicable to.
+
+=> the service defination is applicable to a pod who has a lable (app : its_name  ==> referring to the deployment.yml). so if we change the lable in the deployment.yml then the service would stop working. Since it the lable its referring to seems not existing 
+
+=> it also maintains the clusterIp and nodePort and loadBalancer in service.yml. clusterIp is the one assigned by kubernetes when any pod is created, it is unique around the kuberenetes cluster.
+
+=> nodePort is under the clusterIp or maybe an IP assigned to each machine.Since the clusterIp are inside the kuberenetes cluster wich can be accessed within the cluster by the internal pods, to access the pods by an external worls we can use nodePort instead of clusterIp
+
+=>loadBalancer is used at the cloud level. The pod can access using clusterIp internally and the nodePort for the outside world and then the loadBalancer when we want to access through any cloud platform ex: AWS or Azure
+
+=> kind : configMap 
+=> also can override the application.properties file using config-map in kubernetes
+	

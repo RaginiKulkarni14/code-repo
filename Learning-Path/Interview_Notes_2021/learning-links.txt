@@ -45,3 +45,5 @@ JDBC DurgaSoft : https://www.youtube.com/watch?v=o6K0wO4v5Nw&list=PLd3UqWTnYXOni
 Reactjs : https://www.youtube.com/watch?v=QFaFIcGhPoM&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
 
 HashMap Coding Example : https://www.geeksforgeeks.org/tag/java-hashmap/page/2/
+
+SQL : https://www.softwaretestinghelp.com/50-popular-sql-interview-questions-for-testers/
