@@ -1,0 +1,137 @@
+Coding Questions
+-----------------------
+
+1) Coding questions on String
+
+https://www.youtube.com/channel/UChv4G_L9i_KyzBOYfKAmtXg
+
+
+2) Second topmost repeated string in String using java.
+
+https://www.youtube.com/watch?v=5XIHZNafCUY
+
+3) Write a program to convert string to number without using Integer.parseInt() method.
+
+https://www.java2novice.com/java-interview-programs/string-to-number/
+
+4) Java Program to Check Whether a Number is Prime or Not
+
+https://www.programiz.com/java-programming/examples/prime-number
+
+5) Program for Email Validation
+
+https://www.baeldung.com/java-email-validation-regex
+
+6) difference between insertion sort and selection sort and bubble sort
+
+https://www.geeksforgeeks.org/insertion-sort/
+
+https://www.geeksforgeeks.org/selection-sort/
+
+http://theoryapp.com/selection-insertion-and-bubble-sort/
+
+https://www.geeksforgeeks.org/comparison-among-bubble-sort-selection-sort-and-insertion-sort/
+
+7) Create & Iterate list of list
+
+https://java2blog.com/java-list-of-lists/
+
+8) Rearrange positive and negative numbers
+
+https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers-publish/
+
+9) Partition Set into two Subset such that Subset Sum have Minimum Difference ****************************
+
+https://www.youtube.com/watch?v=WJUXGJ4pGtM
+
+10) Target Sum - we are required to find the number of ways to assign sign to each element so that the addition of expression becomes equal to target value
+
+https://www.youtube.com/watch?v=hqGa65Rp5LQ&list=RDCMUCnxhETjJtTPs37hOZ7vQ88g&index=22
+
+11) Minimum sum partition problem
+
+https://www.techiedelight.com/minimum-sum-partition-problem/
+
+12) Find a triplet that sum to a given value
+
+https://www.geeksforgeeks.org/find-a-triplet-that-sum-to-a-given-value/
+
+13) Number of ways to calculate a target number using only array elements
+
+https://www.geeksforgeeks.org/number-of-ways-to-calculate-a-target-number-using-only-array-elements/
+
+14) Find the Missing Number
+
+https://www.geeksforgeeks.org/find-the-missing-number/
+
+15) Uppercase to lowercase without using inbuilt function
+
+https://www.csinfo360.com/2020/04/uppercase-to-lowercase-without-using-inbuilt-function.html
+
+16) Create singly linked list in java
+
+https://www.geeksforgeeks.org/implementing-a-linked-list-in-java-using-class/
+
+https://www.javatpoint.com/java-program-to-create-and-display-a-singly-linked-list
+
+17) Print nodes in the top view of binary tree
+
+https://www.geeksforgeeks.org/print-nodes-in-the-top-view-of-binary-tree-set-3/
+
+https://www.geeksforgeeks.org/print-nodes-in-top-view-of-binary-tree-set-2/
+
+https://www.geeksforgeeks.org/print-left-view-binary-tree/
+
+18) Find the maximum consecutive 1's in array
+
+https://www.programming9.com/tutorials/competitive-programming/414-find-the-maximum-consecutive-one-s-in-array
+
+https://www.geeksforgeeks.org/maximum-consecutive-ones-or-zeros-in-a-binary-array/
+
+19) Recamans sequence
+
+https://www.geeksforgeeks.org/recamans-sequence/
+
+20) Program for Power of X
+
+https://www.geeksforgeeks.org/check-if-a-number-is-power-of-another-number/?ref=lbp
+
+https://www.geeksforgeeks.org/calculating-the-power-of-a-number-in-java-without-using-math-pow-method/
+
+21) Largest sum contiguous subarray
+
+https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+
+22) How to reverse a number in java
+
+https://www.javatpoint.com/how-to-reverse-a-number-in-java
+
+https://www.geeksforgeeks.org/java-program-to-reverse-a-number/
+
+23) Program to find the duplicate words in a string
+
+https://www.javatpoint.com/program-to-find-the-duplicate-words-in-a-string
+
+https://www.netjstech.com/2016/10/finding-duplicate-elements-in-array-java-program.html
+
+24) How to search a word inside a string
+
+https://scanftree.com/programs/java/how-to-search-a-word-inside-a-string/
+
+25) Convert array into zig zag fashion
+
+https://www.geeksforgeeks.org/convert-array-into-zig-zag-fashion/
+
+26) Program to print the middle of the linked list
+
+https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/
+
+27) Reverse words in string in java without using split and stringtokenizer
+
+https://stackoverflow.com/questions/19890974/how-to-reverse-words-in-string-in-java-without-using-split-and-stringtokenizer
+
+28) Check for balanced parenthesis
+
+https://www.geeksforgeeks.org/check-for-balanced-parenthesis-without-using-stack/
+
+https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/

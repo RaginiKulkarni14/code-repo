@@ -1,0 +1,462 @@
+Technical Interview Questions
+--------------------------------
+
+1) What is Singleton design pattern?
+
+https://www.javatpoint.com/singleton-design-pattern-in-java
+
+2) What is covariant return type?
+
+When we override a parent class method, the name, argument types, and return type of the overriding method in child class has to be exactly the same as that of the parent class method. The overriding method was said to be invariant with respect to return type. 
+
+Java version 5.0 onwards it is possible to have different return types for an overriding method in the child class, but the child’s return type should be a subtype of the parent’s return type. The overriding method becomes variant with respect to return type.
+
+https://www.geeksforgeeks.org/covariant-return-types-java/
+
+https://www.youtube.com/watch?v=jlZesmvpGU4
+
+3) What is Java Reflection API?
+
+Java Reflection is a process of examining or modifying the run time behavior of a class at run time.
+
+The java.lang.Class class provides many methods that can be used to get metadata, examine and change the run time behavior of a class.
+
+https://www.javatpoint.com/java-reflection
+
+4) When do we use Class.forName ?
+
+forName is used to load the class dynamically where we doesn't know the class name before hand. Once the class is loaded we will use newInstance() method to create the object dynamically.
+
+https://www.javainterviewpoint.com/use-of-class-forname-in-java/
+
+https://dev.vividbreeze.com/jvm-classloading/
+
+5) How does optional works in java 8?
+
+It can help in writing a neat code without using too many null checks. By using Optional, we can specify alternate values to return or alternate code to run. This makes the code more readable because the facts which were hidden are now visible to the developer.
+
+	String name = "baeldung";
+    Optional<String> opt = Optional.ofNullable(name);
+    assertTrue(opt.isPresent());
+	
+https://www.geeksforgeeks.org/java-8-optional-class/
+
+https://www.baeldung.com/java-optional
+
+https://www.baeldung.com/jackson-optional
+
+6) What is Aspect-Oriented Programming?
+
+Using AOP, we define common functionality in one place. We are free to define how and where this functionality is applied without modifying the class to which we are applying the new feature. The cross-cutting concern can now be modularized into special classes, called aspect.
+
+There are two benefits of aspects:
+
+    First, the logic for each concern is now in one place instead of scattered all over the codebase.
+    Second, the business modules only contain code for their primary concern. The secondary concern has been moved to the aspect.
+
+The aspects have the responsibility that is to be implemented, called advice. We can implement an aspect's functionality into a program at one or more join points.
+
+https://www.javatpoint.com/spring-boot-aop
+
+7) What is the difference between HashMap,LinkedHashMap & TreeMap?
+
+java.util.HashMap is unordered; you can't and shouldn't assume anything beyond that.
+
+    This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.
+
+java.util.LinkedHashMap uses insertion-order.
+
+    This implementation differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
+
+java.util.TreeMap, a SortedMap, uses either natural or custom ordering of the keys.
+
+    The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.
+	
+https://stackoverflow.com/questions/2817695/how-does-java-order-items-in-a-hashmap-or-a-hashtable
+
+8) Difference between Shallow and Deep copy of a class?
+
+=> In Shallow Copy, the pointer points to the same copy of objects of class.
+
+A ob1 = new A();
+ob1.a = 10;
+A ob2 = new A();
+ob2 = ob1;
+
+ob1.a = 5; // <-- If you see value of ob2.a after this line, it will be 5.
+
+=> In Deep Copy, it creates copy of each object inside of the class.
+
+A ob1 = new A();
+ob1.a = 10;
+A ob2 = new A();
+ob2.a = ob1.a;
+
+ob1.a = 5; // <-- If you see value of ob2.a after this line, it will be 10.
+ 
+https://www.geeksforgeeks.org/difference-between-shallow-and-deep-copy-of-a-class/
+
+https://stackoverflow.com/questions/18066429/shallow-copy-or-deep-copy
+
+9) How to create and iterate List of List in java?
+
+https://java2blog.com/java-list-of-lists/
+
+https://stackoverflow.com/questions/1474954/working-with-a-list-of-lists-in-java/1474969
+
+https://stackoverflow.com/questions/34257669/java-get-element-from-list-of-list
+
+10) What is Java ExecutorService? -------------------------------
+
+The Java ExecutorService interface is present in the java. util. concurrent package. The ExecutorService helps in maintaining a pool of threads and assigns them tasks.
+
+https://www.youtube.com/watch?v=6Oo-9Can3H8&list=RDCMUCiz26UeGvcTy4_M3Zhgk7FQ&start_radio=1&t=329s
+
+https://www.geeksforgeeks.org/what-is-java-executor-framework/
+
+10.1) What is Tread Local?
+
+The Java ThreadLocal class enables you to create variables that can only be read and written by the same thread. Thus, even if two threads are executing the same code, and the code has a reference to the same ThreadLocal variable, the two threads cannot see each other's ThreadLocal variables. Thus, the Java ThreadLocal class provides a simple way to make code thread safe that would not otherwise be so. 
+
+https://www.geeksforgeeks.org/java-lang-threadlocal-class-java/
+
+http://tutorials.jenkov.com/java-concurrency/threadlocal.html
+
+10.2) What is deadlock and how to prevent it?
+
+https://javarevisited.blogspot.com/2018/08/how-to-avoid-deadlock-in-java-threads.html#axzz7EZIQWj1n
+
+https://www.java67.com/2015/12/producer-consumer-solution-using-blocking-queue-java.html
+
+10.3) What is synchronization?
+
+Synchronization in Java is the capability to control the access of multiple threads to any shared resource.
+
+https://www.javatpoint.com/synchronization-in-java
+
+https://www.youtube.com/watch?v=RH7G-N2pa8M
+
+https://www.geeksforgeeks.org/synchronization-in-java/
+
+10.4) Can two threads call two different synchronized instance methods of an Object? or Can two threads access a synchronized method at the same time?
+
+No. If a object has synchronized instance methods then the Object itself is used a lock object for controlling the synchronization. Therefore all other instance methods need to wait until previous method call is completed.
+
+https://www.javacodemonk.com/can-two-threads-call-two-different-synchronized-instance-methods-of-an-object-d16af64b
+
+https://stackoverflow.com/questions/9382015/can-two-threads-access-a-synchronized-method-at-the-same-time
+
+10.5) Can Two threads at same time execute two different methods one is static synchronized and second is only synchronized method ?
+		Note : Theres no shared object/instance variable in the class.
+
+Yes, both the calls will execute successfully.
+
+When a static synchronized method is called it gets a lock on the Class object of that class. So, no other other thread can call that method or any other
+static synchronized method in that class, but can call only synchronized or non-synchronized methods.
+
+https://www.toolbox.com/tech/programming/question/can-two-threads-at-same-time-execute-two-different-methods-one-is-static-synchronized-and-second-is-only-synchronized-method-081810/
+
+11) Multithreading interview questions
+
+https://www.interviewbit.com/multithreading-interview-questions/
+
+https://www.youtube.com/watch?v=AfVbJDr-8ic&list=RDCMUCLz7LG4YVi7_iyk4yOARcxA&start_radio=1&t=1484s
+
+https://www.youtube.com/watch?v=bHU4gDsDHLA
+
+11.1) Can two threads access the same object?
+
+Of course - that's the main point of threads. When multiple threads read the same object, there is no difficulty. When one or more threads writes the object, some form of synchronization must happen, unless there is a hardware-based atomic access method. In fact this synchronization is the main difficulty in thread programming - getting it right and making it fast.
+
+https://www.quora.com/Can-two-threads-access-the-same-object
+
+11.2) How do multiple threads in Java handle working with a single object reference passed to them? 
+
+https://stackoverflow.com/questions/41956753/do-multiple-threads-using-the-same-object-in-java-make-a-copy-of-it
+
+12) How does JWT validation work?
+
+JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. Each JWT contains encoded JSON objects, including a set of claims. JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued.
+
+https://jwt.io/introduction
+
+12.1) Spring Security Inteview Questions
+
+https://www.youtube.com/watch?v=rb3wUXZD2EQ&list=RDCMUCNVuLKaKdDhJSbZzdRvgrxQ&index=11
+
+13) Using Java8 Stream to find the highest values from map
+
+Map.Entry<Integer, Long> maxEntry = map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+
+https://stackoverflow.com/questions/42060294/using-java8-stream-to-find-the-highest-values-from-map
+
+14) What is copyonwritearraylist in java?
+
+Java CopyOnWriteArrayList is a thread-safe variant of ArrayList in which all mutative operations (add, set, and so on) are implemented by making a fresh copy of the underlying array. It's immutable snapshot style iterator method uses a reference to the state of the array at the point that the iterator was created.
+
+https://www.geeksforgeeks.org/copyonwritearraylist-in-java/
+
+15) Handling Global Exception in Springboot
+
+https://www.youtube.com/watch?v=hLlGAQ5NfTE
+
+public class TeacherNotFoundException extends RuntimeException {
+    // Exception class 
+}
+
+ExceptionResponse - POJO
+
+@ControllerAdvice
+public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(TeacherNotFoundException.class)
+    public ResponseEntity<Object> handleExceptions( TeacherNotFoundException exception, WebRequest webRequest) {
+        ExceptionResponse response = new ExceptionResponse();
+        response.setDateTime(LocalDateTime.now());
+        response.setMessage("Not found");
+        ResponseEntity<Object> entity = new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        return entity;
+    }
+}
+
+@GetMapping("/getTeacherDetails/{id}")
+    public Teacher getTeacherDetails(@PathVariable("id") int id){
+        Teacher teacher = resourceService.getTeacherDetails(id);
+        if(teacher == null)
+            throw new TeacherNotFoundException();
+        
+        return teacher;
+}
+
+16) Handling Custom Exception in Springboot
+
+https://www.youtube.com/watch?v=WH_d9Tw4CPs
+
+@ControllerAdvice
+   public class ProductExceptionController {
+}
+
+public class ProductNotfoundException extends RuntimeException {
+   private static final long serialVersionUID = 1L;
+}
+
+@ExceptionHandler(value = ProductNotfoundException.class)
+
+public ResponseEntity<Object> exception(ProductNotfoundException exception) {
+}
+
+@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+public ResponseEntity<Object> updateProduct() { 
+   throw new ProductNotfoundException();
+}
+
+17) Map vs FlatMap vs MapToInt
+
+empList.stream().map(emp -> emp.citiesWorkedIn()).collect(collectors.toList());
+
+empList.stream().flatMap(emp -> emp.citiesWorkedIn().stream()).collect(collectors.toList());
+
+https://www.youtube.com/watch?v=TM6TZvVoAko
+
+https://www.youtube.com/watch?v=t9LZdu5iLPE&list=RDCMUCB12jjYsYv-eipCvBDcMbXw&start_radio=1&t=11s
+
+18) Concurrent collections questions
+
+https://www.youtube.com/watch?v=bJT634zMbAM
+
+In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updated in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads.
+
+https://www.geeksforgeeks.org/concurrenthashmap-in-java/
+
+https://medium.com/coding-corpus/concurrent-collections-in-java-9b131e41b3ad
+
+19) Reading values from properties file
+
+https://www.youtube.com/watch?v=_wt6Buzk4oA
+
+https://stackoverflow.com/questions/38281512/how-to-read-data-from-java-properties-file-using-spring-boot
+
+a)  @Value("${myName}")
+    private String name;
+
+    @RequestMapping(value = "/xyz")
+    @ResponseBody
+    public void getName(){
+        System.out.println(name);
+    }
+	
+	
+b) @Autowired
+	private ConfigUtility configUtil;
+
+	public AppResponse getDetails() {
+
+	AppResponse response = new AppResponse();
+    String email = configUtil.getProperty("emailid");
+    return response;        
+	}
+
+20) How does Spring Data JPA Transaction Management @Transactional work?
+
+https://www.youtube.com/watch?v=95kxPSbHzVg
+
+https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
+
+https://dzone.com/articles/how-does-spring-transactional
+
+https://www.youtube.com/watch?v=HcjHJLEbtRs
+
+20.1) Which layer to take care of the transaction management
+
+https://teamtreehouse.com/community/which-layer-to-take-care-of-the-transaction-management
+
+https://stackoverflow.com/questions/10394857/how-to-use-transactional-with-spring-data
+
+21) Can we have 2 controllers in the same package? What happens when two controllers have same method spring boot?
+
+@RequestMapping("/home") //solution
+class HomeController{
+@RequestMapping(value="index")
+public void home(){
+}
+}
+
+@RequestMapping("/demo") //solution
+class DemoController{
+@RequestMapping(value="index")
+public void demo(){
+}
+}
+
+https://stackoverflow.com/questions/34587254/accessing-multiple-controllers-with-same-request-mapping
+
+https://stackoverflow.com/questions/11607396/spring-mvc-multiple-controllers-with-same-requestmapping
+
+22) Can we have multiple endpoints for rest api?
+
+@RequestMapping(value = {"/{id}", "/user/{userId}"}, method = RequestMethod.GET)
+public void getUser(@PathVariable(value = "id", required = false) String id,
+  @PathVariable(value = "userId", required = false) Long userId) {
+    if (id != null) {
+    //TODO stuff for id
+   }
+   if (userId != null) {
+    //TODO stuff for userId
+   }
+}
+
+https://stackoverflow.com/questions/59936902/multiple-endpoints-for-rest-api-in-springboot
+
+23) What are spring boot profiles?
+
+We make properties files for each environment and set the profile in the application accordingly, so it will pick the respective properties file
+
+spring.profiles.active=dev
+
+Option 1: Java System Properties (VM Arguments)
+
+java -jar -Dspring.profiles.active=prod application.jar
+
+Option 2: Program arguments
+
+java -jar application.jar --spring.profiles.active=prod --spring.config.location=c:\config
+
+https://dzone.com/articles/spring-boot-profiles-1
+
+24) How do you secure a password in a properties file?
+
+https://stackoverflow.com/questions/10306673/securing-a-password-in-a-properties-file
+
+https://spring.io/blog/2016/08/15/managing-your-database-secrets-with-vault
+
+https://www.geeksforgeeks.org/how-to-encrypt-passwords-in-a-spring-boot-project-using-jasypt/
+
+https://stackoverflow.com/questions/1132567/encrypt-password-in-configuration-files
+
+25) How do you access inner class methods?
+
+class Outer{
+	class Inner{
+		show(){}
+	}
+}
+class Main{
+	Outer.Inner in = new Outer().new Inner();
+				in.show();
+}
+https://www.geeksforgeeks.org/inner-class-java/
+
+https://www.youtube.com/watch?v=iqp7NQCN2ck
+
+https://www.youtube.com/watch?v=okruEgWGVGU
+
+https://www.youtube.com/c/Telusko/playlists
+
+26) Difference between global and instance variables in java?
+
+https://www.youtube.com/watch?v=bjTAnpXO2LA
+
+https://www.youtube.com/watch?v=3QjWqGa9i6I
+
+https://www.geeksforgeeks.org/variables-in-java/
+
+27) Explain the Memory Management in Java
+
+https://www.javatpoint.com/memory-management-in-java
+
+28) Spring boot database handling
+
+https://www.tutorialspoint.com/spring_boot/spring_boot_database_handling.htm
+
+https://www.youtube.com/watch?v=MaI0_XdpdP8
+
+https://www.youtube.com/watch?v=HULmxjPB0cM
+
+29) How Spring Data JPA - One To Many & Join Query is done?
+
+https://www.youtube.com/watch?v=8qhaDBCJh6I
+
+30) Function overloading with Object type and string type parameters
+
+https://stackoverflow.com/questions/19023542/function-overloading-with-object-type-and-string-type-parameters
+
+https://www.geeksforgeeks.org/method-overloading-null-error-java/
+
+31) Difference between iterator and enumeration
+
+https://www.geeksforgeeks.org/difference-between-iterator-and-enumeration-in-java-with-examples/
+
+32) Spring boot logging
+
+https://www.baeldung.com/spring-boot-logging
+
+33) soap vs rest web services
+
+https://www.javatpoint.com/soap-vs-rest-web-services
+
+34) How to make a class immutable having reference of another class?
+
+https://www.youtube.com/watch?v=I-HMrM4pskQ
+
+35) How to make a class immutable in java with date field and a List of sring elements in it?
+
+public Date getDate() {
+    return new Date(this.date.getTime()); // This will make sure your date field cannot be changed.
+}
+
+public Student(String name, int regNo, List<String> courses) 
+    { 
+        this.name = name; 
+        this.regNo = regNo; 
+        this.courses = Collections.unmodifiableList(courses);
+    }
+
+or
+
+public List getCourses() {
+return Collections.unmodifiableList(courses);
+}
+
+https://stackoverflow.com/questions/37169470/how-to-make-a-class-with-list-member-immutable
+
+https://stackoverflow.com/questions/58482083/how-to-create-immutable-class-with-liststring-element-in-class

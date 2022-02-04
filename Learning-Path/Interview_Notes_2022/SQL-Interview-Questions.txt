@@ -1,0 +1,98 @@
+SQL Interview Questions
+-------------------------
+
+1) 90 most popular SQL Interview Questions and Answers
+
+https://www.softwaretestinghelp.com/50-popular-sql-interview-questions-for-testers/
+
+2) Top 50 Oracle Interview Questions and Answers (2022 Update)
+
+https://career.guru99.com/top-50-oracle-interview-questions-and-answers/
+
+3) Difference between SQL Keys (Primary Key, Super Key, Candidate Key, Foreign Key)
+
+https://www.analyticsvidhya.com/blog/2020/07/difference-between-sql-keys-primary-key-super-key-candidate-key-foreign-key/
+
+4) 20 sql queries for interview
+
+https://www.complexsql.com/20-sql-queries-for-interview/
+
+5) sql query questions answers for practice
+
+https://www.techbeamers.com/sql-query-questions-answers-for-practice/
+
+6) querying data with sql
+
+https://www.pluralsight.com/guides/querying-data-with-sql-dql
+
+7) Indexes in SQL |¦| Database Index
+
+https://www.youtube.com/watch?v=fsG1XaZEa78
+
+8) SQL interview Questions
+
+https://www.youtube.com/watch?v=FJdryrcDD2s
+
+9) Delete Duplicate Records in Oracle
+
+https://www.wikihow.com/Delete-Duplicate-Records-in-Oracle
+
+https://www.javatpoint.com/how-to-delete-duplicate-rows-in-sql
+
+10) Where vs Having
+
+https://www.javatpoint.com/where-vs-having
+
+11) How to find Nth highest salary from a table
+
+https://www.geeksforgeeks.org/find-nth-highest-salary-table/
+
+12) SQL query to find second highest salary?
+
+https://www.geeksforgeeks.org/sql-query-to-find-second-largest-salary/?ref=lbp
+
+13) Query to find 2nd largest value in a column in Table
+
+https://www.geeksforgeeks.org/query-to-find-2nd-largest-value-in-a-column-in-table/?ref=lbp
+
+14) SQL Query to Select all Records From Employee Table Where Name is Not Specified
+
+https://www.geeksforgeeks.org/sql-query-to-select-all-records-from-employee-table-where-name-is-not-specified/?ref=rp
+
+15) SQL Query to Find the Highest Salary of Each Department
+
+https://www.geeksforgeeks.org/sql-query-to-find-the-highest-salary-of-each-department/?ref=rp
+
+16) SQL query to find second highest salary?
+
+https://www.geeksforgeeks.org/sql-query-to-find-second-largest-salary/
+
+17) SQL Query to Find the Year from Date
+
+https://www.geeksforgeeks.org/sql-query-to-find-the-year-from-date/?ref=rp
+
+18) SQL query to find unique column values from table
+
+https://www.geeksforgeeks.org/sql-query-to-find-unique-column-values-from-table/?ref=rp
+
+19) SQL | Join (Inner, Left, Right and Full Joins)
+
+https://www.geeksforgeeks.org/sql-join-set-1-inner-left-right-and-full-joins/?ref=leftbar-rightbar
+
+20) Self join vs Cartesian 
+
+https://www.google.com/search?client=firefox-b-e&q=what+is+self+join+in+sql
+
+https://www.geeksforgeeks.org/sql-join-cartesian-join-self-join/
+
+https://www.youtube.com/watch?v=aZGs-lVTA38
+
+21) How would you display the manager name from employee table in an SQL query?
+
+https://stackoverflow.com/questions/8510112/how-would-you-display-the-manager-name-from-employee-table-in-an-sql-query
+
+https://docs.oracle.com/cd/B19306_01/server.102/b14200/queries003.htm
+
+22) How to Select All Records from One Table That Do Not Exist in Another Table in SQL?
+
+https://www.geeksforgeeks.org/how-to-select-all-records-from-one-table-that-do-not-exist-in-another-table-in-sql/?ref=rp
