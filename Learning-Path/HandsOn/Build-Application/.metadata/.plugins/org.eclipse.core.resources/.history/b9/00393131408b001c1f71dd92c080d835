@@ -1,0 +1,6 @@
+package com.microservice.custexp.controller;
+
+@RestController
+public class EmployeeController {
+
+}

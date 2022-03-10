@@ -1,0 +1,5 @@
+package com.microservice.jpa.entity;
+
+public class Customer {
+
+}

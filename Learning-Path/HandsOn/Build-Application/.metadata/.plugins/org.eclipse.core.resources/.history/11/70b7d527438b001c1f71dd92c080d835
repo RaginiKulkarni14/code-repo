@@ -1,0 +1,5 @@
+package com.microservice.custexption;
+
+public class ControllerException {
+
+}

@@ -1,0 +1,12 @@
+package com.microservice.department.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.microservice.department.service.DepartmentService;
+
+@RestController
+public class DepartmentController {
+	
+	private DepartmentService departmentService;
+
+}

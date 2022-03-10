@@ -1,0 +1,5 @@
+package com.microservice.jpa.dto;
+
+public class RequestOrder {
+
+}

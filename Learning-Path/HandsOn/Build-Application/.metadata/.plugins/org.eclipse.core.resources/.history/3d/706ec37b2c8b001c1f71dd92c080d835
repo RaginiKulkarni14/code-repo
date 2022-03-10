@@ -1,0 +1,5 @@
+package com.microservice.jpa.repository;
+
+public interface ProductRepository {
+
+}

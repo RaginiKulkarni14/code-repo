@@ -1,0 +1,6 @@
+package com.microservice.custexp.repository;
+
+@Repository
+public interface EmployeeRepo {
+
+}

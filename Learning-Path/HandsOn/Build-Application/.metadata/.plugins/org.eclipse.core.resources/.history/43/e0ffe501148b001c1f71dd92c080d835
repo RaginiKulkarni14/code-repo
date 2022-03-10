@@ -1,0 +1,25 @@
+package com.microservice.user.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.microservice.user.entity.User;
+import com.microservice.user.repository.UserRepository;
+
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+
+	public User saveAllUser(User user) {
+		
+		Log.info("Inside the saveAllUser method in UserRepository class");
+		return userRepository.save(user);
+	}
+
+}

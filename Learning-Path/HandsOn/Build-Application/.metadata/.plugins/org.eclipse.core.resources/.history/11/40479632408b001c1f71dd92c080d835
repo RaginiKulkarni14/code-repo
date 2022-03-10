@@ -1,0 +1,13 @@
+package com.microservice.custexp.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.microservice.custexp.service.EmployeeSevice;
+
+@RestController
+public class EmployeeController {
+	
+	@Autowired
+	private EmployeeSevice employeeSevice;
+
+}

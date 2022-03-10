@@ -1,0 +1,14 @@
+package com.microservice.custexp.entity.service;
+
+import java.util.*;
+
+import com.microservice.custexp.entity.Employee;
+
+public interface EmployeeServiceInterface {
+	
+	public Employee addEmployee(Employee employee);
+	
+	public List<Employee> getAllEmployees();
+
+}
+	

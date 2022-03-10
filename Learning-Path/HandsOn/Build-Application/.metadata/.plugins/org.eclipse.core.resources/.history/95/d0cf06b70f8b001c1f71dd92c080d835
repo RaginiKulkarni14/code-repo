@@ -1,0 +1,20 @@
+package com.microservice.user.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GeneratedType.AUTO)
+	private int userId;private String fName;
+	private String lName;
+	private String emailId;
+	private int departmentId;
+	
+	
+	
+
+}

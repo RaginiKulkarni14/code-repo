@@ -1,0 +1,18 @@
+package com.microservice.department.service;
+
+import org.springframework.stereotype.Service;
+
+import com.microservice.department.entity.Department;
+import com.microservice.department.repository.DepartmentRepository;
+
+@Service
+public class DepartmentService {
+	
+	private DepartmentRepository departmentRepository;
+
+	public Department saveDepartment(Department department) {
+		
+		return departmentRepository.save(department);
+	}
+
+}

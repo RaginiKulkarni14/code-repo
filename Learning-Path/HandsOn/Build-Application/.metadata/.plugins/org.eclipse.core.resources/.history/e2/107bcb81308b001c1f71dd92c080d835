@@ -1,0 +1,8 @@
+package com.microservice.jpa.dto;
+
+public class OrderResponse {
+	
+	private String name;
+	private String productName;
+
+}

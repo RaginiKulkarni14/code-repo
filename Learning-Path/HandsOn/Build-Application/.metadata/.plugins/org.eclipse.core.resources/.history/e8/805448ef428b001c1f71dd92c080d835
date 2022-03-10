@@ -1,0 +1,11 @@
+package com.microservice.custexption;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class BusinessException extends RuntimeException{
+	
+	private String errCode;
+	private String desc;
+
+}

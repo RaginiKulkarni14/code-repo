@@ -1,0 +1,5 @@
+package com.microservice.custexp.entity.service;
+
+public interface EmployeeServiceInterface {
+
+}

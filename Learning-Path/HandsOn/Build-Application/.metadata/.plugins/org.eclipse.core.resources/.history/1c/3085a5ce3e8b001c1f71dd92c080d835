@@ -1,0 +1,9 @@
+package com.microservice.custexp.entity.service;
+
+import com.microservice.custexp.entity.Employee;
+
+public interface EmployeeServiceInterface {
+	
+	public Employee addEmployee(Employee employee);
+
+}
